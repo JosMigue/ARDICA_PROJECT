@@ -1,3 +1,6 @@
+      <?php 
+      $Hola =  new DateTime();
+      ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,7 +12,7 @@
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Floating labels example · Bootstrap</title>
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/Administration/singin.css">
+    <link rel="stylesheet" href="css/Administration/singin.css?<?php echo $Hola->getTimestamp()?>">
     <link rel="stylesheet" href="bulma-0.7.5/css/bulma.min.css">
 </head>
 
@@ -33,11 +36,10 @@
             <p class="mt-5 mb-3 text-muted">ARDICA Construcciones S.A de C.V © <?php date("y");?></p>
         </form>
     </div>
-
-    <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js?<?php echo $Hola->getTimestamp()?>"></script>
     <script type="text/javascript" src="assets/Bootstrap/js/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="assets/Bootstrap/js/popper.min.js"></script>
-    <script type="text/javascript" src="js/Administration/example.js"></script>
+    <script type="text/javascript" src="js/Administration/example.js?<?php echo $Hola->getTimestamp()?>"></script>
 </body>
 
 </html>
