@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Administration extends MY_Controller {
+class General extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,12 +18,12 @@ class Administration extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-
 	public function index()
 	{
-		$this->load->model("m_Administration");
-		$data['data'] = $this->m_Administration->bringUser();
-		$this->loadView("Administration/Administration",$data);
-		$this->load->view("Administration/modalRegistro");
+		$this->load->view('Login');
+	}
+	public function home()
+	{
+		$this->load->view('home');
 	}
 }
