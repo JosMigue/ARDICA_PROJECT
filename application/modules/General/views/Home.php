@@ -22,7 +22,8 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="<?php echo site_url('/') ?>">
-            <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30" class="d-inline-block align-top" alt="">
+            <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"
+                class="d-inline-block align-top" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +50,15 @@
                     </div>
                 </li>
             </ul>
-                <a href="<?php echo site_url('General/cerrar_sesion') ?>"class="btn btn-info my-2 my-sm-0" type="submit">Cerrar sesión</a>
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" v-pre>
+                    <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<?php echo site_url('General/cerrar_sesion') ?>">Cerrar Sesión </a>
+                </div>
+            </li>
         </div>
     </nav>
     <div id="titulo">
