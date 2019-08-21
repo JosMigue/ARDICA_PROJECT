@@ -21,7 +21,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="home">
+        <a class="navbar-brand" href="<?php echo site_url('/') ?>">
             <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30" class="d-inline-block align-top" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -49,7 +49,7 @@
                     </div>
                 </li>
             </ul>
-                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Cerrar sesión</button>
+                <a href="<?php echo site_url('General/cerrar_sesion') ?>"class="btn btn-info my-2 my-sm-0" type="submit">Cerrar sesión</a>
         </div>
     </nav>
     <div id="titulo">
@@ -58,17 +58,17 @@
     <!--============Menu Options start ============-->
     <header>
         <div class="contenedor" id="uno">
-            <img class="icon" src="img/Admin_Icon.png">
+            <img class="icon" src="img/Icons/Admin_Icon.png">
             <p class="texto">Adminsitración</p>
         </div>
 
         <div class="contenedor" id="dos">
-            <img class="icon" src="img/Petty_Cash_Icon.png">
+            <img class="icon" src="img/Icons/Petty_Cash_Icon.png">
             <p class="texto">Caja chica</p>
         </div>
 
         <div class="contenedor" id="tres">
-            <img class="icon" src="img/Files_Icon.png">
+            <img class="icon" src="img/Icons/Files_Icon.png">
             <p class="texto">Archivos</p>
         </div>
     </header>
@@ -86,12 +86,10 @@
     </footer>
     <!-- Footer -->
     <!--===========Javascript block start===========-->
-    <script type="text/javascript"
-        src="assets/Bootstrap/js/jquery-3.3.1.slim.min.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
-    <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js?<?php echo $cacheSaver->getTimestamp()?>">
-    </script>
-    <script type="text/javascript" src="assets/Bootstrap/js/popper.min.js?<?php echo $cacheSaver->getTimestamp()?>">
-    </script>
+    <script type="text/javascript" src="assets/Bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/Bootstrap/js/popper.min.js"></script>
+    <script type="text/javascript" src="js/General/home.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
     <!--===========Javascript block end===========-->
 </body>
 

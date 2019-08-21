@@ -30,6 +30,14 @@ class MY_Controller extends MX_Controller
 
 	}
 
+	function loadLogin($view,$data){
+		$this->load->view($view,$data);
+	}
+
+	function loadHome($view,$data){
+		$this->load->view($view,$data);
+	}
+
 }
 
 /* End of file MY_Controller.php */

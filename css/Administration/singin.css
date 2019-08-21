@@ -109,3 +109,14 @@ transform: scale(1.1);
 #submit-button:hover:before{
 	left: 130%;
 }
+
+.my-error-class{
+  color:red;
+  font-size: 12px; 
+  float: center;
+}
+.my-valid-class{
+  color:greenyellow;
+  font-size: 12px; 
+  float: center;
+}
