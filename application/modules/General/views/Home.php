@@ -1,4 +1,5 @@
 <?php 
+defined('BASEPATH') OR exit('No direct script access allowed');
       /* Variable usada para evitar la constante limpia de caché (en el caso de chrome), este con el fin de hacer 
       'Creer' al servidor de que el archivo al que se hace referencia es uno deferente cada vez que se recarga la pagina,
       lo que evitará que en foturas modificaciones  (en el caso del uso del Chrome) no será necesario limpiar la cache 
@@ -15,11 +16,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Menú principal</title>
     <link rel="stylesheet" href="css/General/menuStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
-    <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css?<?php echo $cacheSaver->getTimestamp()?>">
+    <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bulma-0.7.5/css/bulma.min.css">
 
 </head>
 
 <body>
+    
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="<?php echo site_url('/') ?>">
             <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"
@@ -65,24 +68,37 @@
         <p id="subheader">Menú principal</p>
     </div>
     <!--============Menu Options start ============-->
-    <header>
+    <div class="menu-options">
+    <div class="columns is-variable bd-klmn-columns is-3">
+      <div class="column is-4" id="button_menu">
+        <div class="bd-notification is-primary has-text-centered">
         <div class="contenedor" id="uno">
-            <img class="icon" src="img/Icons/Admin_Icon.png">
-            <p class="texto">Adminsitración</p>
+            <a href="<?php echo site_url('/administration') ?>">
+                <img class="icon" src="img/Icons/Admin_Icon.png">
+                <p class="texto">Adminsitración</p>
+            </a>
         </div>
-
+        </div>
+      </div>
+      <div class="column is-4" id="button_menu">
+        <div class="bd-notification is-primary has-text-centered">
         <div class="contenedor" id="dos">
             <img class="icon" src="img/Icons/Petty_Cash_Icon.png">
             <p class="texto">Caja chica</p>
         </div>
-
+        </div>
+      </div>
+      <div class="column is-4" id="button_menu">
+        <div class="bd-notification is-primary has-text-centered">
         <div class="contenedor" id="tres">
             <img class="icon" src="img/Icons/Files_Icon.png">
             <p class="texto">Archivos</p>
         </div>
-    </header>
+        </div>
+      </div>
+    </div>
+    </div>
     <!--============Menu Options end ============-->
-
     <!-- Footer -->
     <footer class="page-footer font-small blue">
 

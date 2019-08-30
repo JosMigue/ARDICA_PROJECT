@@ -49,8 +49,8 @@ $(document).ready(function () {
                         location.href('General/Login');
                     }
                 },
-                erro:function(){
-                    alert("error we");
+                erro:function(error){
+                    alert("HA OCURRIDO UN ERROR"+error);
                 },
             });
         }

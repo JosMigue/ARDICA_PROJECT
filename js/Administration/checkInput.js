@@ -17,7 +17,9 @@ function checkEmail(obj) {
     nameRegex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/;
     if (nameRegex.test(inputText)) {
         document.getElementById("apellidoPCheck").innerHTML = '<span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca su apellido paterno.</span>';
+        $('#button_sumbit_modal').attr('disabled', false);
       } else {
+        $('#button_sumbit_modal').attr('disabled', true);
         document.getElementById("apellidoPCheck").innerHTML = '<span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Apellido no válido</span>';
       }
   }
@@ -27,8 +29,10 @@ function checkEmail(obj) {
     nameRegex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/;
       if (nameRegex.test(inputText)) {
         document.getElementById("nombreCheck").innerHTML = '<span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca su nombre.</span>';
+        $('#button_sumbit_modal').attr('disabled', false);
       } else {
         document.getElementById("nombreCheck").innerHTML = '<span id="nombreCheck" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Nombre no válido</span>';
+        $('#button_sumbit_modal').attr('disabled', true);
       }
   }
   
@@ -41,8 +45,10 @@ function checkEmail(obj) {
       }else{
       if (nameRegex.test(inputText)) {
         document.getElementById("apellidoMCheck").innerHTML = '<span id="apellidoMCheck" style="font-size: 12px; float: right;" class="text-success font-weight-bold">Introduzca su apellido materno</span>';
+        $('#button_sumbit_modal').attr('disabled', false);
       } else {
         document.getElementById("apellidoMCheck").innerHTML = '<span id="apellidoMCheck" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Apellido no válido</span>';
+        $('#button_sumbit_modal').attr('disabled', true);
       }
     }
   }
@@ -84,4 +90,16 @@ function checkEmail(obj) {
       document.getElementById("contadorPassword").innerHTML = '<span id="contadorPassword" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Contraseña debe contar solo con letras y números</span>';
     }
     }
+  }
+
+  function resetModal(){
+    $('#firstName').val('');
+    $('#lastName').val('');
+    $('#secondLastName').val('');
+    $('#email').val('');
+    $('#user').val('');
+    $('#password').val('');
+    $('#address').val('');
+    document.getElementById("contadorPassword").innerHTML = '<span id="contadorPassword" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">mínimo 8 caracteres</span>';
+    document.getElementById("contadorTelefono").innerHTML = '<span id="contadorTelefono" style="font-size: 12px; float: right;" class="text-success font-weight-bold">10 restantes</span>'
   }

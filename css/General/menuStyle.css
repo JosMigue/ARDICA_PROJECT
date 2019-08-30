@@ -32,19 +32,22 @@ p#subheader{
 	font-size: 1.3em;
 }
 
-header{
-	margin:100px auto;
-	width:1800px;
-	height:230px;
-	background-color:transparent;
+div.menu-options{
+	margin-top: 5%;
+	align-items: center;
 }
+
+div#button_menu{
+	padding: 75px;
+}
+
 
 div.contenedor{
 	width: 200px;
 	height: 230px;
 	float:left;
-	margin-right: 200px;
-	margin-left: 200px;
+	margin-right: 29%;
+	margin-left: 29%;
 	-webkit-transition: height .4s;
 }
 

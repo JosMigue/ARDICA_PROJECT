@@ -7,6 +7,7 @@
       ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +16,12 @@
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <title>Administration</title>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="home">
-            <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30" class="d-inline-block align-top" alt="">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="<?php echo site_url('/') ?>">
+            <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"
+                class="d-inline-block align-top" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +40,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Lista de usuarios</a>
+                        <input type="hidden" id="button_add_user">
                         <a class="dropdown-item" href="#">Lista de obras</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -56,7 +60,17 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Lista de archivos</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?php echo site_url('General/cerrar_sesion') ?>">Cerrar Sesión
+                        </a>
+                    </div>
+                </li>
             </ul>
-                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Cerrar sesión</button>
+
         </div>
     </nav>

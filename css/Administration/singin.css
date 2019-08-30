@@ -22,7 +22,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
-  width: 25%;
+  width: 400px;
   max-width: 200%;
   margin: auto;
   position: absolute;
@@ -86,7 +86,7 @@ transform: scale(1.1);
 	cursor: pointer;
 }
  
-#submit-buttona.boton:before{
+#submit-button.boton:before{
 	left: -48%;
 }
  

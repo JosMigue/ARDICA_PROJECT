@@ -3,3 +3,14 @@
     width:  80%;
     margin: auto;
 }
+
+.my-error-class{
+    color:red;
+    font-size: 12px; 
+    float: center;
+  }
+  .my-valid-class{
+    color:rgb(70, 68, 68);
+    font-size: 12px; 
+    float: center;
+  }

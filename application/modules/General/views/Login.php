@@ -22,6 +22,7 @@
           <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
           <link rel="stylesheet" href="css/Administration/singin.css?<?php echo $cacheSaver->getTimestamp()?>">
           <link rel="stylesheet" href="assets/bulma-0.7.5/css/bulma.min.css">
+          <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css"/>
           <!-- Default theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css"/>
 <!-- Semantic UI theme -->
@@ -67,7 +68,6 @@
           <script type="text/javascript" src="assets/jQuery/jquery-3.2.1.min.js"></script>
           <script type="text/javascript" src="js/jquery.validate.js"></script>
           <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
-          <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css"/>
           <script type="text/javascript" src="js/Administration/example.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
           <script type="text/javascript" src="js/General/Login.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
           <!--==========================JAVASCRIPT BLOCK END==========================-->
