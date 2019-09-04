@@ -13,6 +13,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script type="text/javascript" src="js/Administration/checkInput.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/Administration/Administrationjs_users.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+<script type="text/javascript" src="js/Administration/AdministrationObras.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+
 </body>
 
 </html>

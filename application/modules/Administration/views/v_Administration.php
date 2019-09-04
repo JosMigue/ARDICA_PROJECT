@@ -1,4 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+$cacheSaver =  new DateTime();?>
 
 <div class="table-responsive-sm">
     <table class="table table-bordered" id="users_table">
@@ -16,6 +17,7 @@
         <tbody>
         <?php $contador = 0?>
         <?php foreach($data as $user){?>
+        <?php if ($user->status==1){?>
             <tr class="text-center">
                 <th scope="row"><?php echo $contador+=1?></th>
                 <td><?php echo $user->name?></td>
@@ -27,7 +29,7 @@
     
             </tr>
         <?php } ?>
+        <?php } ?>
         </tbody>
     </table>
-
 </div>

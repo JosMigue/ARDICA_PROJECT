@@ -1,6 +1,5 @@
 $(document).ready(function () {
     var msg = 'Campo obligatorio';
-    document.getElementById("button_add_user").outerHTML = ' <button class="dropdown-item" onclick="resetModalRegistro()"  data-toggle="modal" data-target="#modalRegistro" >Registrar usuario</button>'
     $("#form_registro_usuario").validate({
         errorClass: "my-error-class",
         validClass: "my-valid-class",
@@ -251,8 +250,4 @@ function resetModalRegistro(){
         document.getElementById("cancela_modal_Registro").outerHTML = '<button class="btn btn-danger" onclick="resetModal()" type="button" id="cancela_modal_Registro" data-dismiss="modal">Cancelar</button>'
     }, 1000)
 } */
-
-function editarUsuario(){
-
-}
 

@@ -13,7 +13,7 @@
                     <div class="container-registration">
                         <form method="post" action="" id="form_editar_usuario">
                             <div class="row">
-                                <input type="hidden" id="idUser" value="hola">
+                                <input type="hidden" id="idUser" value="">
                                 <div class="col-md-6 mb-4">
                                     <label for="fullName">Nombre completo</label>
                                     <span id="nombreCheckEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre</span>

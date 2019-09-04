@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Administration/animate.css">
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <title>Administration</title>
 </head>
@@ -31,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -39,9 +40,11 @@
                         Administración
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Lista de usuarios</a>
-                        <input type="hidden" id="button_add_user">
-                        <a class="dropdown-item" href="#">Lista de obras</a>
+                        <a class="dropdown-item" href="<?php echo site_url('/administration')?>">Lista de usuarios</a>
+                        <button class="dropdown-item" id="button_add_user"  data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistro" >Registrar usuario</button>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="<?php echo site_url('/administration.obras')?>">Lista de obras</a>
+                        <button class="dropdown-item" id="button_add_user"onclick=""  data-toggle="modal" onclick="resetModalObrasEdit()" data-target="#modalRegistroObra" >Registrar obra</button>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
