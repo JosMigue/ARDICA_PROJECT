@@ -121,6 +121,20 @@ $(document).ready(()=>{
                             setTimeout(function () {
                                 location.reload('/administration.obra');
                           }, 1200);
+                        }else if(data == 'no changes'){
+                            Swal.fire({
+                                title: 'No se encontraron cambios...',
+                                animation: false,
+                                customClass: {
+                                  popup: 'animated tada'
+                                }
+                              })
+                        }else if(data == 'name exist'){
+                            Swal.fire({
+                                type: 'Error',
+                                title: '¡El nombre de la obra ya existe!',
+                                text: 'Verifique que la obra que está ingresando no exista en la tabla..',
+                              })
                         }
                 },
                 erro:function(error){

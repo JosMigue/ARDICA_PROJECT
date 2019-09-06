@@ -21,17 +21,17 @@
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label for="emailEdit">Correo</label>
-                                    <span id="correoCheckEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">correo</span>
-                                    <input type="text" onkeyup="checkEmailEdit(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="emailEdit" name="emailEdit" pattern="[A-Z,a-z,-,_,.,0-9]+@[a-z]+\.[a-z]+" placeholder="Example@Example.com" >
+                                    <span id="correoCheckEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Correo</span>
+                                    <input type="text" onkeyup="checkEmailEdit(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="emailEdit" name="emailEdit" pattern="/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i" placeholder="Example@Example.com" >
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="email">Usuario</label>
-                                    <span id="correoCheckEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre de usuario</span>
+                                    <label for="userEdit">Usuario</label>
+                                    <span id="" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre de usuario</span>
                                     <input type="text" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="userEdit" name="userEdit" pattern="[A-Z,a-z,-,_,.,0-9]+@[a-z]+\.[a-z]+" placeholder="Usuario" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label for="addressEdit">Teléfono</span>
-                                    <span id="contadorTelefonoEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">número telefonicp</span>
+                                    <span id="contadorTelefonoEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Número telefonico</span>
                                     <input type="tel" onkeyup="contadorTelefonoEdit(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" name="addressEdit" maxlength="10" id="addressEdit" placeholder="1234567890"  pattern="[0-9]+">
                                 </div>
                             </div>

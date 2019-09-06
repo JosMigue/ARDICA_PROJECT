@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['home'] = 'General/home';
 $route['administration'] = 'Administration';
 $route['administration.obras'] = 'Administration/obras';
+$route['Files'] = 'Files/files';
 $route['default_controller'] = 'General';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

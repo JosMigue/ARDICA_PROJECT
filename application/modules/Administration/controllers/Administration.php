@@ -76,11 +76,14 @@ class Administration extends MY_Controller {
 	public function editUser(){
 		$this->load->model("m_Administration");
 		$user = $_POST["obj"];
-
-		if($this->m_Administration->updateUser($user)){
-			echo 'success';
-		}else{
-			echo 'error';
+		$response = $this->m_Administration->updateUser($user);
+ 		switch($response){
+			case 1: echo 'success';
+			break;
+			case 2: echo 'error';
+			break;
+			case 0: echo 'no changes';
+			break;
 		}
 	}
 
@@ -130,11 +133,15 @@ class Administration extends MY_Controller {
 	public function editObra(){
 		$this->load->model("m_Administration");
 		$obra = $_POST["obj"];
-
-		if($this->m_Administration->updateObra($obra)){
-			echo 'success Obra Edit';
-		}else{
-			echo 'error Obra Edit';
+		$response = $this->m_Administration->updateObra($obra);
+		switch($response){
+			case 0: echo 'no changes';
+			break;
+			case 1: echo 'success Obra Edit';
+			break;
+			case 2: echo 'error Obra Edit';
+			break;
+			case 3: echo 'name exist';
 		}
 	}
 

@@ -20,6 +20,10 @@ class Welcome extends MY_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->loadView("Files/v_Files",$data);
+	}
+
+	public function files(){
+		$this->LoadFiles("Files/v_Files");
 	}
 }

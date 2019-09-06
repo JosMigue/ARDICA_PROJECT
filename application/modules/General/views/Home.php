@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       lo que evitará que en foturas modificaciones  (en el caso del uso del Chrome) no será necesario limpiar la cache 
       una vez que el sistema esté en producción */
       $cacheSaver =  new DateTime();
+      
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"></a>
@@ -91,6 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="column is-4" id="button_menu">
         <div class="bd-notification is-primary has-text-centered">
         <div class="contenedor" id="tres">
+        <a href="<?php echo site_url('/Files')?>">
             <img class="icon" src="img/Icons/Files_Icon.png">
             <p class="texto">Archivos</p>
         </div>

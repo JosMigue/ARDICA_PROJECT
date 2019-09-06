@@ -20,6 +20,15 @@ class M_Administration extends CI_Model {
                  
         
     }
+    function getOneUser($id){
+            return $this->db->select('name, nickname, email, phone')
+                    ->from('users')
+                    ->where('ID',$id)
+                    ->get()
+                    ->row();
+                 
+        
+    }
     function bringObras(){
             return $this->db->select('O.ID ,O.cc , O.name, OB.name as nameType, O.dateSave')
                     ->from('obras O')
@@ -94,19 +103,31 @@ class M_Administration extends CI_Model {
     }
 
     function updateUser($obj){
+        $user = $this->getOneUser($obj["id"]);
+
         $data=array(
             'name'=>$obj["Nombre"],
             'nickname'=>$obj["user"],
             'phone'=>$obj["telefono"],
             'email' =>$obj["email"]
-          );
-          $this->db->set($data)->where('ID',$obj["id"])->update('users');
-          $rows = $this->db->affected_rows();
-        if($rows == 1){
-            return true;
+        );
+        $us = array(
+            'name'=>$user->name,
+            'nickname'=>$user->nickname,
+            'phone'=>$user->phone,
+            'email' =>$user->email
+        );
+        if(count(array_diff($data,$us)) == 0){
+             return 0;
         }else{
-            return false;
-        }
+            $this->db->set($data)->where('ID',$obj["id"])->update('users');
+            $rows = $this->db->affected_rows();
+          if($rows == 1){
+              return 1;
+          }else{
+              return 2;
+          }
+        }  
     }
 
     function bringObraEdit($id){
@@ -173,17 +194,39 @@ class M_Administration extends CI_Model {
         } 
     }
 
+    function nameObraVerify($nombre){
+        return $this->db->select('name')
+                ->from('obras')
+                ->where('name',$nombre)
+                ->where('status',1)
+                ->get()
+                ->row();
+        
+    }
+
     function updateObra($obj){
+        $obra = $this->bringObraEdit($obj["id"]);
+
+        $ob =  array(
+            'name' => $obra->name,
+            'type' => $obra->type
+        );
         $data=array(
             'name'=>$obj["nombreObraEdit"],
             'type'=>$obj["tipoObraEdit"]
           );
+
+        
+          if(count(array_diff($data,$ob))==0){
+            return 0;
+          }else{
           $this->db->set($data)->where('ID',$obj["id"])->update('obras');
           $rows = $this->db->affected_rows();
         if($rows == 1){
-            return true;
+            return 1;
         }else{
-            return false;
+            return 2;
+        }
         }
     }
 }

@@ -4,6 +4,10 @@
       lo que evitará que en foturas modificaciones  (en el caso del uso del Chrome) no será necesario limpiar la cache 
       una vez que el sistema esté en producción */
       $cacheSaver =  new DateTime();
+      if($this->session->userData('logueado')==False){
+        header('Location: /ARDICA');
+        exit;
+    }
       ?>
 <!DOCTYPE html>
 <html lang="en">

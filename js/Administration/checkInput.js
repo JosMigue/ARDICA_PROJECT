@@ -92,6 +92,31 @@ function checkEmail(obj) {
     }
   }
 
+  function contadorTelefonoEdit(telefono){
+    var maxLength = 10;
+    var strLength = telefono.value.length;
+    var charRemain = (maxLength - strLength);
+    if (charRemain <= 0) {
+      document.getElementById("contadorTelefonoEdit").innerHTML = '<span id="contadorTelefonoEdit" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Límite alcanzado</span>';
+    } else {
+      document.getElementById("contadorTelefonoEdit").innerHTML = '<span id="contadorTelefonoEdit" style="font-size: 12px; float: right;" class="text-success font-weight-bold">' + charRemain + ' restantes</span>';
+    }
+  }
+
+  function checkEmailEdit(obj) {
+    var inputText = obj.value;
+    emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+      if(inputText.length==0){
+        document.getElementById("correoCheckEdit").innerHTML = '<span id="correoCheckEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca un correo valido</span>';
+      }else{
+      if (emailRegex.test(inputText)) {
+        document.getElementById("correoCheckEdit").innerHTML = '<span id="correoCheckEdit" style="font-size: 12px; float: right;" class="text-success font-weight-bold">Dirección válida</span>';
+      } else {
+        document.getElementById("correoCheckEdit").innerHTML = '<span id="correoCheckEdit" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Dirección no válida</span>';
+      }
+    }
+  }
+
   function resetModal(){
     $('#firstName').val('');
     $('#lastName').val('');

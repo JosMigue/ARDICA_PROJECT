@@ -47,7 +47,7 @@ class General extends MY_Controller {
 
 			$data['captcha']= $this->generarCaptcha();
 
-			 $this->session->set_userdata('captcha',$this->rand);
+			$this->session->set_userdata('captcha',$this->rand);
 
 			$this->loadLogin('General/Login',$data);   
 

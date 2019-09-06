@@ -110,10 +110,17 @@ $(document).ready(function () {
             obj = new Object;
             obj.id = $('#idUser').val();
             obj.Nombre = $('#fullName').val();
-            obj.email = $('#emailEdit').val();
+            if($('#emailEdit').val()==""){
+                obj.email = null;
+            }else{
+                obj.email = $('#emailEdit').val();
+            }
             obj.user = $('#userEdit').val();
-            obj.telefono = $('#addressEdit').val();
-
+            if($('#addressEdit').val() == ""){
+                obj.telefono = null;
+            }else{
+                obj.telefono = $('#addressEdit').val();
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -128,19 +135,27 @@ $(document).ready(function () {
                             type: 'Error',
                             title: 'Oops...',
                             text: 'El usuario no se ha podido actualizar...',
+                        })
+                    }else if(data == 'success'){
+                        Swal.fire({
+                            position: 'center',
+                            type: 'success',
+                            title: 'El usuario ha sido actualizado correctamente',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        $('#modalEditarUsuario').modal('hide');
+                        setTimeout(function () {
+                            location.reload('/administration');
+                        }, 1200);
+                    }else if(data == 'no changes'){
+                        Swal.fire({
+                            title: 'No se encontraron cambios...',
+                            animation: false,
+                            customClass: {
+                              popup: 'animated tada'
+                            }
                           })
-                        }else if(data == 'success'){
-                            Swal.fire({
-                                position: 'center',
-                                type: 'success',
-                                title: 'El usuario ha sido actualizado correctamente',
-                                showConfirmButton: false,
-                                timer: 1000
-                            });
-                            $('#modalEditarUsuario').modal('hide');
-                            setTimeout(function () {
-                                location.reload('/administration');
-                          }, 1200);
                     }
                 },
                 erro:function(error){
