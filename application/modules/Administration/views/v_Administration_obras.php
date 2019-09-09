@@ -8,6 +8,7 @@
                 <th scope="col">Nombre de la obra</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Fecha de registro</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -20,7 +21,15 @@
                 <td><?php echo $obra->name?></td>
                 <td><?php echo $obra->nameType?></td>
                 <td><?php echo $obra->dateSave?></td>
-                <th><button class="btn btn-warning" value="<?php echo $obra->ID?>" onclick="bringDataObra(this)"> editar</button><br><button onclick="Eliminar_Obra(this)"class="btn btn-danger" value="<?php echo $obra->ID?>" name="<?php echo $obra->name?>" >Eliminar</button></th>
+                <td><?php 
+                if($obra->status == 1){
+                    echo "<img src='img/botonesactivo.png' width='30' height='30'>";
+                }else{
+                    echo "<img src='img/botonesdesactivo.png' width='30' height='30'>";
+                }
+                ?>
+                </td>
+                <th><button class="btn btn-warning" value="<?php echo $obra->ID?>" onclick="bringDataObra(this)"> editar</button><br><button onclick="Eliminar_Obra(this)" name="<?php echo $obra->name?>" class="btn btn-danger" value="<?php echo $obra->ID?>" >Eliminar</button></th>
             </tr>
         <?php } ?>
         </tbody>

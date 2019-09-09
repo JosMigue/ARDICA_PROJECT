@@ -243,26 +243,3 @@ function Eliminar_usurario(usuario){
 
 }
 
-/* function modificarModal(){
-    $('#name').remove();
-    $('#lastName').remove();
-    $('#secondLastName').remove();
-    $('#password').remove();
-    document.getElementById("modal_option").outerHTML = '<div class="col-md-6 mb-4" id="fullName"><label for="fullName">Nombre completo</label><span id="name " style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre completo</span><input type="text" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="fullName" name="fullName" pattern="[A-Z,a-z,-,_,.,0-9]+@[a-z]+\.[a-z]+" placeholder="nombre"></div>'
-    document.getElementById("button_sumbit_modal").outerHTML = '<button class="btn btn-success" id="button_sumbit_modal" type="submit">Actualizar</button>'
-    document.getElementById("exampleModalLabel").innerHTML = '<h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>'
-    document.getElementById("cancela_modal_Registro").outerHTML = '<button class="btn btn-danger" onclick="resetModalRegistro()"type="button" id="cancela_modal_Registro" data-dismiss="modal">Cancelar edición</button>'
-    document.getElementById("")
-
-}
-
-function resetModalRegistro(){
-    $('#modalRegistro').modal('hide');
-    setTimeout(function(){
-        document.getElementById("fullName").outerHTML=' <div class="col-md-6 mb-4" id="name"><span>Nombre</span><span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre</span><input type="text" onkeyup="checkName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="firstName" name="firstName" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Nombre" required></div><div class="col-md-6 mb-4" id="lastName"><span>Apellido Paterno</span><span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Apellido paterno</span><input type="text" onkeyup="checkLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="lastName" name="lastName" pattern="[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+" placeholder="Apellido paterno" required></div><div class="col-md-6 mb-4" id="secondLastName"><span>Apellido Materno</span><span id="apellidoMCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Apellido materno</span><input type="text" onkeyup="checkSLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="secondLastName" name="secondLastName" pattern="[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+" placeholder="Apellido materno" required></div><input type="hidden" id="modal_option"><div class="col-md-6 mb-4" id="password"><span>Contraseña</span><span id="contadorPassword" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Mínimo 8 caracteres</span><input type="password" onkeyup="contadorPassword(this)" minlength="8" maxlength="20" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="password" pattern="[0-9a-zA-Z]+" name="password" placeholder="Tu contraseña" required></div>'
-        document.getElementById("exampleModalLabel").innerHTML = '<h5 class="modal-title" id="exampleModalLabel">Registrar usuario</h5>'
-        document.getElementById("button_sumbit_modal").outerHTML = '<button class="btn btn-success" id="button_sumbit_modal" type="submit">Registrar</button>'
-        document.getElementById("cancela_modal_Registro").outerHTML = '<button class="btn btn-danger" onclick="resetModal()" type="button" id="cancela_modal_Registro" data-dismiss="modal">Cancelar</button>'
-    }, 1000)
-} */
-

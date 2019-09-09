@@ -30,10 +30,9 @@ class M_Administration extends CI_Model {
         
     }
     function bringObras(){
-            return $this->db->select('O.ID ,O.cc , O.name, OB.name as nameType, O.dateSave')
+            return $this->db->select('O.ID ,O.cc , O.name, OB.name as nameType, O.dateSave, O.status')
                     ->from('obras O')
                     ->join('obras_type OB','O.Type=OB.ID')
-                    ->where('O.status',1)
                     ->get()
                     ->result(); 
     }
@@ -194,7 +193,7 @@ class M_Administration extends CI_Model {
         } 
     }
 
-    function nameObraVerify($nombre){
+/*     function nameObraVerify($nombre){
         return $this->db->select('name')
                 ->from('obras')
                 ->where('name',$nombre)
@@ -202,7 +201,7 @@ class M_Administration extends CI_Model {
                 ->get()
                 ->row();
         
-    }
+    } */
 
     function updateObra($obj){
         $obra = $this->bringObraEdit($obj["id"]);

@@ -45,10 +45,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo site_url('/administration')?>">Lista de usuarios</a>
-                        <button class="dropdown-item" id="button_add_user"  data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistro" >Registrar usuario</button>
+                        <button class="dropdown-item" id="button_add_user"  data-toggle="modal" onclick="resetModal()" data-target="#modalRegistro" >Registrar usuario</button>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php echo site_url('/administration.obras')?>">Lista de obras</a>
-                        <button class="dropdown-item" id="button_add_user"onclick=""  data-toggle="modal" onclick="resetModalObrasEdit()" data-target="#modalRegistroObra" >Registrar obra</button>
+                        <button class="dropdown-item" id="button_add_user"onclick=""  data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</button>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
