@@ -1,4 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+<title>Administration</title>
 <div class="table-responsive-sm">
     <table class="table table-bordered" id="users_table">
         <thead class="thead-dark text-center">
@@ -29,7 +30,7 @@
                 }
                 ?>
                 </td>
-                <th><button class="btn btn-warning" value="<?php echo $obra->ID?>" onclick="bringDataObra(this)"> editar</button><br><button onclick="Eliminar_Obra(this)" name="<?php echo $obra->name?>" class="btn btn-danger" value="<?php echo $obra->ID?>" >Eliminar</button></th>
+                <th><button class="btn btn-warning" value="<?php echo $obra->ID?>" onclick="bringDataObra(this)"> editar</button><button onclick="Eliminar_Obra(this)" class="btn btn-danger" value="<?php echo $obra->ID?>" name="<?php echo $obra->name?>">Eliminar</button></th>
             </tr>
         <?php } ?>
         </tbody>

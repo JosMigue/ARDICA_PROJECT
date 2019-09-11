@@ -101,7 +101,6 @@ $(document).ready(()=>{
                 url: "Administration/editObra",
                 data: { obj: obj },
                 success: function (data) {
-                    /* alert(data); */
                     if (data == 'error Obra Edit') {
                         Swal.fire({
                             type: 'Error',

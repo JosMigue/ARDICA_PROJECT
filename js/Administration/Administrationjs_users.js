@@ -129,7 +129,6 @@ $(document).ready(function () {
                 url: "Administration/editUser",
                 data: { obj: obj },
                 success: function (data) {
-                    /* alert(data); */
                     if (data == 'error') {
                         Swal.fire({
                             type: 'Error',

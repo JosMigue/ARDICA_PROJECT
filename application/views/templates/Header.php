@@ -10,7 +10,7 @@
     }
       ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Administration/animate.css">
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
-    <title>Administration</title>
+    
 </head>
 
 <body>
@@ -65,7 +65,7 @@
                         Archivos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Lista de archivos</a>
+                        <a class="dropdown-item" href="<?php echo site_url('/files')?>">Archivos</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

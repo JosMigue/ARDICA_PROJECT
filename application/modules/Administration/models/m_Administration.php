@@ -103,7 +103,6 @@ class M_Administration extends CI_Model {
 
     function updateUser($obj){
         $user = $this->getOneUser($obj["id"]);
-
         $data=array(
             'name'=>$obj["Nombre"],
             'nickname'=>$obj["user"],
@@ -116,7 +115,7 @@ class M_Administration extends CI_Model {
             'phone'=>$user->phone,
             'email' =>$user->email
         );
-        if(count(array_diff($data,$us)) == 0){
+         if($data  == $us){
              return 0;
         }else{
             $this->db->set($data)->where('ID',$obj["id"])->update('users');
@@ -216,7 +215,7 @@ class M_Administration extends CI_Model {
           );
 
         
-          if(count(array_diff($data,$ob))==0){
+          if($ob == $data){
             return 0;
           }else{
           $this->db->set($data)->where('ID',$obj["id"])->update('obras');

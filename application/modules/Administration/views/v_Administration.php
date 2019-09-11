@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 $cacheSaver =  new DateTime();
 ?>
+<title>Administration</title>
 <div class="table-responsive-sm">
     <table class="table table-bordered" id="users_table">
         <thead class="thead-dark text-center">

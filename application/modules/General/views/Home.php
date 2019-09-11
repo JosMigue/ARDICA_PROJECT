@@ -92,7 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="column is-4" id="button_menu">
         <div class="bd-notification is-primary has-text-centered">
         <div class="contenedor" id="tres">
-        <a href="<?php echo site_url('/Files')?>">
+        <a href="<?php echo site_url('/files')?>">
             <img class="icon" src="img/Icons/Files_Icon.png">
             <p class="texto">Archivos</p>
         </div>

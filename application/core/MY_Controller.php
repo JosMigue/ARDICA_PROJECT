@@ -38,11 +38,6 @@ class MY_Controller extends MX_Controller
 		$this->load->view($view,$data);
 	}
 
-	function LoadFiles($view){
-		$this->load->view("templates/Header");
-		$this->load->view($view);
-		$this->load->view("templates/Footer");
-	}
 
 }
 
