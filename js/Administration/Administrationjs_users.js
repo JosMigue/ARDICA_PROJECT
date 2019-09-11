@@ -5,8 +5,8 @@ $(document).ready(function () {
         validClass: "my-valid-class",
         rules: {
             firstName: { required: true},
-            lastName: { required: true },
-            secondLastName: { required: true},
+            apellidoP: { required: true },
+            apellidoM: { required: true},
             user: { required:true},
             email: { required:false},
             password: {required:true, maxlength:20, minlength:8},
@@ -16,10 +16,10 @@ $(document).ready(function () {
             firstName: {
                 required: msg
             },
-            lastName: {
+            apellidoP: {
                 required: msg
             },
-            secondLastName: {
+            apellidoM: {
                 required: msg
             },
             email: {
@@ -40,13 +40,12 @@ $(document).ready(function () {
         submitHandler: function (form) {
             obj = new Object;
             obj.Nombre = $('#firstName').val();
-            obj.ApellidoM = $('#lastName').val();
-            obj.ApellidoP = $('#secondLastName').val();
+            obj.ApellidoM = $('#apellidoM').val();
+            obj.ApellidoP = $('#apellidoP').val();
             obj.email = $('#email').val();
             obj.user = $('#user').val();
             obj.contrasena = $('#password').val();
             obj.telefono = $('#address').val();
-
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -83,7 +82,7 @@ $(document).ready(function () {
                           })
                     }
                 },
-                erro:function(error){
+                error:function(error){
                     alert.error("HA OCURRIDO UN ERROR: "+error);
                 },
             });
@@ -157,7 +156,7 @@ $(document).ready(function () {
                           })
                     }
                 },
-                erro:function(error){
+                error:function(error){
                     alert.error("HA OCURRIDO UN ERROR: "+error);
                 },
             });
@@ -206,7 +205,7 @@ function Eliminar_usurario(usuario){
                             }, 1200);
                     }
                 },
-                erro:function(error){
+                error:function(error){
                     alert.error("HA OCURRIDO UN ERROR: "+error);
                 },
             });
@@ -235,7 +234,7 @@ function Eliminar_usurario(usuario){
             $('#userEdit').val(obj["data"]["nickname"]);
             $('#addressEdit').val(obj["data"]["phone"]);
         },
-        erro:function(error){
+        error:function(error){
             alert.error("HA OCURRIDO UN ERROR: "+error);
         },
     });

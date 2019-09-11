@@ -27,7 +27,7 @@ $cacheSaver =  new DateTime();
                 <td><?php if($user->email != null){echo $user->email;}else{echo 'No cuenta con correo';} ?></td>
                 <td><?php echo $user->dateSave?></td>
                 <td><?php echo $user->timeStamp?></td>
-                <th><button class="btn btn-warning" value="<?php echo $user->ID?>" onclick="bringDataUser(this)"> editar</button><br><button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="<?php echo $user->ID?>" name="<?php echo $user->name?>">Eliminar</button></th>
+                <th><button class="btn btn-warning" value="<?php echo $user->ID?>" onclick="bringDataUser(this)"> editar</button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="<?php echo $user->ID?>" name="<?php echo $user->name?>">Eliminar</button></th>
             </tr>
         <?php } ?>
         </tbody>

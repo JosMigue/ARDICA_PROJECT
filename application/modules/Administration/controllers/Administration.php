@@ -46,6 +46,7 @@ class Administration extends MY_Controller {
 		}else{
 			echo 'user is not null';
 		}
+
 	}
 
 	public function deleteUser(){

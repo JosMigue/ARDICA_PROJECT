@@ -72,6 +72,16 @@ class M_Administration extends CI_Model {
             'typeUser'=>0
           );
         if($this->db->insert('users', $data)){
+            $log = Array(
+                'tabla' => 'usuarios',
+                'accion' => 'Guardar',
+                'direccion_ip' => $_SERVER['REMOTE_ADDR'],
+                'usuario_idusuario' => $this->session->userdata('idUser'),
+                'registro_id' => $data['name'],
+                'campo' => 'Tabla usuarios',
+                'descripcion' => 'Registro de usuario para ingresar al sistema'
+            ); 
+            $this->db->insert('eventos_log', $log);
             return true;
         }else{
             return false;

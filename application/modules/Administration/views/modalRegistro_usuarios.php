@@ -13,21 +13,20 @@
                     <div class="container-registration">
                         <form method="post" action="" id="form_registro_usuario">
                             <div class="row">
-                                <input type="hidden" id="modal_option">
                                 <div class="col-md-6 mb-4" id="name">
                                     <label for="name">Nombre</label>
                                     <span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre</span>
                                     <input type="text" onkeyup="checkName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="firstName" name="firstName" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Nombre" required>
                                 </div>
                                 <div class="col-md-6 mb-4" id="lastName">
-                                    <label for="lastName">Apellido Paterno</label>
+                                    <label for="apellidoP">Apellido Paterno</label>
                                     <span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Apellido paterno</span>
-                                    <input type="text" onkeyup="checkLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="lastName" name="lastName" pattern="[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+" placeholder="Apellido paterno" required>              
+                                    <input type="text" onkeyup="checkLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="apellidoP" name="apellidoP" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Apellido paterno" required>
                                 </div>
                                 <div class="col-md-6 mb-4" id="secondLastName">
-                                    <label for="secondLastName">Apellido Materno</label>
+                                    <label for="apellidoM">Apellido Materno</label>
                                     <span id="apellidoMCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Apellido materno</span>
-                                    <input type="text" onkeyup="checkSLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="secondLastName" name="secondLastName" pattern="[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+" placeholder="Apellido materno" required>
+                                    <input type="text" onkeyup="checkSLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="apellidoM" name="apellidoM" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Apellido materno" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label for="email">Correo</label>
