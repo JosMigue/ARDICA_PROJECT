@@ -2,6 +2,21 @@
 $cacheSaver =  new DateTime();
 ?>
 <title>Administration</title>
+<button class="show-btn btn btn-primary text-right" id="btn-filtros">Filtros</button>
+<button class="hide-btn btn btn-danger" id="btn-ocultar-filtros">Ocultar filtros</button>
+<div class="Filter text-center">
+    <p>Filtros</p>
+    <div class="container-filter" id="filter">
+    <form>
+        <label for="nameFilter"></label>
+        <input type="text" id="nameFilter" class="form-control" placeholder="Nombre">
+    </form>
+        <label for="nameUserFilter"></label>
+        <input type="text" id="nameUserFilter" class="form-control" placeholder="Nombre de usuario">
+    </div>
+    <button class="btn btn-outline-info">Filtrar</button>
+    <br>
+</div>
 <div class="table-responsive-sm">
     <table class="table table-bordered" id="users_table">
         <thead class="thead-dark text-center">

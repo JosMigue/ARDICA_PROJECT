@@ -7,6 +7,7 @@
       ?>
 <script type="text/javascript" src="assets/Bootstrap/js/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript" src="assets/jQuery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="assets/jQuery/jquery-ui.js"></script>
 <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/Bootstrap/js/popper.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
@@ -14,6 +15,7 @@
 <script type="text/javascript" src="js/Administration/checkInput.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/Administration/Administrationjs_users.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/Administration/AdministrationObras.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+<script type="text/javascript" src="js/Files/Files.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 
 </body>
 

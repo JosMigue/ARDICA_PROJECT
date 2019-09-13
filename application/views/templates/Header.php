@@ -48,7 +48,7 @@
                         <button class="dropdown-item" id="button_add_user"  data-toggle="modal" onclick="resetModal()" data-target="#modalRegistro" >Registrar usuario</button>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php echo site_url('/administration.obras')?>">Lista de obras</a>
-                        <button class="dropdown-item" id="button_add_user"onclick=""  data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</button>
+                        <button class="dropdown-item" id="button_add_user" onclick=""  data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</button>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -65,7 +65,8 @@
                         Archivos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo site_url('/files')?>">Archivos</a>
+                        <a class="dropdown-item" href="<?php echo site_url('/files')?>">Lista de archivos Archivos</a>
+                        <button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivos</button>
                 </li>
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

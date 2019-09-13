@@ -1,5 +1,7 @@
 $(document).ready(function () {
     var msg = 'Campo obligatorio';
+    $(".Filter").hide();
+    $("#btn-ocultar-filtros").hide();
     $("#form_registro_usuario").validate({
         errorClass: "my-error-class",
         validClass: "my-valid-class",
@@ -162,6 +164,26 @@ $(document).ready(function () {
             });
         }
     });
+
+    $(".hide-btn").click(function(){
+        $(".Filter").hide("slow", function(){
+            $("#btn-ocultar-filtros").hide("slow");
+            $("#btn-filtros").show("slow");
+        });
+    });
+    
+    // Display alert message after showing paragraphs
+    $(".show-btn").click(function(){
+        $(".Filter").show("slow",function(){
+            $("#btn-filtros").hide("slow");
+            $("#btn-ocultar-filtros").show("slow");
+        });
+    });
+
+    $( "#nameFilter" ).autocomplete({
+        source: "<?php echo site_url('Administration/get_autocomplete_name_user/?');?>"
+      });
+
 });
 
 function Eliminar_usurario(usuario){
@@ -239,5 +261,8 @@ function Eliminar_usurario(usuario){
         },
     });
 
+    
 }
+
+
 

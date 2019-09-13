@@ -10,26 +10,18 @@ class Administration extends MY_Controller {
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalEditarUsuario");
 		$this->load->view("Administration/modalRegistro_obras");
+		$this->load->view("Files/modalUploadFiles");
 	}
 
 	public function obras()
 	{
 		$this->load->model("m_Administration");
 		$data['data'] = $this->m_Administration->bringObras();
-/* 		foreach($data as $datos){
-				if($datos->status == 1){
-					$datos->status = 'img/';
-	
-				}else{
-					$datos->status = 'img/botonesactivo.png';
-				}
-
-		}
-		*/
 		$this->loadView("Administration/v_Administration_obras",$data);
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalRegistro_obras");
 		$this->load->view("Administration/modalEditarObra"); 
+		$this->load->view("Files/modalUploadFiles");
 	}
 
 	public function saveUser(){

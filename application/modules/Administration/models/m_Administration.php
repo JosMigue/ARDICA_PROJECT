@@ -75,7 +75,7 @@ class M_Administration extends CI_Model {
             $log = Array(
                 'tabla' => 'usuarios',
                 'accion' => 'Guardar',
-                'direccion_ip' => $_SERVER['REMOTE_ADDR'],
+                'direccion_ip' => $this->input->ip_address(),
                 'usuario_idusuario' => $this->session->userdata('idUser'),
                 'registro_id' => $data['name'],
                 'campo' => 'Tabla usuarios',
@@ -236,6 +236,15 @@ class M_Administration extends CI_Model {
             return 2;
         }
         }
+    }
+
+    /* This is the section for autocomplete functions*/
+    
+    function search_name_user($name){
+    $this->db->like('name', $name , 'both');
+        $this->db->order_by('name', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('users')->result();
     }
 }
 
