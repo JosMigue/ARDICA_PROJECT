@@ -8,19 +8,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" id="form_subir_archivo">
-                <div class="modal-body">
-                    <p class="text-center">Por favor seleccione un archivo</p>
-                    <input class="form-control" type="File" id="archivo" name="archivo">
-                </div>
-                <div class="">
-                    <input type="hidden" id="preview">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
+            <div class="container">
+                    <form method="post" id="upload_form" enctype="multipart/form-data">
+                        <img id="blah" src="img/no_image_available.jpg" alt="your image" /></br></br>
+                        <input class="form-control" type="file" name="image_file" multiple="true" id="finput"
+                            onchange=""></br></br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-success">Subir archivo</button>
+                        </div>
+                    </form>
+            </div>
         </div>
     </div>
 </div>

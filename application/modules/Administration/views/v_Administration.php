@@ -2,21 +2,37 @@
 $cacheSaver =  new DateTime();
 ?>
 <title>Administration</title>
-<button class="show-btn btn btn-primary text-right" id="btn-filtros">Filtros</button>
+<h1 class="text-center">Lista de usuarios</h1>
+<div class="text-center">
+<button class="show-btn btn btn-primary" id="btn-filtros">Filtros</button>
 <button class="hide-btn btn btn-danger" id="btn-ocultar-filtros">Ocultar filtros</button>
-<div class="Filter text-center">
-    <p>Filtros</p>
-    <div class="container-filter" id="filter">
-    <form>
-        <label for="nameFilter"></label>
+</div>
+<section>
+<div class="Filter">
+    <div class="row">
+    <div class="col-md-3">
+        <label for="nameFilter">Nombre</label>
         <input type="text" id="nameFilter" class="form-control" placeholder="Nombre">
-    </form>
-        <label for="nameUserFilter"></label>
+    </div>
+    <div class="col-md-3">
+        <label for="nameUserFilter">Nombre de usuario</label>
         <input type="text" id="nameUserFilter" class="form-control" placeholder="Nombre de usuario">
     </div>
-    <button class="btn btn-outline-info">Filtrar</button>
+    <div class="col-md-3">
+        <label for="dateFilter">Fecha de registro</label>
+        <input type="date" id="daterFilter" class="form-control" placeholder="fecha de registro">
+    </div>
+    <div class="col-md-3">
+        <label for="idFilter">Identificador</label>
+        <input type="text" id="idFilter" class="form-control" placeholder="idetificador">
+    </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-outline-info">Filtrar</button>
+    </div>
     <br>
 </div>
+</section>
 <div class="table-responsive-sm">
     <table class="table table-bordered" id="users_table">
         <thead class="thead-dark text-center">

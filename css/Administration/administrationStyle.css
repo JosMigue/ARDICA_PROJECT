@@ -24,16 +24,30 @@
   display: flex;
   justify-content: center;
   }
+
 #filter > input{
   padding: 10px;
   margin: 10px;
   }
 
   button{
-    padding: 10px;
-    margin: 10px;
+    padding: 1px;
+    margin: 3px;
   }
   .container-filter > input{
     align-content: center;
     width: 400px;
+  }
+
+  section{
+    height: 80%;
+    width:  80%;
+    margin: auto;
+    background-color: rgba(63, 61, 61, 0.356);
+    margin-bottom: 5px;
+  }
+
+  .row{
+    margin: 10px;
+    padding: 10px;
   }

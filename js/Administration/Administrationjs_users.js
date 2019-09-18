@@ -59,7 +59,7 @@ $(document).ready(function () {
                     /* alert(data); */
                     if (data == 'user is not null') {
                         Swal.fire({
-                            type: 'Error',
+                            type: 'error',
                             title: 'Oops...',
                             text: 'El usuario que intenta ingresar ya existe en base de datos',
                           })
@@ -132,7 +132,7 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data == 'error') {
                         Swal.fire({
-                            type: 'Error',
+                            type: 'error',
                             title: 'Oops...',
                             text: 'El usuario no se ha podido actualizar...',
                         })

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Administration/animate.css">
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
+    <link rel="stylesheet" href="css/Files/files_css.css?<?php echo $cacheSaver->getTimestamp()?>">
     
 </head>
 
