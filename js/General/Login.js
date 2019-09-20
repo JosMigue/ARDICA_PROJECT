@@ -1,4 +1,31 @@
 $(document).ready(function () {
+    setTimeout(() => {
+        $.confirm({
+            title: 'Atención!',
+            content: 'El captcha ha caducado!',
+            buttons: {
+                Recargar: {
+                    text: 'Recargar Página',
+                    btnClass: 'btn-blue',
+                    keys: ['enter', 'shift'],
+                    action: function(){
+                        location.reload('/');
+                    }
+                }
+            }
+        });
+    }, 120000);
+    
+    var cont = 120;
+    
+    var interval =  setInterval(() => {
+        document.getElementById("contadorCaptcha").innerHTML = '<p id="contadorCaptcha">Tiempo disponible de captcha: '+(cont-=1)+' segundos</p>';
+            if (cont == 0) {
+                clearInterval(interval);
+            }
+        }, 1000);
+    
+    
     var msg = 'Campo obligatorio';
     $("#form_Login").validate({
         errorClass: "my-error-class",

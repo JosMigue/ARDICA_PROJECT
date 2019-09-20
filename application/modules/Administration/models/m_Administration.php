@@ -240,11 +240,11 @@ class M_Administration extends CI_Model {
 
     /* This is the section for autocomplete functions*/
     
-    function search_name_user($name){
-    $this->db->like('name', $name , 'both');
-        $this->db->order_by('name', 'ASC');
-        $this->db->limit(10);
-        return $this->db->get('users')->result();
+    function search_name_user(){
+         return $this->db->select('*')
+                ->from('users')
+                ->get()
+                ->result();
     }
 }
 

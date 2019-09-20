@@ -12,7 +12,7 @@
                     <form method="post" id="upload_form" enctype="multipart/form-data">
                         <img id="blah" src="img/no_image_available.jpg" alt="your image" /></br></br>
                         <input class="form-control" type="file" name="image_file" multiple="true" id="finput"
-                            onchange=""></br></br>
+                            onchange="readURL(this)"></br></br>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button class="btn btn-success">Subir archivo</button>

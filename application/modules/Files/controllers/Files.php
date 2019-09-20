@@ -8,6 +8,7 @@ class Files extends MY_Controller {
 		$data['data'] = $this->m_Files->BringFiles();
 		$this->loadView("Files/v_Files",$data);
 		$this->load->view("Files/modalUploadFiles");
+		$this->load->view("Files/previewFile");
 	}
 
 	function fileStore()  

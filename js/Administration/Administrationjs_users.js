@@ -56,7 +56,6 @@ $(document).ready(function () {
                 url: "Administration/saveUser",
                 data: { obj: obj },
                 success: function (data) {
-                    /* alert(data); */
                     if (data == 'user is not null') {
                         Swal.fire({
                             type: 'error',
@@ -72,7 +71,6 @@ $(document).ready(function () {
                                 timer: 1000
                             });
                             $('#modalRegistro').modal('hide');
-                            /* $('#users_table').load(" #users_table"); */
                             setTimeout(function () {
                                 location.reload('/administration');
                           }, 1200);
@@ -165,6 +163,8 @@ $(document).ready(function () {
         }
     });
 
+    /*============================= FILTROS SECTION BEGIN============================= */
+// Oculta los filtros y cambia boton al momento de dar clic en el botón 'Ocultar filtros'
     $(".hide-btn").click(function(){
         $(".Filter").hide("slow", function(){
             $("#btn-ocultar-filtros").hide("slow");
@@ -172,7 +172,7 @@ $(document).ready(function () {
         });
     });
     
-    // Display alert message after showing paragraphs
+    // Muestra los filtros y cambia boton al momento de dar clic en el botón 'Filtros'
     $(".show-btn").click(function(){
         $(".Filter").show("slow",function(){
             $("#btn-filtros").hide("slow");
@@ -180,11 +180,26 @@ $(document).ready(function () {
         });
     });
 
-    $( "#nameFilter" ).autocomplete({
-        source: "<?php echo site_url('Administration/get_autocomplete_name_user/?');?>"
-      });
+    /*============================= FILTROS SECTION END============================= */
 
-});
+    /*============================= AUTOCOMPLETE SECTION BEGIN============================= */
+     var options = {
+        url: "Administration/get_autocomplete_name"
+        ,
+        getValue: "name",   
+        list:{
+            maxNumberOfElements:10,
+            match: {
+                enabled: true
+            }
+        },
+        requestDelay: 400
+      };
+      
+      $("#nameFilter").easyAutocomplete(options);
+ 
+      /*============================= FILTROS SECTION END============================= */
+    });
 
 function Eliminar_usurario(usuario){
     var user = usuario.value;

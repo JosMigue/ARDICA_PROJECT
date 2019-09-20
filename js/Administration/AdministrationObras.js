@@ -199,9 +199,9 @@ function bringDataObra(obra){
 
 function Eliminar_Obra(obra){
     var obra = obra.value;
-    var nombre = obra.name;
+    var nombreObra = obra.name;
     Swal.fire({
-        title: '¿Está seguro que desea eliminar la obra "'+nombre+'"?',
+        title: '¿Está seguro que desea eliminar la obra "'+nombreObra+'"?',
         text: "Esta acción no se puede corregir!",
         type: 'warning',
         showCancelButton: true,

@@ -12,13 +12,15 @@
         </thead>
         <tbody>
         <?php $contador = 0?>
+        <?php foreach ($data as $archivos){?>
             <tr class="text-center">
                 <th scope="row"><?php echo $contador+=1?></th>
-                <td></td>
-                <td><a href="">Vista previa</a></td>
+                <td><?php echo $archivos->name?></td>
+                <td><button id="btn_preview_Modal" value="<?php echo $archivos->name?>" onclick="fileView(this)" class="btn btn-success">Vista previa</button></td>
                 <td><a href="">Descargar</a></td>
                 <th><button class="btn btn-warning" value="" onclick=""> editar</button>   <button onclick=""class="btn btn-danger" value="" name="">Eliminar</button></th>
             </tr>
+            <?php } ?>
         </tbody>
     </table>
 </div>

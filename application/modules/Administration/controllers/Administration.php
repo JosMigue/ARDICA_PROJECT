@@ -131,4 +131,10 @@ class Administration extends MY_Controller {
 		}
 	}
 
+	function get_autocomplete_name(){
+			$this->load->model("m_Administration");
+            $result = $this->m_Administration->search_name_user();
+			echo json_encode($result);
+    }
+
 }

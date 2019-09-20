@@ -1,5 +1,5 @@
-/* function readURL(input) {
-    if (input.files & amp;& amp; input.files[0];) {
+function readURL(input) {
+    if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
@@ -9,7 +9,14 @@
 
         reader.readAsDataURL(input.files[0]);
     }
-} */
+}
+
+function fileView(boton){
+    var nameFile = "uploads/"+boton.value;
+    alert(nameFile);
+    document.getElementById("viewFile").innerHTML = '<iframe id="viewFile" src="'+nameFile+'" height="200" width="300"></iframe>'
+    $("#modalPreviewFile").modal('show');
+}
 
 
 $(document).ready(function () {

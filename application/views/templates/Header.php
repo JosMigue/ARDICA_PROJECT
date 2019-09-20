@@ -18,6 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Administration/animate.css">
+    <link rel="stylesheet" href="assets/EasyAutocomplete-1.3.5/easy-autocomplete.min.css"> 
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="css/Files/files_css.css?<?php echo $cacheSaver->getTimestamp()?>">
     
