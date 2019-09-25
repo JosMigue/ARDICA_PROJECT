@@ -135,6 +135,30 @@ class Administration extends MY_Controller {
 			$this->load->model("m_Administration");
             $result = $this->m_Administration->search_name_user();
 			echo json_encode($result);
-    }
+	}
+
+	function get_autocomplete_obra(){
+			$this->load->model("m_Administration");
+            $result = $this->m_Administration->search_obra();
+			echo json_encode($result);
+	}
+	
+	/* ================================SECCIÓN DE FILTROS EMPIEZA================================ */
+	function filtrar_usuario(){
+		if(isset ($_POST["obj"])){
+			$this->load->model("m_Administration");
+			$obj = $_POST["obj"];
+			$response['data'] = $this->m_Administration->filtroUsuario($obj);
+			$this->loadView("Administration/v_Administration",$response);
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalEditarUsuario");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			echo 'Error';
+		}
+
+	}
+	/* ================================SECCIÓN DE FILTROS TERMINA================================ */
 
 }

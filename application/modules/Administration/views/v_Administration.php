@@ -3,41 +3,41 @@ $cacheSaver =  new DateTime();
 ?>
 <title>Administration</title>
 <h1 class="text-center">Lista de usuarios</h1>
+<input type="hidden" id="forMessage">
 <div class="text-center">
 <button class="show-btn btn btn-primary" id="btn-filtros">Filtros</button>
-<button class="hide-btn btn btn-danger" id="btn-ocultar-filtros">Ocultar filtros</button>
+<button class="hide-btn btn btn-danger" id="btn-ocultar-filtros" onclick="cleanFiltros()">Ocultar filtros</button>
 </div>
-<section>
-<div class="Filter">
+<section class="Filter text-center">
     <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 text-center">
         <label for="nameFilter">Nombre</label>
-        <input type="text" id="nameFilter" placeholder="Nombre">
+        <input type="text" id="nameFilter" class="form-control" placeholder="Nombre">
     </div>
     <div class="col-md-3">
         <label for="nameUserFilter">Nombre de usuario</label>
-        <input type="text" id="nameUserFilter" placeholder="Nombre de usuario">
+        <input type="text" id="nameUserFilter" class="form-control" placeholder="Nombre de usuario">
     </div>
     <div class="col-md-3">
         <label for="dateFilter">Fecha de registro</label>
-        <input type="date" id="daterFilter" placeholder="fecha de registro">
+        <input type="date" id="dateFilter" class="form-control" placeholder="fecha de registro">
     </div>
     <div class="col-md-3">
         <label for="idFilter">Identificador</label>
-        <input type="text" id="idFilter" placeholder="idetificador">
+        <input type="text" id="idFilter"  class="form-control" placeholder="idetificador">
     </div>
     </div>
     <div class="text-center">
-        <button class="btn btn-outline-info">Filtrar</button>
+        <button class="btn btn-outline-info" id="btn-filtrar">Filtrar</button>
     </div>
     <br>
-</div>
 </section>
 <div class="table-responsive-sm">
     <table class="table table-bordered" id="users_table">
         <thead class="thead-dark text-center">
             <tr>
                 <th scope="col">ID</th>
+                <th scope="col">Identificador (BD)</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Nombre de usuario</th>
                 <th scope="col">Teléfono</th>
@@ -52,6 +52,7 @@ $cacheSaver =  new DateTime();
         <?php foreach($data as $user){?>
             <tr class="text-center">
                 <th scope="row"><?php echo $contador+=1?></th>
+                <td><?php echo $user->ID?></td>
                 <td><?php echo $user->name?></td>
                 <td><?php echo $user->nickname?></td>
                 <td><?php if($user->phone != null){echo $user->phone;}else{echo 'No cuenta con número';} ?></td>
@@ -64,5 +65,6 @@ $cacheSaver =  new DateTime();
         </tbody>
     </table>
 </div>
+
 
 

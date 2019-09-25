@@ -246,6 +246,37 @@ class M_Administration extends CI_Model {
                 ->get()
                 ->result();
     }
+
+    function search_obra(){
+        return $this->db->select('*')
+                    ->from('obras')
+                    ->get()
+                    ->result();
+        
+    }
+
+    /*This is the section for filters functions*/
+    function filtroUsuario($usuario){
+        $data = array(); 
+            if($usuario['name'] != null){
+        $data['name'] = $usuario["name"];
+        }
+        if($usuario["userName"]!=null){
+            $data['nickname'] = $usuario["userName"];
+        }
+        if($usuario["fecha"]!=null){
+            $data['timeStamp'] = $usuario["fecha"];
+        }
+        if($usuario["id"]!=null){
+            $data['ID'] = $usuario["id"];
+        }
+        return  $this->db->select('*')
+                ->from('users')
+                ->where($data)
+                ->get()
+                ->result();  
+        
+    }
 }
 
 /* End of file M_Administration.php */

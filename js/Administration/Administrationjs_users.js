@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var msg = 'Campo obligatorio';
-    $(".Filter").hide();
+    $(".Filter").hide("fast");
     $("#btn-ocultar-filtros").hide();
     $("#form_registro_usuario").validate({
         errorClass: "my-error-class",
@@ -83,7 +83,7 @@ $(document).ready(function () {
                     }
                 },
                 error:function(error){
-                    alert.error("HA OCURRIDO UN ERROR: "+error);
+                    alert("HA OCURRIDO UN ERROR: "+error);
                 },
             });
         }
@@ -157,7 +157,7 @@ $(document).ready(function () {
                     }
                 },
                 error:function(error){
-                    alert.error("HA OCURRIDO UN ERROR: "+error);
+                    alert("HA OCURRIDO UN ERROR: "+error);
                 },
             });
         }
@@ -181,25 +181,8 @@ $(document).ready(function () {
     });
 
     /*============================= FILTROS SECTION END============================= */
-
-    /*============================= AUTOCOMPLETE SECTION BEGIN============================= */
-     var options = {
-        url: "Administration/get_autocomplete_name"
-        ,
-        getValue: "name",   
-        list:{
-            maxNumberOfElements:10,
-            match: {
-                enabled: true
-            }
-        },
-        requestDelay: 400
-      };
-      
-      $("#nameFilter").easyAutocomplete(options);
- 
-      /*============================= FILTROS SECTION END============================= */
     });
+
 
 function Eliminar_usurario(usuario){
     var user = usuario.value;
@@ -243,7 +226,7 @@ function Eliminar_usurario(usuario){
                     }
                 },
                 error:function(error){
-                    alert.error("HA OCURRIDO UN ERROR: "+error);
+                    alert("HA OCURRIDO UN ERROR: "+error);
                 },
             });
 
@@ -272,12 +255,58 @@ function Eliminar_usurario(usuario){
             $('#addressEdit').val(obj["data"]["phone"]);
         },
         error:function(error){
-            alert.error("HA OCURRIDO UN ERROR: "+error);
+            alert("HA OCURRIDO UN ERROR: "+error);
         },
     });
 
-    
 }
 
+function cleanFiltros(){
+    setTimeout(() => {
+        $("#nameFilter").val('');
+        $("#nameUserFilter").val('');
+        $("#dateFilter").val('');
+        $("#idFilter").val('');
+    }, 1000);
+}
+
+$("#btn-filtrar").click(()=>{
+    obj = new Object;
+    obj.name = $("#nameFilter").val();
+    obj.userName = $("#nameUserFilter").val();
+    obj.fecha = $("#dateFilter").val();
+    obj.id = $("#idFilter").val();
+    if(obj.name ==  '' && obj.userName == '' && obj.fecha ==  '' && obj.id== ''){
+        document.getElementById("forMessage").outerHTML = '<div class="alert alert-danger" role="alert" id="warning_alert"><h4 class="alert-heading">ADVERTENCIA!</h4><p> Los campos están vacios, debe ingresar texto en al menos un campo para poder filtrar</p></div>'
+        setTimeout(() => {
+            $("#warning_alert").hide("fast")
+            setTimeout(() => {
+                document.getElementById("warning_alert").outerHTML = '<input type="hidden" id="forMessage">'
+            }, 1000);
+        }, 7000);
+    }else{
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "POST",
+            url: "Administration/filtrar_usuario",
+            data: { obj: obj },
+            success: function (data) {
+                if (data == 'Error'){
+                    Swal.fire({
+                        type: 'Error',
+                        title: 'Oops...',
+                        text: 'Se esperaban datos',
+                    })
+                    location.reload('/administration');
+                }
+            },
+            error:function(error){
+                alert("HA OCURRIDO UN ERROR: "+error);
+            },
+        });
+    }
+});
 
 
