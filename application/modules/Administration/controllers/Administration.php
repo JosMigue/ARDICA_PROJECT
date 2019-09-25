@@ -6,7 +6,8 @@ class Administration extends MY_Controller {
 	{
 		$this->load->model("m_Administration");
 		$data['data'] = $this->m_Administration->bringUser();
-		$this->loadView("Administration/v_Administration",$data);
+
+		$this->loadView("Administration/v_Administration",$data=null);
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalEditarUsuario");
 		$this->load->view("Administration/modalRegistro_obras");
@@ -132,33 +133,63 @@ class Administration extends MY_Controller {
 	}
 
 	function get_autocomplete_name(){
-			$this->load->model("m_Administration");
-            $result = $this->m_Administration->search_name_user();
-			echo json_encode($result);
+		$this->load->model("m_Administration");
+        $result = $this->m_Administration->search_name_user();
+		echo json_encode($result);
 	}
 
 	function get_autocomplete_obra(){
-			$this->load->model("m_Administration");
-            $result = $this->m_Administration->search_obra();
-			echo json_encode($result);
+		$this->load->model("m_Administration");
+        $result = $this->m_Administration->search_obra();
+		echo json_encode($result);
 	}
 	
-	/* ================================SECCIÓN DE FILTROS EMPIEZA================================ */
-	function filtrar_usuario(){
-		if(isset ($_POST["obj"])){
-			$this->load->model("m_Administration");
-			$obj = $_POST["obj"];
-			$response['data'] = $this->m_Administration->filtroUsuario($obj);
-			$this->loadView("Administration/v_Administration",$response);
-			$this->load->view("Administration/modalRegistro_usuarios");
-			$this->load->view("Administration/modalEditarUsuario");
-			$this->load->view("Administration/modalRegistro_obras");
-			$this->load->view("Files/modalUploadFiles");
-		}else{
-			echo 'Error';
+	/* ================================FILTERS SECTION BEGIN================================ */
+	function getAllUsers(){
+		$this->load->model("m_Administration");
+		$start=$this->input->post('start');
+		$length=$this->input->post('length');
+		$array_like=array();
+		$array_where=array();
+             if ($this->input->post('nombre')!='') {
+                $array_where['name']=$this->input->post('nombre'); 
+             }
+             if ($this->input->post('nombreUsuario')!='') {
+                $array_like['nickname']=$this->input->post('nombreUsuario');
+             }
+             if ($this->input->post('fecha')!='') {
+                $array_where['dateSave']=$this->input->post('fecha');
+             }
+             if ($this->input->post('idUsuario')!='') {
+                $array_where['ID']=$this->input->post('idUsuario');
+			 }
+			 
+		$respuesta=$this->m_Administration->getAllUsers($start,$length,$array_like,$array_where); 
+		$total_registros=count($respuesta['data']);
+		$respuesta=$respuesta['data']; 
+		$rows_total=count($respuesta);  
+		$datos=array(); 
+		$contador = 0;
+		foreach ($respuesta as $row) {   
+			$array=array();
+			$array['status'] = $row->status;
+			$array['Id']=$contador+=1;
+			$array['Id_db']=$row->ID;
+			$array['name']=$row->name;
+			$array['nickname']=$row->nickname;
+			$array['phone']=$row->phone;
+			$array['email']=$row->email;
+			$array['fechaRegistro']=$row->dateSave;
+			$array['lastLogin']=$row->timeStamp;
+			$datos[]=$array; 
 		}
-
+		$json_data=array(
+			"draw"=>intval($this->input->post('draw')),
+			"recordsTotal"=>intval($rows_total),
+			"recordsFiltered"=>intval($total_registros),
+			"data"=>$datos);
+		echo json_encode($json_data);  
 	}
-	/* ================================SECCIÓN DE FILTROS TERMINA================================ */
+	/* ================================FILTERS SECTION END================================ */
 
 }

@@ -113,6 +113,7 @@
             }
         }
       };
+      $("#nameObraFilter").easyAutocomplete(options);
 
       /*===============================AUTOCOMPLETE SECTION FOR OBRAS END=============================== */
       // This is for get 'tipo de obra' and put it in select 

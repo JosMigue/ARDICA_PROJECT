@@ -270,7 +270,7 @@ function cleanFiltros(){
     }, 1000);
 }
 
-$("#btn-filtrar").click(()=>{
+/* $("#btn-filtrar").click(()=>{
     obj = new Object;
     obj.name = $("#nameFilter").val();
     obj.userName = $("#nameUserFilter").val();
@@ -307,6 +307,6 @@ $("#btn-filtrar").click(()=>{
             },
         });
     }
-});
+}); */
 
 

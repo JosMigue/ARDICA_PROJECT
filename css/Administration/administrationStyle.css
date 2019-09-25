@@ -1,8 +1,198 @@
-.table{
-    height: 80%;
-    width:  80%;
+/* .table{
+    height: 90%;
+    width:  90%;
     margin: auto;
+} */
+.color-tablas thead tr th{
+
+  background-color: #ffb74d;
+
+  color: black;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  border:solid;
+
+  border-width: 2px;
+
+  border-color: #ffa726;
+
+  align-content: center;
+
 }
+
+
+
+.color-tablas tbody tr th{
+
+  background-color: #bdbdbd ;
+
+  color: black;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+} 
+
+.color-tablas{
+
+  border-width:2px;
+
+  border:solid;
+
+  border-color: #e0e0e0;
+
+  background-color: #eeeeee;
+
+
+
+}
+
+.color-tablas2 thead tr th{
+
+      background-color:  #eeeeee;
+
+      color: black;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      border:solid;
+
+      border-width: 0px;
+
+      border-color: #e0e0e0; 
+
+}
+
+.codigo:hover{
+
+      color: #FFB74D;
+
+      cursor: pointer;
+
+}
+
+.codigo{
+
+      color: rgb(0, 0, 0);
+
+      font-weight: bold;
+
+}
+
+.codigo2:hover{
+
+      color: #FFB74D;
+
+      cursor: pointer;
+
+}
+
+.codigo2{
+
+      color: black;
+
+      font-weight: bold;
+
+}
+
+.ancho_alto{
+
+  max-width: 100%; max-height: 600px;
+
+}
+/*
+.color-container:hover{
+
+  background-color: #AF3240;
+
+}
+
+.color-container:hover>label{
+
+  color: white;
+
+}
+
+*/
+.color-container:hover{
+
+  background-color: #FFB74D;
+
+}
+
+.color-container:hover>label{
+
+  color: black;
+
+}
+
+.color-statusContainer{
+
+  background-color: #d32f2f;
+
+}
+
+.color-statusContainer2{
+
+  background-color: orange;
+
+}
+
+.color-statusContainer0{
+
+  background-color: #43a047;
+
+}
+
+.color-statusContainer3{
+
+  background-color: #ffb300;
+
+}
+
+
+
+.color-containerDetail{
+
+  color: black;
+
+}
+
+.color-containerDetail:hover{
+
+  color: black;
+
+  font-weight: bold;
+
+  text-decoration: none;
+
+}
+
+
+
+
+
+
+
+th, td { white-space: nowrap; }
+
+  div.dataTables_wrapper {
+
+        margin: 0 auto;
+
+    }
+
+    .zoom:hover {
+  transform: scale(1.1); 
+}
+
+
 
 .my-error-class{
     color:red;

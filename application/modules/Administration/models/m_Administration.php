@@ -5,16 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_Administration extends CI_Model {
 
     function bringUser(){
-/*        $data['users']= $this->db->select('U.name,P.name as nom')
-                 ->from('users U')
-                 ->join('porfile P','U.ID = P.idUser')
-                 ->where('status',1)
-                 ->get() en caso de que la consulta solo sea de una fila, entonces se sustituye por row
-                 ->result();
-                 return $data; */
             return $this->db->select('*')
                     ->from('users')
-                    ->where('status',1)
                     ->get()
                     ->result();
                  
@@ -256,25 +248,15 @@ class M_Administration extends CI_Model {
     }
 
     /*This is the section for filters functions*/
-    function filtroUsuario($usuario){
-        $data = array(); 
-            if($usuario['name'] != null){
-        $data['name'] = $usuario["name"];
-        }
-        if($usuario["userName"]!=null){
-            $data['nickname'] = $usuario["userName"];
-        }
-        if($usuario["fecha"]!=null){
-            $data['timeStamp'] = $usuario["fecha"];
-        }
-        if($usuario["id"]!=null){
-            $data['ID'] = $usuario["id"];
-        }
-        return  $this->db->select('*')
-                ->from('users')
-                ->where($data)
-                ->get()
-                ->result();  
+    function getAllUsers($start,$length,$array_like,$array_where){
+        $result['data'] = $this->db->select('*')
+                            ->from('users')
+                            ->like($array_like, 'after')
+                            ->where($array_where)
+                            ->limit($length,$start)
+                            ->get()
+                            ->result();  
+        return $result;
         
     }
 }
