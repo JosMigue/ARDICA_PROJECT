@@ -3,12 +3,12 @@ $cacheSaver =  new DateTime();
 ?>
 <title>Administration</title>
 <h1 class="text-center">Lista de usuarios</h1>
-<input type="hidden" id="forMessage">
+<div class="alert alert-danger" role="alert" id="warning_alert" style="display:none;"><h4 class="alert-heading">ADVERTENCIA!</h4><p> Los campos están vacios, debe ingresar texto en al menos un campo para poder filtrar</p></div>
 <div class="text-center">
 <button class="show-btn btn btn-primary" id="btn-filtros">Filtros</button>
 <button class="hide-btn btn btn-danger" id="btn-ocultar-filtros" onclick="cleanFiltros()">Ocultar filtros</button>
 </div>
-<section class="Filter text-center">
+<section class="Filter text-center" style="display: none;">
     <div class="row">
     <div class="col-md-3">
         <label for="nameFilter">Nombre</label>
@@ -18,7 +18,7 @@ $cacheSaver =  new DateTime();
         <label for="nameUserFilter">Nombre de usuario</label>
         <input type="text" id="nameUserFilter" class="form-control" placeholder="Nombre de usuario">
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 ">
         <label for="dateFilter">Fecha de registro</label>
         <input type="date" id="dateFilter" class="form-control" placeholder="fecha de registro">
     </div>

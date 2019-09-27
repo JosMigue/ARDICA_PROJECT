@@ -152,10 +152,10 @@ class Administration extends MY_Controller {
 		$array_like=array();
 		$array_where=array();
              if ($this->input->post('nombre')!='') {
-                $array_where['name']=$this->input->post('nombre'); 
+                $array_like['name']=$this->input->post('nombre'); 
              }
              if ($this->input->post('nombreUsuario')!='') {
-                $array_like['nickname']=$this->input->post('nombreUsuario');
+                $array_where['nickname']=$this->input->post('nombreUsuario');
              }
              if ($this->input->post('fecha')!='') {
                 $array_where['dateSave']=$this->input->post('fecha');
@@ -164,13 +164,13 @@ class Administration extends MY_Controller {
                 $array_where['ID']=$this->input->post('idUsuario');
 			 }
 			 
-		$respuesta=$this->m_Administration->getAllUsers($start,$length,$array_like,$array_where); 
-		$total_registros=count($respuesta['data']);
-		$respuesta=$respuesta['data']; 
-		$rows_total=count($respuesta);  
+		$response=$this->m_Administration->getAllUsers($start,$length,$array_like,$array_where); 
+		$total_registros=$response['total']->total;
+		$response=$response['data'];  
+		$rows_total=count($response);  
 		$datos=array(); 
 		$contador = 0;
-		foreach ($respuesta as $row) {   
+		foreach ($response as $row) {   
 			$array=array();
 			$array['status'] = $row->status;
 			$array['Id']=$contador+=1;
@@ -185,10 +185,62 @@ class Administration extends MY_Controller {
 		}
 		$json_data=array(
 			"draw"=>intval($this->input->post('draw')),
-			"recordsTotal"=>intval($rows_total),
+			"recordsTotal"=>intval($total_registros),
 			"recordsFiltered"=>intval($total_registros),
 			"data"=>$datos);
-		echo json_encode($json_data);  
+		/* print_r($json_data["recordsTotal"]."---".$json_data["recordsFiltered"]); */
+			echo json_encode($json_data);  
+	}
+
+	function getAllObras(){
+		$this->load->model("m_Administration");
+		$start=$this->input->post('start');
+		$length=$this->input->post('length');
+		$array_like=array();
+		$array_where=array();
+             if ($this->input->post('codigoObra')!='') {
+                $array_where['cc']=$this->input->post('codigoObra'); 
+             }
+             if ($this->input->post('nombreObra')!='') {
+                $array_like['name']=$this->input->post('nombreObra');
+             }
+             if ($this->input->post('fechaObra')!='') {
+                $array_where['dateSave']=$this->input->post('fechaObra');
+             }
+             if ($this->input->post('tipoObra')!='') {
+                $array_where['type']=$this->input->post('tipoObra');
+			 }
+             if ($this->input->post('estadoObra')!='') {
+				 if($this->input->post('estadoObra')==1){
+					$array_where['status']=$this->input->post('estadoObra');
+				 }else if($this->input->post('estadoObra')==2){
+					$array_where['status']=0;
+				 }
+			 }
+			 
+		$response=$this->m_Administration->getAllObras($start,$length,$array_like,$array_where); 
+		$total_registros=$response['total']->total;
+		$response=$response['data'];  
+		$rows_total=count($response);  
+		$datos=array(); 
+		$contador = 0;
+		foreach ($response as $row) {   
+			$array=array();
+			$array['contador']=$contador+=1;
+			$array['status']=$row->status;
+			$array['ID'] = $row->ID;
+			$array['cc']=$row->cc;
+			$array['name']=$row->name;
+			$array['dateSave']=$row->dateSave;
+			$array['type']=$row->type;
+			$datos[]=$array; 
+		}
+		$json_data=array(
+			"draw"=>intval($this->input->post('draw')),
+			"recordsTotal"=>intval($total_registros),
+			"recordsFiltered"=>intval($total_registros),
+			"data"=>$datos);
+			echo json_encode($json_data);  
 	}
 	/* ================================FILTERS SECTION END================================ */
 

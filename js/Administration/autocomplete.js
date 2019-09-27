@@ -22,7 +22,8 @@
                     time: 400,
                     callback: function() {}
                 }
-            }
+            },
+            theme: "round"
           };
           
           $("#nameFilter").easyAutocomplete(options);
@@ -49,10 +50,13 @@
                     time: 400,
                     callback: function() {}
                 }
-            }
+            },
+            theme: "round"
           };
           
           $("#nameUserFilter").easyAutocomplete(options);
+          $("#dateFilter").easyAutocomplete(options);
+          $("#idFilter").easyAutocomplete(options);
 
           /*===============================AUTOCOMPLETE SECTION FOR USERS END=============================== */
      
@@ -83,7 +87,8 @@
                 time: 400,
                 callback: function() {}
             }
-        }
+        },
+        theme: "round"
       };
       
       $("#codeObraFilter").easyAutocomplete(options);
@@ -111,9 +116,13 @@
                 time: 400,
                 callback: function() {}
             }
-        }
+        },
+        theme: "round"
       };
       $("#nameObraFilter").easyAutocomplete(options);
+      $("#dateFilterObra").easyAutocomplete(options);
+  /*     $("#typeFilterObra").easyAutocomplete(options);
+      $("#statusFilterObra").easyAutocomplete(options); */
 
       /*===============================AUTOCOMPLETE SECTION FOR OBRAS END=============================== */
       // This is for get 'tipo de obra' and put it in select 

@@ -1,11 +1,11 @@
 $(document).ready(function(){
     settings= {
         "language": {
-                     "sProcessing":     "Procesando...",
+        "sProcessing":     "Procesando datos...",
         "sLengthMenu":     "Mostrar _MENU_ registros",
-        "sZeroRecords":    "No se encontraron resultados",
+        "sZeroRecords":    "No se encontarón considencias",
         "sEmptyTable":     "Ningún dato disponible en esta tabla",
-        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfo":           "Mostrando _END_ registros de un total de _TOTAL_ registros", /* "Mostrando _END_ registros del _START_ al _END_ de un total de _TOTAL_ registros" */
         "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
         "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
         "sInfoPostFix":    "",
@@ -90,6 +90,7 @@ $(document).ready(function(){
                       }
               ]
           };  
+
     var tabla =$('#users_table').DataTable();
     tabla.destroy();
     table= $('#users_table').DataTable(settings)
@@ -97,12 +98,9 @@ $(document).ready(function(){
 
 $('#btn-filtrar').click(function(){
     if($("#nameFilter").val() ==  '' && $("#nameUserFilter").val() == '' && $("#dateFilter").val() ==  '' && $("#idFilter").val()== ''){
-        document.getElementById("forMessage").outerHTML = '<div class="alert alert-danger" role="alert" id="warning_alert"><h4 class="alert-heading">ADVERTENCIA!</h4><p> Los campos están vacios, debe ingresar texto en al menos un campo para poder filtrar</p></div>'
+          $("#warning_alert").show("slow");
         setTimeout(() => {
             $("#warning_alert").hide("fast")
-            setTimeout(() => {
-                document.getElementById("warning_alert").outerHTML = '<input type="hidden" id="forMessage">'
-            }, 1000);
         }, 4500);
     }else{
     var tabla =$('#users_table').DataTable();
@@ -110,4 +108,6 @@ $('#btn-filtrar').click(function(){
   table= $('#users_table').DataTable(settings);
     }
   });
+
+
 

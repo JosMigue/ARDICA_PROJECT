@@ -198,10 +198,10 @@ function bringDataObra(obra){
 }
 
 function Eliminar_Obra(obra){
-    var obra = obra.value;
-    var nombreObra = obra.name;
+    var idObra = obra.value;
+    var nombre = obra.name;
     Swal.fire({
-        title: '¿Está seguro que desea eliminar la obra "'+nombreObra+'"?',
+        title: '¿Está seguro que desea eliminar la obra "'+nombre+'"?',
         text: "Esta acción no se puede corregir!",
         type: 'warning',
         showCancelButton: true,
@@ -216,7 +216,7 @@ function Eliminar_Obra(obra){
                 },
                 type: "POST",
                 url: "Administration/deleteObra",
-                data: { obra: obra },
+                data: { obra: idObra },
                 success: function (data) {
                     if (data == 'Obra has been deleted') {
                         Swal.fire(

@@ -250,12 +250,36 @@ class M_Administration extends CI_Model {
     /*This is the section for filters functions*/
     function getAllUsers($start,$length,$array_like,$array_where){
         $result['data'] = $this->db->select('*')
-                            ->from('users')
-                            ->like($array_like, 'after')
-                            ->where($array_where)
-                            ->limit($length,$start)
-                            ->get()
-                            ->result();  
+                        ->from('users')
+                        ->like($array_like, 'after')
+                        ->where($array_where)
+                        ->limit($length,$start)
+                        ->get()
+                        ->result();
+        $result['total']=$this->db->select("count(1) as total")
+                        ->from('users')
+                        ->like($array_like)
+                        ->where($array_where)
+                        ->get()
+                        ->row();  
+        return $result;
+        
+    }
+    
+    function getAllObras($start,$length,$array_like,$array_where){
+        $result['data'] = $this->db->select('*')
+                        ->from('obras')
+                        ->like($array_like, 'after')
+                        ->where($array_where)
+                        ->limit($length,$start)
+                        ->get()
+                        ->result();
+        $result['total']=$this->db->select("count(1) as total")
+                        ->from('obras')
+                        ->like($array_like)
+                        ->where($array_where)
+                        ->get()
+                        ->row();  
         return $result;
         
     }

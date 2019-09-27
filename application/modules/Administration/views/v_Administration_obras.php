@@ -1,11 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <title>Administration</title>
-<input type="hidden" id="forMessage">
+<h1 class="text-center">Lista de obras</h1>
+<div class="alert alert-danger" role="alert" id="warning_alert" style="display:none;"><h4 class="alert-heading">ADVERTENCIA!</h4><p> Los campos están vacios, debe ingresar texto en al menos un campo para poder filtrar</p></div>
 <div class="text-center">
 <button class="show-btn btn btn-primary" id="btn-filtros">Filtros</button>
 <button class="hide-btn btn btn-danger" id="btn-ocultar-filtros" onclick="cleanFiltros()">Ocultar filtros</button>
 </div>
-<section class="Filter text-center">
+<section class="Filter text-center" style="display: none;">
     <div class="row">
     <div class="col-md-3">
         <label for="codeObraFilter">Código</label>
@@ -34,16 +35,17 @@
     </div>
     </div>
     <div class="text-center">
-        <button class="btn btn-outline-info" id="btn-filtrar">Filtrar</button>
+        <button class="btn btn-outline-info" id="btn-filtrar_obra">Filtrar</button>
     </div>
     <br>
 </section>
-<div class="table-responsive-sm">
-    <table class="table table-bordered" id="users_table">
+<div class="col-lg-12 table-responsive ancho_alto">
+    <table class="table table-bordered" id="obras_table">
         <thead class="thead-dark text-center">
             <tr>
                 <th scope="col">E</th>
                 <th scope="col">Id</th>
+                <th scope="col">Id_DB</th>
                 <th scope="col">Código</th>
                 <th scope="col">Nombre de la obra</th>
                 <th scope="col">Tipo</th>
@@ -52,25 +54,6 @@
             </tr>
         </thead>
         <tbody>
-        <?php $contador = 0;?>
-        <?php foreach($data as $obra){?>
-            <tr class="text-center">
-                <td><?php 
-                if($obra->status == 1){
-                    echo "<img src='img/botonesactivo.png' width='20px' height='20px'>";
-                }else{
-                    echo "<img src='img/botonesdesactivo.png' width='20px' height='20px'>";
-                }
-                ?>
-                </td>
-                <th scope="row"><?php echo $contador+=1?></th>
-                <td><?php echo $obra->cc?></td>
-                <td><?php echo $obra->name?></td>
-                <td><?php echo $obra->nameType?></td>
-                <td><?php echo $obra->dateSave?></td>
-                <th><button class="btn btn-warning" value="<?php echo $obra->ID?>" onclick="bringDataObra(this)"> editar</button><button onclick="Eliminar_Obra(this)" class="btn btn-danger" value="<?php echo $obra->ID?>" name="<?php echo $obra->name?>">Eliminar</button></th>
-            </tr>
-        <?php } ?>
         </tbody>
     </table>
 </div>
