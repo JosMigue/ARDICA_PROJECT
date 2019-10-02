@@ -66,6 +66,15 @@ $(document).ready(function(){
                        return '<button class="btn btn-warning" value="'+row.ID+'" onclick="bringDataObra(this)"> editar</button><button onclick="Eliminar_Obra(this)" class="btn btn-danger" value="'+row.ID+'" name="'+row.name+'">Eliminar</button>'
                               },
                               "targets": 7
+                      },
+                      {"render": function ( data, type, row ) {
+                       if(row.type == 1){
+                         return 'Obra';
+                       }else{
+                         return 'Ubicación';
+                       }
+                              },
+                              "targets": 5
                       }
               ]
           };  

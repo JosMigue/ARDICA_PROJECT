@@ -40,8 +40,8 @@
     <br>
 </section>
 <div class="col-lg-12 table-responsive ancho_alto">
-    <table class="table table-bordered" id="obras_table">
-        <thead class="thead-dark text-center">
+    <table class="table table-bordered text-center" id="obras_table">
+        <thead class="thead-dark ">
             <tr>
                 <th scope="col">E</th>
                 <th scope="col">Id</th>

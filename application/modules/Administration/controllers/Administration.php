@@ -6,8 +6,7 @@ class Administration extends MY_Controller {
 	{
 		$this->load->model("m_Administration");
 		$data['data'] = $this->m_Administration->bringUser();
-
-		$this->loadView("Administration/v_Administration",$data=null);
+		$this->loadView("Administration/v_Administration",$data);
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalEditarUsuario");
 		$this->load->view("Administration/modalRegistro_obras");
@@ -205,7 +204,7 @@ class Administration extends MY_Controller {
                 $array_like['name']=$this->input->post('nombreObra');
              }
              if ($this->input->post('fechaObra')!='') {
-                $array_where['dateSave']=$this->input->post('fechaObra');
+                $array_like['dateSave']=$this->input->post('fechaObra');
              }
              if ($this->input->post('tipoObra')!='') {
                 $array_where['type']=$this->input->post('tipoObra');

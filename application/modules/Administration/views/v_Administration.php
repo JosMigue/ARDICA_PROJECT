@@ -1,12 +1,10 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-$cacheSaver =  new DateTime();
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <title>Administration</title>
 <h1 class="text-center">Lista de usuarios</h1>
 <div class="alert alert-danger" role="alert" id="warning_alert" style="display:none;"><h4 class="alert-heading">ADVERTENCIA!</h4><p> Los campos están vacios, debe ingresar texto en al menos un campo para poder filtrar</p></div>
 <div class="text-center">
 <button class="show-btn btn btn-primary" id="btn-filtros">Filtros</button>
-<button class="hide-btn btn btn-danger" id="btn-ocultar-filtros" onclick="cleanFiltros()">Ocultar filtros</button>
+<button class="hide-btn btn btn-danger" id="btn-ocultar-filtros" style="display: none;" onclick="cleanFiltros()">Ocultar filtros</button>
 </div>
 <section class="Filter text-center" style="display: none;">
     <div class="row">
@@ -32,14 +30,13 @@ $cacheSaver =  new DateTime();
     </div>
     <br>
 </section>
-<div class="row">
     <div class="col-lg-12 table-responsive ancho_alto">
-        <table  id="users_table" width="100%"  class="table table-hover color-tablas" >
-            <thead class="thead-dark text-center">
+        <table  id="users_table"  class="table table-bordered text-center" >
+            <thead class="thead-dark ">
                 <tr>
                     <th scope="col">E</th>
                     <th scope="col">ID</th>
-                    <th scope="col">Identificador (BD)</th>
+                    <th scope="col">ID(DB)</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Nombre de usuario</th>
                     <th scope="col">Teléfono</th>
@@ -53,7 +50,6 @@ $cacheSaver =  new DateTime();
             </tbody>
         </table>
     </div>
-</div>
 
 
 
