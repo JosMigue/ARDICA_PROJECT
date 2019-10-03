@@ -244,3 +244,20 @@ th, td { white-space: nowrap; }
     height: 80%;
     margin: auto;
   }
+
+  .easy-autocomplete{
+    width:100% !important
+  }
+  
+  .easy-autocomplete input{
+    width: 100%;
+  }
+  
+  .form-wrapper{
+    width: 500px;
+  }
+  
+  .easy-autocomplete div{
+    width:100% !important;
+   text-align: center !important; 
+  }

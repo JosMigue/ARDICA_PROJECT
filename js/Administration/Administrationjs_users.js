@@ -1,7 +1,5 @@
 $(document).ready(function () {
     var msg = 'Campo obligatorio';
-    /* $(".Filter").hide("fast"); */
-    $("#btn-ocultar-filtros").hide();
     $("#form_registro_usuario").validate({
         errorClass: "my-error-class",
         validClass: "my-valid-class",

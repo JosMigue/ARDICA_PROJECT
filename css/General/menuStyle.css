@@ -1,12 +1,16 @@
 html, body{
 	/*Responsive backgroud*/
-	background-image: url(../../img/blue-gradient.jpg);
+/* 	background-image: url(../../img/blue-gradient.jpg); 
+	background-color: rgb(8, 34, 71) !important; 
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 	background-color: #464646;
+	background: rgb(198,0,0);
+	background: radial-gradient(circle, rgba(198,0,0,1) 0%, rgba(11,61,108,1) 75%); */
+	background-color: white;
 }
 *{
 	margin:0px;
@@ -16,7 +20,7 @@ html, body{
 
 div#titulo{
 	width:100%;
-	margin-top:100px;
+	margin-top:20px;
 }
 
 p#header{
@@ -27,13 +31,13 @@ p#header{
 
 p#subheader{
 	text-align: center;
-	color:#cecece;
+	color:#000000;
 	margin-top:20px;
 	font-size: 1.3em;
 }
 
 div.menu-options{
-	margin-top: 5%;
+	margin-top: 10px;
 	align-items: center;
 }
 
@@ -129,10 +133,21 @@ footer {
     background-color: #0d293669;
   }
   nav{
-	background: rgba(158,221,255,1);
-	background: -moz-linear-gradient(left, rgba(158,221,255,1) 0%, rgba(158,221,255,1) 24%, rgba(51,180,250,1) 84%, rgba(51,180,250,1) 100%);
-	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(158,221,255,1)), color-stop(24%, rgba(158,221,255,1)), color-stop(84%, rgba(51,180,250,1)), color-stop(100%, rgba(51,180,250,1)));
-	background: -webkit-linear-gradient(left, rgba(158,221,255,1) 0%, rgba(158,221,255,1) 24%, rgba(51,180,250,1) 84%, rgba(51,180,250,1) 100%);
-	background: -o-linear-gradient(left, rgba(158,221,255,1) 0%, rgba(158,221,255,1) 24%, rgba(51,180,250,1) 84%, rgba(51,180,250,1) 100%);
-	background: -ms-linear-gradient(left, rgba(158,221,255,1) 0%, rgba(158,221,255,1) 24%, rgba(51,180,250,1) 84%, rgba(51,180,250,1) 100%);
+	background-color: #1a1a68 !important;
   }
+  
+  .line {
+	  background-color: rgb(170, 12, 12);
+	  height: 80px;
+	  display: flex;
+	  justify-content: right;
+	  align-items: center;
+  }
+  .line > img {
+	  margin-left: 30px;
+	  border: black;
+  }
+
+ a {
+	   color: white !important;
+   }

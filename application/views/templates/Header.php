@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="assets/EasyAutocomplete-1.3.5/easy-autocomplete.themes.min.css"> 
     <link rel="stylesheet" href="assets/dataTables/jquery.dataTables.css"> 
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
-    <link rel="stylesheet" href="css/Administration/filtrosStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="css/Files/files_css.css?<?php echo $cacheSaver->getTimestamp()?>">
     
 </head>
@@ -70,10 +69,10 @@
                         Archivos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo site_url('/files')?>">Lista de archivos Archivos</a>
-                        <button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivos</button>
+                        <a class="dropdown-item" href="<?php echo site_url('/files')?>">Administrador de archivos</a>
+                        <button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivo</button>
                 </li>
-                <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
@@ -82,8 +81,7 @@
                         <a class="dropdown-item" href="<?php echo site_url('General/cerrar_sesion') ?>">Cerrar Sesión
                         </a>
                     </div>
-                </li>
             </ul>
-
+            </li>
         </div>
     </nav>

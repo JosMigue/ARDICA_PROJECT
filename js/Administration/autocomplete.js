@@ -22,8 +22,7 @@
                     time: 400,
                     callback: function() {}
                 }
-            },
-            theme: "round"
+            }
           };
           
           $("#nameFilter").easyAutocomplete(options);
@@ -50,8 +49,7 @@
                     time: 400,
                     callback: function() {}
                 }
-            },
-            theme: "round"
+            }
           };
           
           $("#nameUserFilter").easyAutocomplete(options);
@@ -87,8 +85,7 @@
                 time: 400,
                 callback: function() {}
             }
-        },
-        theme: "round"
+        }
       };
       
       $("#codeObraFilter").easyAutocomplete(options);
@@ -116,8 +113,7 @@
                 time: 400,
                 callback: function() {}
             }
-        },
-        theme: "round"
+        }
       };
       $("#nameObraFilter").easyAutocomplete(options);
       $("#dateFilterObra").easyAutocomplete(options);

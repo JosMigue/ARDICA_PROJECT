@@ -23,11 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="line">
+        <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30">
+    </div>
+    <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="<?php echo site_url('/') ?>">
-            <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"
-                class="d-inline-block align-top" alt="">
+            <!-- <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30" class="d-inline-block align-top" alt=""> -->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,6 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="column is-4" id="button_menu">
         <div class="bd-notification is-primary has-text-centered">
         <div class="contenedor" id="dos">
+            <a href="<?php echo site_url('/pettyCash')?>">
             <img class="icon" src="img/Icons/Petty_Cash_Icon.png">
             <p class="texto">Caja chica</p>
         </div>

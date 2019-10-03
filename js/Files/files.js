@@ -53,10 +53,23 @@ $(document).ready(function () {
                             title: 'Oops...',
                             text: 'No se pudo guardar el archivo, verifique los tipos permitidos...',
                         })
+
+                        $("#warning-alert-files").show('fast');
+                        setTimeout(() => {
+                            $("#warning-alert-files").hide('fast');
+                        }, 8000);
+                        $('#blah').attr('src', 'img/no_image_available.jpg');
                     }
                 }
             });
         }
     });
 });
+
+function resetModalSubir(){
+    setTimeout(() => {
+        $("#finput").val('');
+        $('#blah').attr('src', 'img/no_image_available.jpg');
+    }, 1000);
+}
    

@@ -1,6 +1,7 @@
 <title>Archivos</title>
-<div class="table-responsive-sm">
-    <table class="table table-bordered" id="users_table">
+<h1 class="text-center">Archivos</h1>
+<div class="col-lg-12 table-responsive ancho_alto">
+    <table class="table table-bordered" id="users_files">
         <thead class="thead-dark text-center">
             <tr>
                 <th scope="col">ID</th>
