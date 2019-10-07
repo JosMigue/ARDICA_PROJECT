@@ -52,18 +52,20 @@ class M_Login extends CI_Model {
 
 	public function busca_usuario($nick,$password){
 
-		return $this->db->select('U.ID, U.name, U.password ,U.nickname, U.timeStamp, U.status, U.typeUser')
-
+		$usuario["user"] = $this->db->select('U.ID, U.name, U.password ,U.nickname, U.timeStamp, U.status, U.typeUser')
       			->from('users U')
-
-      			->where('nickname', $nick)
-				  
+				->where('nickname', $nick)
       			->get()
-
-      			->row();
-
-      
-
+				->row();
+				  
+		$usuario["user_status"] = $this->db->select('U.ID, U.name, U.password ,U.nickname, U.timeStamp, U.status, U.typeUser')
+      			->from('users U')
+				->where('nickname', $nick)
+				->where('status',1)
+      			->get()
+				->row();
+		
+		return $usuario;
 	}
 
 	public function get_informacion_usuario($id){

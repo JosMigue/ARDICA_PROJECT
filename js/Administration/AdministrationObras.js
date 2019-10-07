@@ -63,7 +63,7 @@ $(document).ready(()=>{
                         }
                 },
                 erro:function(error){
-                    alert.error("HA OCURRIDO UN ERROR: "+error);
+                    alert("HA OCURRIDO UN ERROR: "+error);
                 },
             });
         }
@@ -137,7 +137,7 @@ $(document).ready(()=>{
                         }
                 },
                 erro:function(error){
-                    alert.error("HA OCURRIDO UN ERROR: "+error);
+                    alert("HA OCURRIDO UN ERROR: "+error);
                 },
             });
         }   
@@ -172,6 +172,13 @@ function resetModalObrasEdit(){
         $('#typeEdit').val(0);
     }, 500);
 }
+function cleanFiltrosObras(){
+    $("#codeObraFilter").val('');
+    $("#nameObraFilter").val('');
+    $("#dateFilterObra").val('');
+    $("#typeFilterObra").val('0');
+    $("#statusFilterObra").val('0');
+}
 
 function bringDataObra(obra){
     var id =  obra.value;
@@ -190,8 +197,8 @@ function bringDataObra(obra){
             $('#nameObra').val(obj["data"]["name"]);
             $('#typeEdit').val(obj["data"]["type"]);
         },
-        erro:function(error){
-            alert.error("HA OCURRIDO UN ERROR: "+error);
+        error:function(error){
+            alert("HA OCURRIDO UN ERROR: "+error);
         },
     });
 
@@ -238,8 +245,58 @@ function Eliminar_Obra(obra){
                             }, 1200);
                     }
                 },
-                erro:function(error){
-                    alert.error("HA OCURRIDO UN ERROR: "+error);
+                error:function(error){
+                    alert("HA OCURRIDO UN ERROR: "+error);
+                },
+            });
+
+        }
+      })
+}
+
+function Habilitar_Obra(obra){
+    var idObra = obra.value;
+    var nombre = obra.name;
+    Swal.fire({
+        title: '¿Está seguro que desea habilitar la obra "'+nombre+'"?',
+        text: "Esta acción pasará la obra a un estado activo!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, estoy seguro!'
+      }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "Administration/habilitaObra",
+                data: { obra: idObra },
+                success: function (data) {
+                    if (data == 'Obra has been enabled') {
+                        Swal.fire(
+                            'Habilitada!',
+                            'La obra "'+nombre+'" ha sido habilitada',
+                            'success'
+                          )
+                          setTimeout(function () {
+                              location.reload('/administration');
+                        }, 1500);
+                        }else if(data == 'Obra has not been disabled'){
+                            Swal.fire({
+                                type: 'Error',
+                                title: 'Oops...',
+                                text: 'La obra no se pudo habilitar',
+                            })
+                            setTimeout(function () {
+                                location.reload('/administration');
+                            }, 1200);
+                    }
+                },
+                error:function(error){
+                    alert("HA OCURRIDO UN ERROR: "+error);
                 },
             });
 

@@ -25,72 +25,92 @@ class Administration extends MY_Controller {
 	}
 
 	public function saveUser(){
-		$this->load->model("m_Administration");
-		$obj = $_POST["obj"];
-		$name = $obj["Nombre"]." ".$obj["ApellidoP"]." ".$obj["ApellidoM"];
-		if(!$this->m_Administration->verifyUser($obj["user"],$name)){
-			if($this->m_Administration->saveUser($obj)){
-				echo 'user is null';
-			}else{
-				echo 'user fail';
-			}
-
+		if(isset($_POST["obj"])){
+			$this->load->model("m_Administration");
+			$obj = $_POST["obj"];
+			$name = $obj["Nombre"]." ".$obj["ApellidoP"]." ".$obj["ApellidoM"];
+			if(!$this->m_Administration->verifyUser($obj["user"],$name)){
+				if($this->m_Administration->saveUser($obj)){
+					echo 'user is null';
+				}else{
+					echo 'user fail';
+				}
 		}else{
 			echo 'user is not null';
 		}
-
-	}
-
-	public function deleteUser(){
-		$this->load->model("m_Administration");
-		$user = $_POST["user"];
-		if($this->m_Administration->deleteUser($user)){
-			echo 'user has been deleted';
-		}else{
-			echo 'user has not been deleted';
 		}
 	}
 
+	public function deleteUser(){
+		if(isset($_POST["user"])){
+			$this->load->model("m_Administration");
+			$user = $_POST["user"];
+			if($this->m_Administration->deleteUser($user)){
+				echo 'user has been deleted';
+			}else{
+				echo 'user has not been deleted';
+			}
+		}
+	}
+	public function enableUser(){
+		if(isset($_POST["user"])){
+			$this->load->model("m_Administration");
+			$user = $_POST["user"];
+			if($this->m_Administration->enableUser($user)){
+				echo 'user has been enabled';
+			}else{
+				echo 'user has not been disabled';
+			}
+		}
+	}
+
+
 	public function getUserData(){
-		$this->load->model("m_Administration");
-		$id = $_POST["id"];
-		$data = $this->m_Administration->bringUserEdit($id);
-		$data_json['data'] = $data;
-		echo json_encode($data_json);
+		if(isset($_POST["id"])){
+			$this->load->model("m_Administration");
+			$id = $_POST["id"];
+			$data = $this->m_Administration->bringUserEdit($id);
+			$data_json['data'] = $data;
+			echo json_encode($data_json);
+		}
 	}
 
 	public function editUser(){
-		$this->load->model("m_Administration");
-		$user = $_POST["obj"];
-		$response = $this->m_Administration->updateUser($user);
- 		switch($response){
-			case 1: echo 'success';
-			break;
-			case 2: echo 'error';
-			break;
-			case 0: echo 'no changes';
-			break;
+		if(isset($_POST["obj"])){
+			$this->load->model("m_Administration");
+			$user = $_POST["obj"];
+			$response = $this->m_Administration->updateUser($user);
+ 			switch($response){
+				case 1: echo 'success';
+				break;
+				case 2: echo 'error';
+				break;
+				case 0: echo 'no changes';
+				break;
+		}
 		}
 	}
 
 	public function saveObra(){
-		$this->load->model("m_Administration");
-		$obra = $_POST["obj"];
-		if($this->m_Administration->verifyObra($obra["codigoObra"],$obra["nombreObra"])){
-			if($this->m_Administration->saveObra($obra)){
-				echo 'success obra';
+		if(isset($_POST["obj"])){
+			$this->load->model("m_Administration");
+			$obra = $_POST["obj"];
+			if($this->m_Administration->verifyObra($obra["codigoObra"],$obra["nombreObra"])){
+				if($this->m_Administration->saveObra($obra)){
+					echo 'success obra';
+				}else{
+					echo 'error obra';
+				}
 			}else{
-				echo 'error obra';
-			}
-		}else{
-			echo 'obra exist';
-		}	
+				echo 'obra exist';
+			}	
+		}
 	}
 
 	public function getTypesObres(){
 		$this->load->model("m_Administration");
 		$tipos = $this->m_Administration->tiposObtras();
-		$algo = '<option value="" default selected>seleccionar...</option>';
+		$algo = '<option value="0" selected>seleccionar...</option>';
 		foreach ($tipos as $tipo) {
 			$algo.='<option value="'.$tipo->ID.'">'.$tipo->name.'</option>';
 		}
@@ -99,35 +119,53 @@ class Administration extends MY_Controller {
 	}
 
 	public function getObraData(){
-		$this->load->model("m_Administration");
-		$id = $_POST["id"];
-		$data = $this->m_Administration->bringObraEdit($id);
-		$data_json['data'] = $data;
-		echo json_encode($data_json);
+		if(isset($_POST["id"])){
+			$this->load->model("m_Administration");
+			$id = $_POST["id"];
+			$data = $this->m_Administration->bringObraEdit($id);
+			$data_json['data'] = $data;
+			echo json_encode($data_json);
+		}
 	}
 
 	public function deleteObra(){
-		$this->load->model("m_Administration");
-		$obra = $_POST["obra"];
-		if($this->m_Administration->deleteObra($obra)){
-			echo 'Obra has been deleted';
-		}else{
-			echo 'Obra has not been deleted';
+		if(isset($_POST["obra"])){
+			$this->load->model("m_Administration");
+			$obra = $_POST["obra"];
+			if($this->m_Administration->deleteObra($obra)){
+				echo 'Obra has been deleted';
+			}else{
+				echo 'Obra has not been deleted';
+			}
+		}
+	}
+
+	public function habilitaObra(){
+		if(isset($_POST["obra"])){
+			$obra = $_POST["obra"];
+			$this->load->model("m_Administration");
+			if($this->m_Administration->habilitaObra($obra)){
+				echo 'Obra has been enabled';
+			}else{
+				echo 'Obra has not been disabled';
+			}
 		}
 	}
 
 	public function editObra(){
-		$this->load->model("m_Administration");
-		$obra = $_POST["obj"];
-		$response = $this->m_Administration->updateObra($obra);
-		switch($response){
-			case 0: echo 'no changes';
-			break;
-			case 1: echo 'success Obra Edit';
-			break;
-			case 2: echo 'error Obra Edit';
-			break;
-			case 3: echo 'name exist';
+		if(isset($_POST["obj"])){
+			$this->load->model("m_Administration");
+			$obra = $_POST["obj"];
+			$response = $this->m_Administration->updateObra($obra);
+			switch($response){
+				case 0: echo 'no changes';
+				break;
+				case 1: echo 'success Obra Edit';
+				break;
+				case 2: echo 'error Obra Edit';
+				break;
+				case 3: echo 'name exist';
+			}
 		}
 	}
 
@@ -162,6 +200,9 @@ class Administration extends MY_Controller {
              if ($this->input->post('idUsuario')!='') {
                 $array_where['ID']=$this->input->post('idUsuario');
 			 }
+			 if ($this->input->post('statusUsuario')!=0){
+				$array_where['status']=$this->input->post('statusUsuario');
+			 }
 			 
 		$response=$this->m_Administration->getAllUsers($start,$length,$array_like,$array_where); 
 		$total_registros=$response['total']->total;
@@ -187,7 +228,6 @@ class Administration extends MY_Controller {
 			"recordsTotal"=>intval($total_registros),
 			"recordsFiltered"=>intval($total_registros),
 			"data"=>$datos);
-		/* print_r($json_data["recordsTotal"]."---".$json_data["recordsFiltered"]); */
 			echo json_encode($json_data);  
 	}
 
@@ -206,15 +246,11 @@ class Administration extends MY_Controller {
              if ($this->input->post('fechaObra')!='') {
                 $array_like['dateSave']=$this->input->post('fechaObra');
              }
-             if ($this->input->post('tipoObra')!='') {
+             if ($this->input->post('tipoObra')!=0) {
                 $array_where['type']=$this->input->post('tipoObra');
 			 }
-             if ($this->input->post('estadoObra')!='') {
-				 if($this->input->post('estadoObra')==1){
-					$array_where['status']=$this->input->post('estadoObra');
-				 }else if($this->input->post('estadoObra')==2){
-					$array_where['status']=0;
-				 }
+             if ($this->input->post('estadoObra')!=0) {				 
+				$array_where['status']=$this->input->post('estadoObra');
 			 }
 			 
 		$response=$this->m_Administration->getAllObras($start,$length,$array_like,$array_where); 

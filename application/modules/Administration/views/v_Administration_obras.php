@@ -4,7 +4,7 @@
 <div class="alert alert-danger" role="alert" id="warning_alert" style="display:none;"><h4 class="alert-heading">ADVERTENCIA!</h4><p> Los campos están vacios, debe ingresar texto en al menos un campo para poder filtrar</p></div>
 <div class="text-center">
 <button class="show-btn btn btn-primary" id="btn-filtros">Filtros</button>
-<button class="hide-btn btn btn-danger" id="btn-ocultar-filtros" style="display:none;" onclick="cleanFiltros()">Ocultar filtros</button>
+<button class="hide-btn btn btn-danger" id="btn-ocultar-filtros" style="display:none;" onclick="cleanFiltrosObras()">Ocultar filtros</button>
 </div>
 <section class="Filter text-center" style="display: none;">
     <div class="row">
@@ -36,6 +36,9 @@
     </div>
     <div class="text-center">
         <button class="btn btn-outline-info" id="btn-filtrar_obra">Filtrar</button>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-warning" id="btn-reset-filtrar_obra" onclick="cleanFiltrosObras()" style=" display:none; margin-top: 5px;">Resetear filtros</button>
     </div>
     <br>
 </section>

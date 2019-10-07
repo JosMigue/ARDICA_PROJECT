@@ -14,8 +14,7 @@
                         <div class="text-center">
                             <img id="blah" src="img/no_image_available.jpg" style="margin-top: 30px;" alt="Previsualización no disponible" /></br></br>
                         </div>
-                        <input class="form-control" type="file" name="image_file" multiple="true" id="finput"
-                            onchange="readURL(this)"></br></br>
+                        <input class="form-control" type="file" name="image_file" multiple="false" id="finput" onchange="readURL(this)" required></br></br>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" onclick="resetModalSubir()" data-dismiss="modal">Cancelar</button>
                             <button class="btn btn-success">Subir archivo</button>

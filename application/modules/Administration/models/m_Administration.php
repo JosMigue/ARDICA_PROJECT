@@ -93,6 +93,19 @@ class M_Administration extends CI_Model {
             return false;
         } 
     }
+    function enableUser($id){
+        $data=array(
+            'status'=> 1
+          );
+        $this->db->set($data)->where('ID',$id)->update('users');
+        /* $this->db->delete('users',$data); */
+        $rows = $this->db->affected_rows();
+        if ($rows>0) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
 
     function bringUserEdit($id){
        return $this->db->select('*')
@@ -183,7 +196,20 @@ class M_Administration extends CI_Model {
 
     function deleteObra($id){
         $data=array(
-            'status'=> 0
+            'status'=> 2
+          );
+        $this->db->set($data)->where('ID',$id)->update('obras');
+        $rows = $this->db->affected_rows();
+        if ($rows>0) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+
+    function habilitaObra($id){
+        $data=array(
+            'status'=> 1
           );
         $this->db->set($data)->where('ID',$id)->update('obras');
         $rows = $this->db->affected_rows();

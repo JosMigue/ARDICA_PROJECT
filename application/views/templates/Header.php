@@ -60,7 +60,7 @@
                         Caja chica
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Lista de facturas</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Caja chica</a>
                         <a class="dropdown-item" href="#"></a>
                 </li>
                 <li class="nav-item dropdown">

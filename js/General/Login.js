@@ -72,11 +72,13 @@ $(document).ready(function () {
                         alertify.error('Contraseña o usuario incorrectos')
                     }else if(data == 'user not found'){
                         alertify.warning('El usuario no se encuentra en la base de datos')
+                    }else if(data == 'no access'){
+                        alertify.error('El usuario no tiene acceso al sistema por el momento')
                     }else if(data == 'default'){
                         location.href('General/Login');
                     }
                 },
-                erro:function(error){
+                error:function(error){
                     alert("HA OCURRIDO UN ERROR"+error);
                 },
             });

@@ -167,6 +167,7 @@ $(document).ready(function () {
         $(".Filter").hide("slow", function(){
             $("#btn-ocultar-filtros").hide("slow");
             $("#btn-filtros").show("slow");
+            $("#btn-reset-filtrar").hide("slow");
         });
     });
     
@@ -232,6 +233,56 @@ function Eliminar_usurario(usuario){
       })
    
 }
+function habilitarUsuario(usuario){
+    var user = usuario.value;
+    var userName = usuario.name;
+    Swal.fire({
+        title: '¿Está seguro que desea habilitar el usuario '+userName+'?',
+        text: "Está a punto de darle acceso a un usuario al sistema!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, estoy seguro!'
+      }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "Administration/enableUser",
+                data: { user: user },
+                success: function (data) {
+                    if (data == 'user has been enabled') {
+                        Swal.fire(
+                            'Habilitado!',
+                            'El usuario ha sido habilitado para el sistema.',
+                            'success'
+                          )
+                          setTimeout(function () {
+                              location.reload('/administration');
+                        }, 1500);
+                        }else if(data == 'user has not been disabled'){
+                            Swal.fire({
+                                type: 'Error',
+                                title: 'Oops...',
+                                text: 'El usuario no se pudo habilitar',
+                            })
+                            setTimeout(function () {
+                                location.reload('/administration');
+                            }, 1200);
+                    }
+                },
+                error:function(error){
+                    alert("HA OCURRIDO UN ERROR: "+error);
+                },
+            });
+
+        }
+      })
+   
+}
 
 
  function bringDataUser(usuario){
@@ -265,46 +316,6 @@ function cleanFiltros(){
         $("#nameUserFilter").val('');
         $("#dateFilter").val('');
         $("#idFilter").val('');
+        $("#userStatusFilter").val('0');
     }, 1000);
 }
-
-/* $("#btn-filtrar").click(()=>{
-    obj = new Object;
-    obj.name = $("#nameFilter").val();
-    obj.userName = $("#nameUserFilter").val();
-    obj.fecha = $("#dateFilter").val();
-    obj.id = $("#idFilter").val();
-    if(obj.name ==  '' && obj.userName == '' && obj.fecha ==  '' && obj.id== ''){
-        document.getElementById("forMessage").outerHTML = '<div class="alert alert-danger" role="alert" id="warning_alert"><h4 class="alert-heading">ADVERTENCIA!</h4><p> Los campos están vacios, debe ingresar texto en al menos un campo para poder filtrar</p></div>'
-        setTimeout(() => {
-            $("#warning_alert").hide("fast")
-            setTimeout(() => {
-                document.getElementById("warning_alert").outerHTML = '<input type="hidden" id="forMessage">'
-            }, 1000);
-        }, 7000);
-    }else{
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "POST",
-            url: "Administration/filtrar_usuario",
-            data: { obj: obj },
-            success: function (data) {
-                if (data == 'Error'){
-                    Swal.fire({
-                        type: 'Error',
-                        title: 'Oops...',
-                        text: 'Se esperaban datos',
-                    })
-                    location.reload('/administration');
-                }
-            },
-            error:function(error){
-                alert("HA OCURRIDO UN ERROR: "+error);
-            },
-        });
-    }
-}); */
-
-

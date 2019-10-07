@@ -122,31 +122,31 @@ class General extends MY_Controller {
 					'cost' => 12,
 				];
 				$usuario = $this->m_Login->busca_usuario($user, password_hash($password,PASSWORD_BCRYPT,$passCost)); 
-				if ($usuario!='' && $usuario!=null ) {
-
-					if(password_verify($password,$usuario->password)){
+				if ($usuario['user']!='' && $usuario['user']!=null ) {
+					if($usuario['user_status']!='' || $usuario['user_status']!=null){
+					if(password_verify($password,$usuario['user']->password)){
 	
 				   $usuario_data = array(
 	
-							  'idUser' => $usuario->ID,
+							  'idUser' => $usuario['user']->ID,
 	
-							  'nameUser' => $usuario->name,
+							  'nameUser' => $usuario['user']->name,
 	
-							  'userNickName' => $usuario->nickname,
+							  'userNickName' => $usuario['user']->nickname,
 	
-							  'userTimeStamp'    =>$usuario->timeStamp,
+							  'userTimeStamp'    =>$usuario['user']->timeStamp,
 	
-							  'userStatus'    =>$usuario->status,
+							  'userStatus'    =>$usuario['user']->status,
 	
-							  'userType' =>$usuario->typeUser,
+							  'userType' =>$usuario['user']->typeUser,
 	
 							  'logueado' => TRUE
 				   
 	
 				   );
 				   $this->session->set_userdata($usuario_data);
-				   $this->m_Login->updateAcceso($usuario->ID);  
-				   /* This block will be use when we decided to add cookies on WEB page */
+				   $this->m_Login->updateAcceso($usuario['user']->ID);  
+				   /* This block will be use when we decide to add cookies on WEB page */
 	/* 			   if ($this->input->post("recordar")){
 					   $this->input->set_cookie('uemailhouder', $correo, 172800);
 					   $this->input->set_cookie('upasswordhouder', $password, 172800);
@@ -159,16 +159,15 @@ class General extends MY_Controller {
 					
 					echo 'wrong password';
 				}
-	
+			}else{
+				echo 'no access';
+			} 
 			}else{
 				  
 				echo 'user not found';
 				  
-			 } 
+			 }
 			}else{
-
-				//si no, redirecciona a vista login
-
 				echo 'default';
 
 			}

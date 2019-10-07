@@ -24,9 +24,20 @@
         <label for="idFilter">Identificador</label>
         <input type="text" id="idFilter"  class="form-control" placeholder="idetificador">
     </div>
+    <div class="col-md-3">
+        <label for="userStatusFilter">Estado</label>
+        <select class="form-control" id="userStatusFilter">
+            <option value="0">seleccionar...</option>
+            <option value="1">Activo</option>
+            <option value="2">No activo</option>
+        </select>
+    </div>
     </div>
     <div class="text-center">
         <button class="btn btn-outline-info" id="btn-filtrar">Filtrar</button>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-warning" id="btn-reset-filtrar" onclick="cleanFiltros()" style=" display:none; margin-top: 5px;">Resetear filtros</button>
     </div>
     <br>
 </section>
