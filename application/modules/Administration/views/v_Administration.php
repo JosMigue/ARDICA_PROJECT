@@ -34,7 +34,7 @@
     </div>
     </div>
     <div class="text-center">
-        <button class="btn btn-outline-info" id="btn-filtrar">Filtrar</button>
+        <button class="btn btn-outline-info" id="btnfiltrar">Filtrar</button>
     </div>
     <div class="text-center">
         <button class="btn btn-warning" id="btn-reset-filtrar" onclick="cleanFiltros()" style=" display:none; margin-top: 5px;">Resetear filtros</button>

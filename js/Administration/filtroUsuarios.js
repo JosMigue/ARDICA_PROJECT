@@ -100,7 +100,7 @@
 
 
 
-$('#btn-filtrar').click(function(){
+$('#btnfiltrar').click(function(){
     if($("#nameFilter").val() ==  '' && $("#nameUserFilter").val() == '' && $("#dateFilter").val() ==  '' && $("#idFilter").val()== '' && $("#userStatusFilter").val()== 0){
           $("#warning_alert").show("slow");
         setTimeout(() => {

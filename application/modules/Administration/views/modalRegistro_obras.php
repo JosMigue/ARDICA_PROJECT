@@ -26,7 +26,7 @@
                                 <div class="col-md-6 mb-4">
                                     <label for="tipoObra">Tipo de obras </label>
                                     <span id="tipoObraTittle" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Tipo</span>
-                                    <select class="form-control" name="tipoObra" id="tipoObra">
+                                    <select class="form-control" name="tipoObra" id="tipoObra" required>
                                     <!-- Here will be the options inserted with Javascript -->
                                     </select>
                                 </div>

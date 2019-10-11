@@ -14,6 +14,7 @@
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script type="text/javascript" src="assets/dataTables/jquery.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 <script type="text/javascript" src="js/Administration/autocomplete.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/Administration/checkInput.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
@@ -21,6 +22,7 @@
 <script type="text/javascript" src="js/Administration/AdministrationObras.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/Administration/filtroUsuarios.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/Administration/filtroObra.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+<script type="text/javascript" src="js/PettyCash/pettyCash.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 
 <script type="text/javascript" src="js/Files/Files.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 </body>

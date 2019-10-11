@@ -110,7 +110,7 @@ class Administration extends MY_Controller {
 	public function getTypesObres(){
 		$this->load->model("m_Administration");
 		$tipos = $this->m_Administration->tiposObtras();
-		$algo = '<option value="0" selected>seleccionar...</option>';
+		$algo = '<option value="" selected >seleccionar...</option>';
 		foreach ($tipos as $tipo) {
 			$algo.='<option value="'.$tipo->ID.'">'.$tipo->name.'</option>';
 		}

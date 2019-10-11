@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="assets/dataTables/jquery.dataTables.css"> 
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="css/Files/files_css.css?<?php echo $cacheSaver->getTimestamp()?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
     
 </head>
 
@@ -52,7 +54,7 @@
                         <button class="dropdown-item" id="button_add_user"  data-toggle="modal" onclick="resetModal()" data-target="#modalRegistro" >Registrar usuario</button>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php echo site_url('/administration.obras')?>">Lista de obras</a>
-                        <button class="dropdown-item" id="button_add_user" onclick=""  data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</button>
+                        <button class="dropdown-item" id="button_add_user" data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</button>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -60,7 +62,11 @@
                         Caja chica
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Caja chica</a>
+                        <button class="dropdown-item" data-toggle="modal" data-target="#modalAddPettyCash">Registra caja chica</button>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas por autotizar</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas faltantes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Reportes</a>
                         <a class="dropdown-item" href="#"></a>
                 </li>
                 <li class="nav-item dropdown">
