@@ -111,6 +111,14 @@ function getTeams(){
                 ->result();
 }
 
+
+function getObresTypes(){
+        return $this->db->select('*')
+                ->from('obras_type')
+                ->get()
+                ->result();
+}
+
 function getAllPettyCash($start,$length,$array_like,$array_where){
         $result['data'] = $this->db->select('CC.estado, CC.ID, CC.numero, O.name as ubicacion, CC.fecha_inicio as fIni, TD.nombre as deducible, CC.fecha_terminacion as fFin, COCA.nombre as concepto, U.name as encargado, E.nombre as equipo, CC.fecha_registro as fRegistro')
                         ->from('caja_chica CC')

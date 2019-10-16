@@ -10,6 +10,7 @@ class Administration extends MY_Controller {
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalEditarUsuario");
 		$this->load->view("Administration/modalRegistro_obras");
+		$this->load->view("PettyCash/modal_Registro_Caja");
 		$this->load->view("Files/modalUploadFiles");
 	}
 
@@ -21,6 +22,7 @@ class Administration extends MY_Controller {
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalRegistro_obras");
 		$this->load->view("Administration/modalEditarObra"); 
+		$this->load->view("PettyCash/modal_Registro_Caja");
 		$this->load->view("Files/modalUploadFiles");
 	}
 

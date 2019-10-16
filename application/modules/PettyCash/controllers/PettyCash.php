@@ -27,6 +27,46 @@ class PettyCash extends MY_Controller {
 		$this->load->view("Files/modalUploadFiles");
 	}
 
+	public function catalogo_deducible(){
+		$this->load->model("m_PettyCash");
+		$data["data"] = $this->m_PettyCash->getDeductibles();
+		$this->loadView("PettyCash/v_tiposDeducible",$data);
+		$this->load->view("PettyCash/modal_Registro_Caja");
+		$this->load->view("Administration/modalRegistro_usuarios");
+		$this->load->view("Administration/modalRegistro_obras");
+		$this->load->view("Files/modalUploadFiles");
+	}
+
+	public function catalogo_concepto(){
+		$this->load->model("m_PettyCash");
+		$data["data"] = $this->m_PettyCash->getConcepts();
+		$this->loadView("PettyCash/v_conceptos",$data);
+		$this->load->view("PettyCash/modal_Registro_Caja");
+		$this->load->view("Administration/modalRegistro_usuarios");
+		$this->load->view("Administration/modalRegistro_obras");
+		$this->load->view("Files/modalUploadFiles");
+	}
+
+	public function catalogo_equipo(){
+		$this->load->model("m_PettyCash");
+		$data["data"] = $this->m_PettyCash->getTeams();
+		$this->loadView("PettyCash/v_equipo",$data);
+		$this->load->view("PettyCash/modal_Registro_Caja");
+		$this->load->view("Administration/modalRegistro_usuarios");
+		$this->load->view("Administration/modalRegistro_obras");
+		$this->load->view("Files/modalUploadFiles");
+	}
+
+	public function catalogo_obra(){
+		$this->load->model("m_PettyCash");
+		$data["data"] = $this->m_PettyCash->getObresTypes();
+		$this->loadView("PettyCash/v_tipos_obras",$data);
+		$this->load->view("PettyCash/modal_Registro_Caja");
+		$this->load->view("Administration/modalRegistro_usuarios");
+		$this->load->view("Administration/modalRegistro_obras");
+		$this->load->view("Files/modalUploadFiles");
+	}
+
 	public function savePettyCash(){
 		if(isset($_POST["obj"])){
 			$obj = $this->input->post("obj");
@@ -154,6 +194,12 @@ class PettyCash extends MY_Controller {
 				}else{
 					$array_where['estado']=$this->input->post('estadoCajaChica');
 				}
+			 }
+			 if($this->input->post('fechaIni')!=''){
+				 $array_where['fecha_inicio'] = $this->input->post('fechaIni');
+			 }
+			 if($this->input->post('fechaFin')!=''){
+				$array_where['fecha_terminacion'] = $this->input->post('fechaIni');
 			 }
 			 if ($this->input->post('autorizadaCajaChica')!=''){
 				 if($this->input->post('autorizadaCajaChica')==2){

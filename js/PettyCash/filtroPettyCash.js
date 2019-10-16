@@ -35,6 +35,8 @@ $(document).ready(function(){
                     d.equipoCajaChica = $('#teamFilter').val();
                     d.estadoCajaChica = $('#statusPettyCashFilter').val();
                     d.autorizadaCajaChica = $('#autorizationPettyCashFilter').val();
+                    d.fechaIni = $("#dateOne").val();
+                    d.fechaFin = $("#dateTwo").val();
                   }
           },
           "columns": [
@@ -71,9 +73,9 @@ $(document).ready(function(){
                       },
                       {"render": function ( data, type, row ) {
                         if(row.status == 1){
-                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)"> editar</button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'">Eliminar</button>'
+                          return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">delete_sweep</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
                         }else{
-                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)"> editar</button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'">Habilitar</button>'
+                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto"><i class="material-icons">add_circle</i></button>'
                         }
                               },
                               "targets": 12
@@ -88,7 +90,7 @@ $(document).ready(function(){
 
 
 $("#btn_Filtrar_Petty_Cash").click(function(){
-  if($("#numberFilter").val()== '' && $("#locationFilter").val()== '' && $("#deductibleFilter").val()== '' && $("#responsableFilter").val()== '' && $("#teamFilter").val()== '' && $("#statusPettyCashFilter").val()== '' && $("#autorizationPettyCashFilter").val()== ''){
+  if($("#numberFilter").val()== '' && $("#locationFilter").val()== '' && $("#deductibleFilter").val()== '' && $("#responsableFilter").val()== '' && $("#teamFilter").val()== '' && $("#statusPettyCashFilter").val()== '' && $("#autorizationPettyCashFilter").val()== '' && $("#dateOne").val()=='' && $("#dateTwo").val()==''){
     $("#warning_alert").show('fast');
     setTimeout(() => {
       $("#warning_alert").hide('fast');
@@ -130,6 +132,8 @@ $("#btn_Filtrar_Petty_Cash").click(function(){
                 d.equipoCajaChica = $('#selected_team').val();
                 d.estadoCajaChica = $('#statusPettyCashFilter').val();
                 d.autorizadaCajaChica = $('#autorizationPettyCashFilter').val();
+                d.fechaIni = $("#dateOne").val();
+                d.fechaFin = $("#dateTwo").val();
               }
       },
       "columns": [
@@ -166,9 +170,9 @@ $("#btn_Filtrar_Petty_Cash").click(function(){
                   },
                   {"render": function ( data, type, row ) {
                     if(row.status == 1){
-                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)"> editar</button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'">Eliminar</button>'
+                      return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">delete_sweep</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
                     }else{
-                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)"> editar</button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'">Habilitar</button>'
+                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto"><i class="material-icons">add_circle</i></button>'
                     }
                           },
                           "targets": 12
@@ -259,9 +263,9 @@ $("#btn-reset-filtrar-PettyCash").click(function(){
                   },
                   {"render": function ( data, type, row ) {
                     if(row.status == 1){
-                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)"> editar</button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'">Eliminar</button>'
+                      return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">delete_sweep</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
                     }else{
-                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)"> editar</button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'">Habilitar</button>'
+                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto"><i class="material-icons">add_circle</i></button>'
                     }
                           },
                           "targets": 12
@@ -285,23 +289,19 @@ function cleanFiltrosPettyCash(){
     $("#teamFilter").val('');
     $("#statusPettyCashFilter").val('');
     $("#autorizationPettyCashFilter").val('');
+    $("#dateOne").val('');
+    $("#dateTwo").val('');
     $("#selected_location").val('');
     $("#selected_responsable").val('');
     $("#selected_team").val('');
 }
 
+
+
 $(function() {
-
-  var start = moment().subtract(29, 'days');
-  var end = moment();
-
-  function cb(start, end) {
-      $('#reportrange span').html(start.format('DD-MM-YYYY') + ' - ' + end.format('DD-MM-YYYY'));
-  }
-
-  $('#reportrange').daterangepicker({
+  $('input[name="dateFilter"]').daterangepicker({
     "locale": {
-      "format": "DD-MM-YYYY",
+      "format": "YYYY-MMM-DD",
       "separator": " - ",
       "applyLabel": "Aplicar",
       "cancelLabel": "Cancelar",
@@ -333,18 +333,10 @@ $(function() {
       ],
       "firstDay": 0
     },
-      startDate: start,
-      endDate: end,
-      ranges: {
-         'Hoy': [moment(), moment()],
-         'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-         'Ultimos 7 días': [moment().subtract(6, 'days'), moment()],
-         'Últimos 30 días': [moment().subtract(29, 'days'), moment()],
-         'Este mes': [moment().startOf('month'), moment().endOf('month')],
-         'El mes pasado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-      }
-  }, cb);
-
-  cb(start, end);
-
+    opens: 'left'
+  }, function(start, end, label) {
+    $("#dateOne").val(start.format('YYYY-MM-DD'));
+    
+    $("#dateTwo").val(end.format('YYYY-MM-DD'));
+  });
 });

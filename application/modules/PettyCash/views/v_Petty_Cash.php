@@ -25,20 +25,19 @@
         </select>
     </div>
     <div class="col-md-3">
-        <label for="reportrange">fecha</label>
-        <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-            <i class="fa fa-calendar"></i>&nbsp;
-            <span></span> <i class="fa fa-caret-down"></i>
-        </div>
+        <label for="dateFilter">fecha</label>
+        <input type="text" id="dateFilter" name="dateFilter" class="form-control">
+        <input type="hidden" name="dateOne" id="dateOne" value="">
+        <input type="hidden" name="dateTwo" id="dateTwo" value="">
     </div>
     <div class="col-md-3">
         <label for="responsableFilter">Encargado</label>
-        <input type="text" id="responsableFilter"  class="form-control" placeholder="encargado">
+        <input type="text" id="responsableFilter"  class="form-control" placeholder="Encargado">
         <input type="hidden" name="selected_responsable" id="selected_responsable">
     </div>
     <div class="col-md-3">
         <label for="teamFilter">Equipo</label>
-        <input type="text" id="teamFilter"  class="form-control" placeholder="equipo">
+        <input type="text" id="teamFilter"  class="form-control" placeholder="Equipo">
         <input type="hidden" name="selected_team" id="selected_team">
     </div>
     <div class="col-md-3">

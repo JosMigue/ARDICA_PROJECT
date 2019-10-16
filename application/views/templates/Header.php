@@ -23,18 +23,23 @@
     <link rel="stylesheet" href="assets/dataTables/jquery.dataTables.css"> 
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="css/Files/files_css.css?<?php echo $cacheSaver->getTimestamp()?>">
+    <link rel="stylesheet" href="css/PettyCash/stylePettyCash.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     
 </head>
 
 <body>
+    <div class="line">
+        <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30">
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="<?php echo site_url('/') ?>">
+<!--         <a class="navbar-brand" href="<?php echo site_url('/') ?>">
             <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"
                 class="d-inline-block align-top" alt="">
-        </a>
+        </a> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -65,6 +70,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <button class="dropdown-item" data-toggle="modal" data-target="#modalAddPettyCash">Registra caja chica</button>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas registradas</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Agregar conceptos a caja chica</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas por autotizar</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas faltantes</a>
                         <div class="dropdown-divider"></div>
@@ -79,6 +85,20 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo site_url('/files')?>">Administrador de archivos</a>
                         <button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivo</button>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Catálogos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-deductible') ?>">Tipo de deducible</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-concept') ?>">Conceptos</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-team') ?>">Equipos</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-obre') ?>">Tipos de obras</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Reportes</a>
+                        <a class="dropdown-item" href="#"></a>
                 </li>
             <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
