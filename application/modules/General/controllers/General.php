@@ -144,6 +144,7 @@ class General extends MY_Controller {
 				   
 	
 				   );
+				   $this->session->sess_expiration = 7200;
 				   $this->session->set_userdata($usuario_data);
 				   $this->m_Login->updateAcceso($usuario['user']->ID);  
 				   /* This block will be use when we decide to add cookies on WEB page */
@@ -203,7 +204,7 @@ class General extends MY_Controller {
 
 	 $this->session->sess_destroy();
 
-	 redirect('/');
+	 echo 'ok';
 
   }
 

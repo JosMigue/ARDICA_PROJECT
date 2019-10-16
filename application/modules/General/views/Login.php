@@ -30,8 +30,11 @@
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
           <!--==========================CSS BLOCK END==========================-->
       </head>
+      <div class="text-center">
 
+      </div>
       <body>
+
           <div class="text-center shadow p-3 mb-5 bg-white rounded" id="form-signin" name="form-signin">
               <form class="form-signin" id="form_Login" name="form_Login" method="POST" role="form">
                   <img class="mb-4" src="img/Ardica_Construcciones_SA_de__CV_Logo.png" alt="" width="150" height="100">
@@ -56,6 +59,12 @@
                           <input type="text" name="captcha" id="captcha" class="form-control center-text" autocomplete="off" placeholder="Captcha" required autofocus>
                       </div>
                   </div>
+<!--                   <div class="alert alert-warning alert-dismissible fade show" id="sessionCloseAlert" role="alert" style="display:none;" >
+        <strong>Bien hecho!</strong> Haz cerrado sessión correctamente
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
                   <button class="btn btn-lg button is-info is-rounded btn-block" type="submit"
                       id="submit-button">Ingresar</button>
                   <p class="mt-5 mb-3 text-muted">ARDICA Construcciones S.A de C.V © <?php echo date("Y");?></p>

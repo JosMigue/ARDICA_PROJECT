@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/Administration/administrationStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="css/Files/files_css.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     
 </head>
@@ -63,6 +64,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <button class="dropdown-item" data-toggle="modal" data-target="#modalAddPettyCash">Registra caja chica</button>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas registradas</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas por autotizar</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas faltantes</a>
                         <div class="dropdown-divider"></div>
@@ -84,8 +86,7 @@
                         <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo site_url('General/cerrar_sesion') ?>">Cerrar Sesión
-                        </a>
+                        <a class="dropdown-item" id="destroySession">Cerrar Sesión</a>
                     </div>
             </ul>
             </li>

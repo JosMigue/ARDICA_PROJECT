@@ -12,6 +12,7 @@ $(document).ready( function(){
             conceptPettyCash: { required: true},
             responsablePettyCash: { required: true},
             teamPettyCash: { required: true},
+            teamPettyCash: { required: true}
         },
         messages: {
             numberPettyCash: {
@@ -228,4 +229,211 @@ function valideDates(){
         document.getElementById("submit_petty_cash").outerHTML='<button class="btn btn-success" type="submit" id="submit_petty_cash">Registrar</button>'
         /* alert("La fecha Final es mayor"); */
      }
+}
+
+function Delete_PettyCash(pettyCash){
+    var pettyCash_Numero =  pettyCash.name;
+    var pettyCash_Id =  pettyCash.value;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: '¿Está seguro que desea deshabilitar la caja chica '+pettyCash_Numero+'?',
+        text: "Se procederá a deshabilitar la caja chica!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, completamente!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: false
+      }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "PettyCash/disablePettyCash",
+                data: {id : pettyCash_Id},
+                success: function(data)
+                {
+                    if(data == 'Petty Cash is disabled'){
+                        swalWithBootstrapButtons.fire(
+                            'Hecho!',
+                            'La caja chica '+pettyCash_Numero+' ha sido deshabilitada',
+                            'success'
+                          )
+                          setTimeout(() => {
+                              location.reload('/pettyCash');
+                          }, 1000);
+                    }else if(data == 'Petty Cash disabled error'){
+                        swalWithBootstrapButtons.fire(
+                            'Error!',
+                            'La caja no se pudo deshabilitar, intentelo más tarde',
+                            'error'
+                          )
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    if (jqXHR.status === 0) {
+
+                        alert('Sin conexión internet: Verificar tu conexion.');
+            
+                      } else if (jqXHR.status == 404) {
+            
+                        alert('Página o función no encontrada [404]');
+            
+                      } else if (jqXHR.status == 500) {
+                        $.confirm({
+                            title: 'Error interno del servidor [500]',
+                            content: 'Algo ocurrió, intente más tarde o contacte al administrador del sistema',
+                            type: 'red',
+                            typeAnimated: true,
+                            buttons: {
+                                cerrar:{
+                                    text: 'Cerrar',
+                                    close: function () {
+                                    }
+                                }
+                            }
+                        });
+            
+                      } else if (textStatus === 'parsererror') {
+            
+                        alert('Fallo al solicitar el JSON.');
+            
+                      } else if (textStatus === 'timeout') {
+            
+                        alert('Tiempo agotado.');
+            
+                      } else if (textStatus === 'abort') {
+            
+                        alert('Petición Ajax abortada.');
+            
+                      } else {
+            
+                        alert('Error desconocido: ' + jqXHR.responseText);
+            
+                      }
+                }
+            });
+
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'La acción ha sido cancelada',
+            'error'
+          )
+        }
+      })
+}
+
+function Enable_PettyCash(pettyCash){
+    var pettyCash_Numero =  pettyCash.name;
+    var pettyCash_Id =  pettyCash.value;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: '¿Está seguro que desea habilitar la caja chica '+pettyCash_Numero+'?',
+        text: "Se procederá a habilitar la caja chica!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, completamente!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: false
+      }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "PettyCash/enablePettyCash",
+                data: {id : pettyCash_Id},
+                success: function(data)
+                {
+                    if(data == 'Petty Cash is enabled'){
+                        swalWithBootstrapButtons.fire(
+                            'Hecho!',
+                            'La caja chica '+pettyCash_Numero+' ha sido habilitada',
+                            'success'
+                          )
+                          setTimeout(() => {
+                              location.reload('/pettyCash');
+                          }, 1000);
+                    }else if(data == 'Petty Cash enabled error'){
+                        swalWithBootstrapButtons.fire(
+                            'Error!',
+                            'La caja no se pudo habilitar, intentelo más tarde',
+                            'error'
+                          )
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    if (jqXHR.status === 0) {
+
+                        alert('Sin conexión internet: Verificar tu conexion.');
+            
+                      } else if (jqXHR.status == 404) {
+            
+                        alert('Página o función no encontrada [404]');
+            
+                      } else if (jqXHR.status == 500) {
+                        $.confirm({
+                            title: 'Error interno del servidor [500]',
+                            content: 'Algo ocurrió, intente más tarde o contacte al administrador del sistema',
+                            type: 'red',
+                            typeAnimated: true,
+                            buttons: {
+                                cerrar:{
+                                    text: 'Cerrar',
+                                    close: function () {
+                                    }
+                                }
+                            }
+                        });
+            
+                      } else if (textStatus === 'parsererror') {
+            
+                        alert('Fallo al solicitar JSON.');
+            
+                      } else if (textStatus === 'timeout') {
+            
+                        alert('Tiempo agotado.');
+            
+                      } else if (textStatus === 'abort') {
+            
+                        alert('Petición Ajax abortada.');
+            
+                      } else {
+            
+                        alert('Error desconocido: ' + jqXHR.responseText);
+            
+                      }
+                }
+            });
+
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'La acción ha sido cancelada',
+            'error'
+          )
+        }
+      })
 }

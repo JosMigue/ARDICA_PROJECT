@@ -18,11 +18,12 @@
                                 <div class="col-md-6 mb-4">
                                 <label for="numberPettyCash">Número</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="numberPettyCash" name="numberPettyCash" placeholder="número" required>
+                                    <input type="text" class="form-control" id="numberPettyCash" name="numberPettyCash" placeholder="número" onkeyup="numberInputCheck(this)" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text"><?php echo date("Y") ?></span>
                                     </div>
                                 </div>
+                                <span id="numberMessage" style="font-size: 12px; display: none;  float: right;" class="text-danger my-2 font-weight-bold">El formato ingresado es incorrecto</span>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label for="locationPettyCash">Ubicación</label>

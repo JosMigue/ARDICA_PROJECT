@@ -15,6 +15,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script type="text/javascript" src="assets/dataTables/jquery.dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 
 <script type="text/javascript" src="js/Administration/autocomplete.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/Administration/checkInput.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
@@ -23,6 +26,9 @@
 <script type="text/javascript" src="js/Administration/filtroUsuarios.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/Administration/filtroObra.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/PettyCash/pettyCash.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+<script type="text/javascript" src="js/PettyCash/filtroPettyCash.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+<script type="text/javascript" src="js/PettyCash/checkInputPettyCash.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+<script type="text/javascript" src="js/PettyCash/autocomplete.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 
 <script type="text/javascript" src="js/Files/Files.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 </body>

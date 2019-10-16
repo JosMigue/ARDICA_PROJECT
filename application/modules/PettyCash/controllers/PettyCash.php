@@ -45,6 +45,37 @@ class PettyCash extends MY_Controller {
 		};
 	}
 
+	public function disablePettyCash(){
+		if(isset($_POST["id"])){
+			$this->load->model("m_PettyCash");
+			$id = $this->input->post("id");
+			$response = $this->m_PettyCash->disablePettyCash($id);
+			if($response){
+				echo 'Petty Cash is disabled';
+			}else{
+				echo 'Petty Cash disabled error';
+			}
+
+		}else{
+			redirect ("/");
+		};
+	}
+	public function enablePettyCash(){
+		if(isset($_POST["id"])){
+			$this->load->model("m_PettyCash");
+			$id = $this->input->post("id");
+			$response = $this->m_PettyCash->enablePettyCash($id);
+			if($response){
+				echo 'Petty Cash is enabled';
+			}else{
+				echo 'Petty Cash enabled error';
+			}
+
+		}else{
+			redirect ("/");
+		};
+	}
+
 	public function getLocationTypes(){
 		$this->load->model("m_PettyCash");
 		$location = $this->m_PettyCash->getlocations();
@@ -91,8 +122,103 @@ class PettyCash extends MY_Controller {
 		$teams = $this->m_PettyCash->getTeams();
 		$options = '<option value="" selected >seleccionar...</option>';
 		foreach ($teams as $equipo) {
-			$options.='<option value="'.$equipo->ID.'">'.$equipo->name.'</option>';
+			$options.='<option value="'.$equipo->ID.'">'.$equipo->nombre.'</option>';
 		}
 		echo $options;
 	}
+
+	public function getAllPettyCash(){
+		$this->load->model("m_PettyCash");
+		$start=$this->input->post('start');
+		$length=$this->input->post('length');
+		$array_like=array();
+		$array_where=array();
+             if ($this->input->post('numeroCajaChica')!='') {
+                $array_like['numero']=$this->input->post('numeroCajaChica'); 
+             }
+             if ($this->input->post('localizacionCajaChica')!='') {
+                $array_where['ubicacion']=$this->input->post('localizacionCajaChica');
+             }
+             if ($this->input->post('deducibleCajaChica')!='') {
+                $array_where['tipo_deducible']=$this->input->post('deducibleCajaChica');
+             }
+             if ($this->input->post('responsableCajaChica')!='') {
+                $array_where['encargado']=$this->input->post('responsableCajaChica');
+			 }
+			 if ($this->input->post('equipoCajaChica')!=''){
+				$array_where['equipo']=$this->input->post('equipoCajaChica');
+			 }
+             if ($this->input->post('estadoCajaChica')!='') {
+				if($this->input->post('estadoCajaChica')==2){
+					$array_where['estado'] = 0;
+				}else{
+					$array_where['estado']=$this->input->post('estadoCajaChica');
+				}
+			 }
+			 if ($this->input->post('autorizadaCajaChica')!=''){
+				 if($this->input->post('autorizadaCajaChica')==2){
+					$array_where['autorizada']=0;
+				 }else{
+					$array_where['autorizada']=$this->input->post('autorizadaCajaChica');
+				 }
+			 }
+			 
+		$response=$this->m_PettyCash->getAllPettyCash($start,$length,$array_like,$array_where); 
+		$total_registros=$response['total']->total;
+		$response=$response['data'];  
+		$rows_total=count($response);  
+		$datos=array(); 
+		$contador = 0;
+		foreach ($response as $row) {   
+			$array=array();
+			$array['status'] = $row->estado;
+			$array['Id']=$contador+=1;
+			$array['Id_db']=$row->ID;
+			$array['numero']=$row->numero;
+			$array['ubicacion']=$row->ubicacion;
+			$array['fechaInic']=$row->fIni;
+			$array['fechaTerm']=$row->fFin;
+			$array['deducible']=$row->deducible;
+			$array['concepto']=$row->concepto;
+			$array['encargado']=$row->encargado;
+			$array['equipo']=$row->equipo;
+			$array['fechaRegistro']=$row->fRegistro;
+			$datos[]=$array; 
+		}
+		$json_data=array(
+			"draw"=>intval($this->input->post('draw')),
+			"recordsTotal"=>intval($total_registros),
+			"recordsFiltered"=>intval($total_registros),
+			"data"=>$datos);
+			echo json_encode($json_data);  
+	}
+
+
+
+	/*===========AUTOCOMPLETE FUNCTIONS SECTION BEGIN=============*/
+	public function get_autocomplete_PettyCash_Filters_Number(){
+		$this->load->model('m_PettyCash');		
+		$response = $this->m_PettyCash->getNumberAutocomplete();
+		echo json_encode($response);
+	}
+
+	public function get_autocomplete_PettyCash_Filters_Location(){
+		$this->load->model('m_PettyCash');		
+		$response = $this->m_PettyCash->getlocations();
+		echo json_encode($response);
+	}
+
+	public function get_autocomplete_PettyCash_Filters_Responsable(){
+		$this->load->model('m_PettyCash');		
+		$response = $this->m_PettyCash->getallResponsables();
+		echo json_encode($response);
+	}
+
+	public function get_autocomplete_PettyCash_Filters_Team(){
+		$this->load->model('m_PettyCash');		
+		$response = $this->m_PettyCash->getTeams();
+		echo json_encode($response);
+	}
+	/*===========AUTOCOMPLETE FUNCTIONS SECTION END=============*/
 }
+

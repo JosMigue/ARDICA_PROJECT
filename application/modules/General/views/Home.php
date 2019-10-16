@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="css/General/menuStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bulma-0.7.5/css/bulma.min.css">
+    
 
 </head>
 
@@ -61,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="<?php echo site_url('General/cerrar_sesion') ?>">Cerrar Sesión </a>
+                    <a class="dropdown-item" id="destroySession">Cerrar Sesión </a>
                 </div>
             </li>
         </div>
@@ -116,8 +117,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Footer -->
     <!--===========Javascript block start===========-->
     <script type="text/javascript" src="assets/Bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="assets/jQuery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/Bootstrap/js/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script type="text/javascript" src="js/General/home.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
     <!--===========Javascript block end===========-->
 </body>
