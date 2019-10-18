@@ -2,7 +2,7 @@
 <h1 class="text-center">Catálogo de tipos de obras</h1>
 
 <div class="col-lg-12 table-responsive tablas_catalogos">
-        <table class="table table-bordered text-left" >
+        <table id="catalogeTypesTable" class="table table-bordered text-left" >
             <thead class="thead-dark">
                 <tr>
                     <th style="height: 10px; width: 100px; padding: 1px" scope="col">ID</th>
@@ -15,12 +15,12 @@
             <tr>
                 <th scope="row"><?php echo $datos->ID?></th>
                 <td><?php echo $datos->name?></td>
-                <td><button class="btn btn-danger"><i class="material-icons">delete_sweep</i></button></td>
+                <td><button class="btn btn-danger" onclick="deleteObrasType(this)" value="<?php echo $datos->ID?>" name="<?php echo $datos->name?>"><i class="material-icons">delete_sweep</i></button></td>
             </tr>
             <?php }?>
             </tbody>
         </table>
     </div>
-    <a href="#" class="float">
+    <a href="#" class="float" id="btnAddTypeObra">
     <i class="material-icons fa fa-plus my-float">add</i>
 </a>

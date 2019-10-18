@@ -76,7 +76,7 @@ function getlocations(){
 function getDeductibles(){
         return $this->db->select('*')
                 ->from('tipos_deducible')
-                ->order_by('nombre','ASC')
+                ->where('estado',1)
                 ->get()
                 ->result();
 }
@@ -86,7 +86,7 @@ function getDeductibles(){
 function getConcepts(){
         return $this->db->select('*')
                 ->from('conceptos_caja_chica')
-                ->order_by('nombre','ASC')
+                ->where('estado',1)
                 ->get()
                 ->result();
 }
@@ -106,7 +106,7 @@ function getallResponsables(){
 function getTeams(){
         return $this->db->select('*')
                 ->from('equipo')
-                ->order_by('nombre','ASC')
+                ->where('estado',1)
                 ->get()
                 ->result();
 }
@@ -115,6 +115,7 @@ function getTeams(){
 function getObresTypes(){
         return $this->db->select('*')
                 ->from('obras_type')
+                ->where('estado',1)
                 ->get()
                 ->result();
 }
@@ -148,6 +149,114 @@ function getNumberAutocomplete(){
                         ->where('estado',1)
                         ->get()
                         ->result();
+}
+
+function saveDeductible($nombre){
+        $data =  array(
+                'nombre' => $nombre
+        );
+        if($this->db->insert('tipos_deducible', $data)){
+                $result['id'] = $this->db->insert_id();
+                $result['nombre'] =$this->db->select('nombre')->from('tipos_deducible')->where('ID',$result['id'])->get()->row();
+                return $result;
+                
+        }else{
+                return false;
+        }
+}
+
+function deleteDeductible($id){
+        $data = array(
+                'estado' => 0
+        );
+        $this->db->set($data)->where('ID',$id)->update('tipos_deducible');
+        $rows = $this->db->affected_rows();
+        if ($rows>0) {
+                return true;
+        }else{
+                return false;
+        }
+}
+
+function saveConcept($nombre){
+        $data =  array(
+                'nombre' => $nombre
+        );
+        if($this->db->insert('conceptos_caja_chica', $data)){
+                $result['id'] = $this->db->insert_id();
+                $result['nombre'] =$this->db->select('nombre')->from('conceptos_caja_chica')->where('ID',$result['id'])->get()->row();
+                return $result;
+                
+        }else{
+                return false;
+        }
+}
+
+function deleteConcept($id){
+        $data = array(
+                'estado' => 0
+        );
+        $this->db->set($data)->where('ID',$id)->update('conceptos_caja_chica');
+        $rows = $this->db->affected_rows();
+        if ($rows>0) {
+                return true;
+        }else{
+                return false;
+        }
+}
+
+function saveTeam($nombre){
+        $data =  array(
+                'nombre' => $nombre
+        );
+        if($this->db->insert('equipo', $data)){
+                $result['id'] = $this->db->insert_id();
+                $result['nombre'] =$this->db->select('nombre')->from('equipo')->where('ID',$result['id'])->get()->row();
+                return $result;
+                
+        }else{
+                return false;
+        }
+}
+
+function deleteTeam($id){
+        $data = array(
+                'estado' => 0
+        );
+        $this->db->set($data)->where('ID',$id)->update('equipo');
+        $rows = $this->db->affected_rows();
+        if ($rows>0) {
+                return true;
+        }else{
+                return false;
+        }
+}
+
+function saveObrasType($nombre){
+        $data =  array(
+                'name' => $nombre
+        );
+        if($this->db->insert('obras_type', $data)){
+                $result['id'] = $this->db->insert_id();
+                $result['nombre'] =$this->db->select('name')->from('obras_type')->where('ID',$result['id'])->get()->row();
+                return $result;
+                
+        }else{
+                return false;
+        }
+}
+
+function deleteObrasType($id){
+        $data = array(
+                'estado' => 0
+        );
+        $this->db->set($data)->where('ID',$id)->update('obras_type');
+        $rows = $this->db->affected_rows();
+        if ($rows>0) {
+                return true;
+        }else{
+                return false;
+        }
 }
 
 

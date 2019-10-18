@@ -266,5 +266,100 @@ class PettyCash extends MY_Controller {
 		echo json_encode($response);
 	}
 	/*===========AUTOCOMPLETE FUNCTIONS SECTION END=============*/
+
+	/*================ADD CATALOGE BEGIN=============================*/
+	public function saveDeductible(){
+		$this->load->model('m_PettyCash');
+		$name = $this->input->post('deductible');
+		$response = $this->m_PettyCash->saveDeductible($name);
+		if($response!= false){
+			echo json_encode($response);
+		}else{
+			echo 'error';
+		}
+	}
+
+	public function saveConcept(){
+		$this->load->model('m_PettyCash');
+		$name = $this->input->post('concept');
+		$response = $this->m_PettyCash->saveConcept($name);
+		if($response!= false){
+			echo json_encode($response);
+		}else{
+			echo 'error';
+		}
+	}
+
+	public function saveTeam(){
+		$this->load->model('m_PettyCash');
+		$name = $this->input->post('team');
+		$response = $this->m_PettyCash->saveTeam($name);
+		if($response!= false){
+			echo json_encode($response);
+		}else{
+			echo 'error';
+		}
+	}
+
+	public function saveObrasType(){
+		$this->load->model('m_PettyCash');
+		$name = $this->input->post('obra_type');
+		$response = $this->m_PettyCash->saveObrasType($name);
+		if($response!= false){
+			echo json_encode($response);
+		}else{
+			echo 'error';
+		}
+	}
+	/*================ADD CATALOGE END=============================*/
+
+
+	/*================DELETE CATALOGE BEGIN=============================*/
+	public function deleteDeductible(){
+		$this->load->model('m_PettyCash');
+		$id = $this->input->post('deductible');
+		$response = $this->m_PettyCash->deleteDeductible($id);
+		if($response){
+			echo true;
+		}else{
+			echo false;
+		}
+	}
+
+	public function deleteConcept(){
+		$this->load->model('m_PettyCash');
+		$id = $this->input->post('concept');
+		$response = $this->m_PettyCash->deleteConcept($id);
+		if($response){
+			echo true;
+		}else{
+			echo false;
+		}
+	}
+
+	public function deleteTeam(){
+		$this->load->model('m_PettyCash');
+		$id = $this->input->post('team');
+		$response = $this->m_PettyCash->deleteTeam($id);
+		if($response){
+			echo true;
+		}else{
+			echo false;
+		}
+	}
+
+	public function deleteObrasType(){
+		$this->load->model('m_PettyCash');
+		$id = $this->input->post('obra_type');
+		$response = $this->m_PettyCash->deleteObrasType($id);
+		if($response){
+			echo true;
+		}else{
+			echo false;
+		}
+	}
+
+	/*================DELETE CATALOGE END=============================*/
+
 }
 
