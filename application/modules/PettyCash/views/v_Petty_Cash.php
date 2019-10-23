@@ -73,13 +73,9 @@
                     <th scope="col">ID</th>
                     <th scope="col">ID_DB</th>
                     <th scope="col">Número</th>
-                    <th scope="col">Localización</th>
                     <th scope="col">Fecha de incio</th>
                     <th scope="col">Fecha de terminación</th>
-                    <th scope="col">Deducible</th>
-                    <th scope="col">Concepto</th>
                     <th scope="col">Encargado</th>
-                    <th scope="col">Equipo</th>
                     <th scope="col">Fecha de registro</th>
                     <th scope="col">Acciones</th>
                 </tr>

@@ -2,26 +2,22 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class PettyCash extends MY_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
 		$this->loadView("PettyCash/v_Petty_Cash",$data=null);
 		$this->load->view("PettyCash/modal_Registro_Caja");
+		$this->load->view("PettyCash/modal_RegistrarGastoCaja");
+		$this->load->view("Administration/modalRegistro_usuarios");
+		$this->load->view("Administration/modalRegistro_obras");
+		$this->load->view("Files/modalUploadFiles");
+	}
+
+	public function detailPettyCash()
+	{
+		$this->loadView("PettyCash/v_Petty_Cash-Gastos",$data=null);
+		$this->load->view("PettyCash/modal_Registro_Caja");
+		$this->load->view("PettyCash/modal_RegistrarGastoCaja");
+		$this->load->view("PettyCash/modal_Editar_Caja");
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalRegistro_obras");
 		$this->load->view("Files/modalUploadFiles");
@@ -81,8 +77,56 @@ class PettyCash extends MY_Controller {
 				break;
 			}
 		}else{
-			redirect ("/");
+			redirect ("/pettyCash");
 		};
+	}
+
+	public function saveDetailPettyCash(){
+		if(isset($_POST["obj"])){
+			$this->load->model("m_PettyCash");
+			$obj =  $this->input->post('obj');
+			$response = $this->m_PettyCash->saveDetailPettyCash($obj);
+			switch($response){
+				case 1: echo 'success detail petty cash'; 
+				break;
+				case 2: echo 'error detail petty cash';
+				break;
+			}
+		}else{
+			redirect ("/pettyCash");
+		}
+	}
+
+	public function deleteDetailPettyCash(){
+		if(isset($_POST['id'])){
+			$this->load->model("m_PettyCash");
+			$id =  $this->input->post('id');
+			$response = $this->m_PettyCash->deleteDetailPettyCash($id);
+			switch($response){
+				case 1: echo 'delete detail is done'; 
+				break;
+				case 2: echo 'delete detail has been failed';
+				break;
+			}
+		}else{
+			redirect ("/pettyCash");
+		}
+	}
+
+	public function updateDetailPettyCash(){
+		if(isset($_POST["obj"])){
+			$this->load->model("m_PettyCash");
+			$obj =  $this->input->post('obj');
+			$response = $this->m_PettyCash->updateDetailPettyCash($obj);
+			switch($response){
+				case 1: echo 'success detail petty cash updated'; 
+				break;
+				case 2: echo 'error detail petty cash update';
+				break;
+			}
+		}else{
+			redirect ("/pettyCash");
+		}
 	}
 
 	public function disablePettyCash(){
@@ -97,7 +141,7 @@ class PettyCash extends MY_Controller {
 			}
 
 		}else{
-			redirect ("/");
+			redirect ("/pettyCash");
 		};
 	}
 	public function enablePettyCash(){
@@ -112,7 +156,19 @@ class PettyCash extends MY_Controller {
 			}
 
 		}else{
-			redirect ("/");
+			redirect ("/pettyCash");
+		};
+	}
+
+	public function bringPettyCashData(){
+		if(isset($_POST["id"])){
+			$this->load->model("m_PettyCash");
+			$id = $this->input->post('id');
+			$data = $this->m_PettyCash->bringPettyCashData($id);
+			$data_json['data'] = $data;
+			echo json_encode($data_json);
+		}else{
+			redirect ("/pettyCash");
 		};
 	}
 
@@ -167,6 +223,26 @@ class PettyCash extends MY_Controller {
 		echo $options;
 	}
 
+	public function getPettyCash(){
+		$this->load->model("m_PettyCash");
+		$pettyCash = $this->m_PettyCash->getPettyCash();
+		$options = '<option value="" selected >seleccionar...</option>';
+		foreach ($pettyCash as $caja) {
+			$options.='<option value="'.$caja->ID.'">'.$caja->numero.'</option>';
+		}
+		echo $options;
+	}
+
+	public function getPettyCashTwo(){
+		$this->load->model("m_PettyCash");
+		$pettyCash = $this->m_PettyCash->getPettyCashTwo();
+		$options = '<option value="" selected >seleccionar...</option>';
+		foreach ($pettyCash as $caja) {
+			$options.='<option value="'.$caja->numero.'">'.$caja->numero.'</option>';
+		}
+		echo $options;
+	}
+
 	public function getAllPettyCash(){
 		$this->load->model("m_PettyCash");
 		$start=$this->input->post('start');
@@ -190,9 +266,9 @@ class PettyCash extends MY_Controller {
 			 }
              if ($this->input->post('estadoCajaChica')!='') {
 				if($this->input->post('estadoCajaChica')==2){
-					$array_where['estado'] = 0;
+					$array_where['estado_caja'] = 0;
 				}else{
-					$array_where['estado']=$this->input->post('estadoCajaChica');
+					$array_where['estado_caja']=$this->input->post('estadoCajaChica');
 				}
 			 }
 			 if($this->input->post('fechaIni')!=''){
@@ -221,13 +297,9 @@ class PettyCash extends MY_Controller {
 			$array['Id']=$contador+=1;
 			$array['Id_db']=$row->ID;
 			$array['numero']=$row->numero;
-			$array['ubicacion']=$row->ubicacion;
 			$array['fechaInic']=$row->fIni;
 			$array['fechaTerm']=$row->fFin;
-			$array['deducible']=$row->deducible;
-			$array['concepto']=$row->concepto;
 			$array['encargado']=$row->encargado;
-			$array['equipo']=$row->equipo;
 			$array['fechaRegistro']=$row->fRegistro;
 			$datos[]=$array; 
 		}
@@ -239,8 +311,54 @@ class PettyCash extends MY_Controller {
 			echo json_encode($json_data);  
 	}
 
+	public function getAllDetailPettyCash(){
+		$this->load->model("m_PettyCash");
+		$start=$this->input->post('start');
+		$length=$this->input->post('length');
+		$array_where=array();
+             if ($this->input->post('idCajaChicaDetail')!='') {
+                $array_where['caja_chica_ID']=$this->input->post('idCajaChicaDetail');
+             }
+		$response=$this->m_PettyCash->getAllDetailPettyCash($start,$length,$array_where); 
+		$total_registros=$response['total']->total;
+		$response=$response['data'];  
+		$rows_total=count($response);  
+		$datos=array(); 
+		$contador = 0;
+		foreach ($response as $row) {   
+			$array=array();
+			$array['Id'] = $row->ID;
+			$array['numero']=$row->numero;
+			$array['ubicacion']=$row->ubicacion;
+			$array['equipo']=$row->equipo;
+			$array['concepto']=$row->concepto;
+			$array['subtotal']=$row->subtotal;
+			$array['IVA']=$row->IVA;
+			$array['total']=$row->total;
+			$array['deducible']=$row->deducible;
+			$array['observacion']=$row->observacion;
+			$array['registro']=$row->registro;
+			$datos[]=$array; 
+		}
+		$json_data=array(
+			"draw"=>intval($this->input->post('draw')),
+			"recordsTotal"=>intval($total_registros),
+			"recordsFiltered"=>intval($total_registros),
+			"data"=>$datos);
+			echo json_encode($json_data);  
+	}
 
 
+public function plusPettyCashData(){
+	if(isset($_POST['pettyCahsnumber'])){
+		$this->load->model('m_PettyCash');
+		$number = $this->input->post('pettyCahsnumber');
+		$response = $this->m_PettyCash->plusAll($number);
+		echo json_encode($response);
+	}else{
+		redirect('/pettyCash');
+	}
+}
 	/*===========AUTOCOMPLETE FUNCTIONS SECTION BEGIN=============*/
 	public function get_autocomplete_PettyCash_Filters_Number(){
 		$this->load->model('m_PettyCash');		
@@ -266,6 +384,7 @@ class PettyCash extends MY_Controller {
 		echo json_encode($response);
 	}
 	/*===========AUTOCOMPLETE FUNCTIONS SECTION END=============*/
+	
 
 	/*================ADD CATALOGE BEGIN=============================*/
 	public function saveDeductible(){

@@ -44,13 +44,9 @@ $(document).ready(function(){
                 {data: "Id"},
                 {data: "Id_db"},
                 {data: "numero"},
-                {data: "ubicacion"},
                 {data: "fechaInic"},
                 {data: "fechaTerm"},
-                {data: "deducible"},
-                {data: "concepto"},
                 {data: "encargado"},
-                {data: "equipo"},
                 {data: "fechaRegistro"},
               ], 
               "lengthMenu": [[50,100,200], [50,100,200]],
@@ -73,12 +69,12 @@ $(document).ready(function(){
                       },
                       {"render": function ( data, type, row ) {
                         if(row.status == 1){
-                          return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">delete_sweep</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
+                          return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">clear</i></button><button class="btn btn-success" onclick="openModal(this)" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
                         }else{
-                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto"><i class="material-icons">add_circle</i></button>'
+                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto" disabled><i class="material-icons">add_circle</i></button>'
                         }
                               },
-                              "targets": 12
+                              "targets": 8
                       }
               ]
           };  
@@ -137,18 +133,14 @@ $("#btn_Filtrar_Petty_Cash").click(function(){
               }
       },
       "columns": [
-            {data: "status"},
-            {data: "Id"},
-            {data: "Id_db"},
-            {data: "numero"},
-            {data: "ubicacion"},
-            {data: "fechaInic"},
-            {data: "fechaTerm"},
-            {data: "deducible"},
-            {data: "concepto"},
-            {data: "encargado"},
-            {data: "equipo"},
-            {data: "fechaRegistro"},
+        {data: "status"},
+        {data: "Id"},
+        {data: "Id_db"},
+        {data: "numero"},
+        {data: "fechaInic"},
+        {data: "fechaTerm"},
+        {data: "encargado"},
+        {data: "fechaRegistro"},
           ], 
           "lengthMenu": [[50,100,200], [50,100,200]],
           "columnDefs": [{ className: "contador", "targets": [ 1 ] }, 
@@ -170,12 +162,12 @@ $("#btn_Filtrar_Petty_Cash").click(function(){
                   },
                   {"render": function ( data, type, row ) {
                     if(row.status == 1){
-                      return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">delete_sweep</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
+                      return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">clear</i></button><button class="btn btn-success" onclick="openModal(this)" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
                     }else{
-                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto"><i class="material-icons">add_circle</i></button>'
+                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto" disabled><i class="material-icons">add_circle</i></button>'
                     }
                           },
-                          "targets": 12
+                          "targets": 8
                   }
           ]
       };  
@@ -230,18 +222,14 @@ $("#btn-reset-filtrar-PettyCash").click(function(){
               }
       },
       "columns": [
-            {data: "status"},
-            {data: "Id"},
-            {data: "Id_db"},
-            {data: "numero"},
-            {data: "ubicacion"},
-            {data: "fechaInic"},
-            {data: "fechaTerm"},
-            {data: "deducible"},
-            {data: "concepto"},
-            {data: "encargado"},
-            {data: "equipo"},
-            {data: "fechaRegistro"},
+        {data: "status"},
+        {data: "Id"},
+        {data: "Id_db"},
+        {data: "numero"},
+        {data: "fechaInic"},
+        {data: "fechaTerm"},
+        {data: "encargado"},
+        {data: "fechaRegistro"},
           ], 
           "lengthMenu": [[50,100,200], [50,100,200]],
           "columnDefs": [{ className: "contador", "targets": [ 1 ] }, 
@@ -263,12 +251,12 @@ $("#btn-reset-filtrar-PettyCash").click(function(){
                   },
                   {"render": function ( data, type, row ) {
                     if(row.status == 1){
-                      return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">delete_sweep</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
+                      return '<button type="button" class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">clear</i></button><button class="btn btn-success" onclick="openModal(this)" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agegar gasto"><i class="material-icons">add_circle</i></button>'
                     }else{
-                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="Close_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto"><i class="material-icons">add_circle</i></button>'
+                      return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="" data-toggle="tooltip" data-placement="top" title="Editar" disabled><i class="material-icons">create</i></button><button onclick="Enable_PettyCash(this)" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Habilitar"><i class="material-icons">refresh</i></button><button onclick="" class="btn btn-success" value="'+row.Id_db+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Agregar gasto" disabled><i class="material-icons">add_circle</i></button>'
                     }
                           },
-                          "targets": 12
+                          "targets": 8
                   }
           ]
       };  

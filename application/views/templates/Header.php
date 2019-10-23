@@ -72,7 +72,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <button class="dropdown-item" data-toggle="modal" data-target="#modalAddPettyCash">Registra caja chica</button>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas registradas</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Agregar conceptos a caja chica</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash-detail') ?>">Agregar conceptos a caja chica</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas por autotizar</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas faltantes</a>
                         <div class="dropdown-divider"></div>

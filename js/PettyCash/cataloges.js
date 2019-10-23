@@ -1,4 +1,4 @@
-// Agregar tipos de deducible 
+/*================= CATALOGE DEDUCTIBLE - ADD - BEGIN =================*/
 $("#btnAddDeductible").click(function(){
     alertify.prompt("Agregar nuevo deducible","Ingrese nombre del tipo a registrar.", "Ingrese el nombre del catálogo",
       function(evt, value ){
@@ -71,7 +71,10 @@ $("#btnAddDeductible").click(function(){
         alertify.error('Cancelado');
       });
 });
+/*================= CATALOGE DEDUCTIBLE - ADD - END =================*/
 
+
+/*================= CATALOGE DEDUCTIBLE - DELETE - BEGIN =================*/
 function deleteDeductible(deducible){
     var id = deducible.value;
     var nombre =  deducible.name;
@@ -149,8 +152,10 @@ function deleteDeductible(deducible){
         }
       });
 }
+/*================= CATALOGE DEDUCTIBLE - DELETE - END =================*/
 
-// Agregar concepto
+
+/*================= CATALOGE CONCEPTS - ADD - BEGIN =================*/
 $("#btnAddConcept").click(function(){
     alertify.prompt("Agregar nuevo concepto","Ingrese nombre del concepto a registrar.", "Ingrese el nombre del concepto",
       function(evt, value ){
@@ -223,7 +228,10 @@ $("#btnAddConcept").click(function(){
         alertify.error('Cancelado');
       });
 });
+/*================= CATALOGE CONCEPTS - ADD - END =================*/
 
+
+/*================= CATALOGE CONCEPTS - DELETE - BEGIN =================*/
 function deleteConcept(concept){
     var id = concept.value;
     var nombre =  concept.name;
@@ -301,8 +309,10 @@ function deleteConcept(concept){
         }
       });
 }
+/*================= CATALOGE CONCEPTS - DELETE - END =================*/
 
-// Agregar equipo
+
+/*================= CATALOGE TEAMS - ADD - BEGIN =================*/
 $("#btnAddTeam").click(function(){
     alertify.prompt("Agregar nuevo equipo","Ingrese nombre del equipo a registrar.", "Ingrese el nombre del equipo",
       function(evt, value ){
@@ -375,7 +385,9 @@ $("#btnAddTeam").click(function(){
         alertify.error('Cancelado');
       });
 });
+/*================= CATALOGE TEAMS - ADD - END =================*/
 
+/*================= CATALOGE TEAMS - DELETE - BEGIN =================*/
 function deleteTeam(team){
     var id = team.value;
     var nombre =  team.name;
@@ -453,9 +465,9 @@ function deleteTeam(team){
         }
       });
 }
+/*================= CATALOGE TEAMS - DELETE - END =================*/
 
-
-// Agregar tipo caja chica
+/*================= CATALOGE PETTY CASH TYPES - ADD - BEGIN=================*/
 $("#btnAddTypeObra").click(function(){
     alertify.prompt("Agregar nuevo tipo de obra","Ingrese nombre del tipo ha registrar.", "Ingrese el nombre del tipo",
       function(evt, value ){
@@ -528,6 +540,11 @@ $("#btnAddTypeObra").click(function(){
         alertify.error('Cancelado');
       });
 });
+
+/*================= CATALOGE PETTY CASH TYPES - ADD - END =================*/
+
+
+/*================= CATALOGE PETTY CASH TYPES - DELETE - BEGIN =================*/
 
 function deleteObrasType(ObraType){
     var id = ObraType.value;
@@ -606,4 +623,6 @@ function deleteObrasType(ObraType){
         }
       });
 }
+
+/*================= CATALOGE PETTY CASH TYPES - DELETE - END =================*/
 

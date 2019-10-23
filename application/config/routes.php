@@ -54,6 +54,7 @@ $route['administration'] = 'Administration';
 $route['administration.obras'] = 'Administration/obras';
 $route['files'] = 'Files';
 $route['pettyCash'] = 'PettyCash';
+$route['pettyCash-detail'] = 'PettyCash/detailPettyCash';
 $route['cataloges-deductible'] = 'PettyCash/catalogo_deducible';
 $route['cataloges-concept'] = 'PettyCash/catalogo_concepto';
 $route['cataloges-team'] = 'PettyCash/catalogo_equipo';
