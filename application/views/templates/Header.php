@@ -73,8 +73,7 @@
                         <button class="dropdown-item" data-toggle="modal" data-target="#modalAddPettyCash">Registra caja chica</button>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas registradas</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash-detail') ?>">Agregar conceptos a caja chica</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas por autotizar</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas faltantes</a>
+                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Autorizar personas</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Reportes</a>
                         <a class="dropdown-item" href="#"></a>
@@ -98,9 +97,6 @@
                         <a class="dropdown-item"href="<?php echo site_url('/cataloges-concept') ?>">Conceptos</a>
                         <a class="dropdown-item"href="<?php echo site_url('/cataloges-team') ?>">Equipos</a>
                         <a class="dropdown-item"href="<?php echo site_url('/cataloges-obre') ?>">Tipos de obras</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Reportes</a>
-                        <a class="dropdown-item" href="#"></a>
                 </li>
             <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

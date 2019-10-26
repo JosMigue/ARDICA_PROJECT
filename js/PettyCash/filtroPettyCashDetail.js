@@ -376,6 +376,240 @@ setTimeout(() => {
 });
 
 
+$("#btn_Filtrar_Petty_Cash_Detail").click(function(){
+  if($("#locationFilterDetail").val()== '' && $("#deductibleFilterDetail").val()== '' && $("#teamFilterDetail").val()== ''){
+    $("#warning_alert").show('fast');
+    setTimeout(() => {
+      $("#warning_alert").hide('fast');
+    }, 4500);
+  }else{
+    settings= {
+        "language": {
+        "sProcessing":     "Procesando datos...",
+        "sLengthMenu":     "Mostrar _MENU_ registros",
+        "sZeroRecords":    "No se encontarón considencias",
+        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+        "sInfo":           "Mostrando _END_ registros de un total de _TOTAL_ registros", /* "Mostrando _END_ registros del _START_ al _END_ de un total de _TOTAL_ registros" */
+        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":    "",
+        "sSearch":         "Buscar:",
+        "sUrl":            "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+          "sFirst":    "Primero",
+          "sLast":     "Último",
+          "sNext":     "Siguiente",
+          "sPrevious": "Anterior"
+        },
+                  },
+                  "searching": false,
+                  "ordering": false,
+        "processing":true,
+          "serverSide":true, 
+          "ajax":{
+                  "url":"PettyCash/getAllDetailPettyCash", 
+                  "type":"POST",
+                  "data": function (d) {
+                    d.localizacionDetail = $('#locationFilterDetail').val();
+                    d.deducibleDetail = $('#deductibleFilterDetail').val();
+                    d.equipoDetail = $('#teamFilterDetail').val();
+                  }
+          },
+          "columns": [
+                {data: "Id"},
+                {data: "numero"},
+                {data: "ubicacion"},
+                {data: "equipo"},
+                {data: "concepto"},
+                {data: "subtotal"},
+                {data: "IVA"},
+                {data: "total"},
+                {data: "deducible"},
+                {data: "observacion"},
+                {data: "registro"},
+              ], 
+              "lengthMenu": [[50,100,200], [50,100,200]],
+              "columnDefs": [{ className: "contador", "targets": [ 1 ] }, 
+
+              {"render": function ( data, type, row ) {
+                return '<label class="codigo">'+row.Id+'</label>';
+                },
+                "targets": 0
+
+        },
+          {"render": function ( data, type, row ) {
+                return '$'+row.subtotal;
+                },
+                "targets": 5
+
+        },
+          {"render": function ( data, type, row ) {
+                return '$'+row.IVA;
+                },
+                "targets": 6
+
+        },
+          {"render": function ( data, type, row ) {
+                return '$'+row.total;
+                },
+                "targets": 7
+
+        },
+        {"render": function ( data, type, row ) {
+          if(row.deducible == 'Deducible'){
+            return 'Sí';
+          }else{
+            return 'No';
+          }
+              
+              },
+              "targets": 8
+
+      },
+        {"render": function ( data, type, row ) {
+          if(row.observacion == null || row.observacion=='' || row.observacion == ' '){
+            return 'Sin observaciones';
+          }else{
+            return '<div style="width: 500px; overflow: auto">'+row.observacion+'</div>';
+          }
+              
+              },
+              "targets": 9
+
+      },
+        {"render": function ( data, type, row ) {
+          return '<button type="button" class="btn btn-warning" value="'+row.Id+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">clear</i></button>';
+                },
+                "targets": 11
+        }
+              ]
+          };  
+    var tabla =$('#petty_Cash_Table-detail').DataTable();
+    tabla.destroy();
+    table= $('#petty_Cash_Table-detail').DataTable(settings);
+    $("#btn-reset-filtrar-PettyCash-Detail").show('slow');
+}
+});
+
+$("#btn-reset-filtrar-PettyCash-Detail").click(function(){
+    settings= {
+        "language": {
+        "sProcessing":     "Procesando datos...",
+        "sLengthMenu":     "Mostrar _MENU_ registros",
+        "sZeroRecords":    "No se encontarón considencias",
+        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+        "sInfo":           "Mostrando _END_ registros de un total de _TOTAL_ registros", /* "Mostrando _END_ registros del _START_ al _END_ de un total de _TOTAL_ registros" */
+        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":    "",
+        "sSearch":         "Buscar:",
+        "sUrl":            "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+          "sFirst":    "Primero",
+          "sLast":     "Último",
+          "sNext":     "Siguiente",
+          "sPrevious": "Anterior"
+        },
+                  },
+                  "searching": false,
+                  "ordering": false,
+        "processing":true,
+          "serverSide":true, 
+          "ajax":{
+                  "url":"PettyCash/getAllDetailPettyCash", 
+                  "type":"POST",
+                  "data": function (d) {
+                  }
+          },
+          "columns": [
+                {data: "Id"},
+                {data: "numero"},
+                {data: "ubicacion"},
+                {data: "equipo"},
+                {data: "concepto"},
+                {data: "subtotal"},
+                {data: "IVA"},
+                {data: "total"},
+                {data: "deducible"},
+                {data: "observacion"},
+                {data: "registro"},
+              ], 
+              "lengthMenu": [[50,100,200], [50,100,200]],
+              "columnDefs": [{ className: "contador", "targets": [ 1 ] }, 
+
+              {"render": function ( data, type, row ) {
+                return '<label class="codigo">'+row.Id+'</label>';
+                },
+                "targets": 0
+
+        },
+          {"render": function ( data, type, row ) {
+                return '$'+row.subtotal;
+                },
+                "targets": 5
+
+        },
+          {"render": function ( data, type, row ) {
+                return '$'+row.IVA;
+                },
+                "targets": 6
+
+        },
+          {"render": function ( data, type, row ) {
+                return '$'+row.total;
+                },
+                "targets": 7
+
+        },
+        {"render": function ( data, type, row ) {
+          if(row.deducible == 'Deducible'){
+            return 'Sí';
+          }else{
+            return 'No';
+          }
+              
+              },
+              "targets": 8
+
+      },
+        {"render": function ( data, type, row ) {
+          if(row.observacion == null || row.observacion=='' || row.observacion == ' '){
+            return 'Sin observaciones';
+          }else{
+            return '<div style="width: 500px; overflow: auto">'+row.observacion+'</div>';
+          }
+              
+              },
+              "targets": 9
+
+      },
+        {"render": function ( data, type, row ) {
+          return '<button type="button" class="btn btn-warning" value="'+row.Id+'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_PettyCash(this)" class="btn btn-danger" value="'+row.Id+'" name="'+row.numero+'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">clear</i></button>';
+                },
+                "targets": 11
+        }
+              ]
+          };  
+    var tabla =$('#petty_Cash_Table-detail').DataTable();
+    tabla.destroy();
+    table= $('#petty_Cash_Table-detail').DataTable(settings);
+    $(".Filter").hide('slow');
+    $("#btn-reset-filtrar-PettyCash-Detail").hide('slow');
+    $("#btn-filtros").show('slow');
+    $("#btn-ocultar-filtros").hide('slow');
+    $('#numberDetailFilter').val('');
+    $('#locationFilterDetail').val('');
+    $('#deductibleFilterDetail').val('');
+    $('#teamFilterDetail').val('');
+    $('#total_table').hide();
+});
+
+
+
 $("#btnAddSpend").click(function(){
 
   document.getElementById('numberPettyCashSell').outerHTML = '<select  id="numberPettyCashSell" name="numberPettyCashSell" class="form-control"></select>'

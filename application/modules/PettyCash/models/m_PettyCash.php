@@ -67,6 +67,13 @@ function saveDetailPettyCash($detail){
 
 
 function updateDetailPettyCash($detail){
+        $detail2 = $this->db->select('*')
+                        ->from('detalle_caja_chica')
+                        ->where('ID',$detail["idDetalle"])
+                        ->get()
+                        ->row();
+
+        
         if($detail["deducibleCajaChicaEdit"] == 1){
                 $sub = floatval($detail["subtotalCajaChicaEdit"]);
                 $iva = ($sub*IVA);
@@ -76,6 +83,18 @@ function updateDetailPettyCash($detail){
                 $iva = 0.00;
                 $total = $sub + $iva;
         }
+
+        $us = array(
+                'ubicacion' => $detail2->ubicacion,
+                'deducible' => $detail2->deducible,
+                'concepto' => $detail2->concepto,
+                'subtotal' => $detail2->subtotal,
+                'IVA' => $detail2->IVA,
+                'total' => $detail2->total,
+                'equipo' => $detail2->equipo,
+                'observaciones' => $detail2->observaciones
+        );
+
         $data = array(
                 'ubicacion' => $detail["ubicacionCajaChicaEdit"],
                 'deducible' => $detail["deducibleCajaChicaEdit"],
@@ -87,11 +106,15 @@ function updateDetailPettyCash($detail){
                 'observaciones' => $detail["observacion"]
                         
         );
+        if($us != $data){
                 if($this->db->set($data)->where('ID',$detail["idDetalle"])->update('detalle_caja_chica')){
                         return 1;
                 }else{
                         return 2;
                 }
+        }else{
+                return 3;
+        }
 }
 
 function disablePettyCash($id){
@@ -268,6 +291,7 @@ function getAllDetailPettyCash($start,$length,$array_where){
                         ->join('tipos_deducible TD','DCC.deducible=TD.ID')
                         ->join('equipo E','E.ID = DCC.equipo')
                         ->join('caja_chica CC','CC.ID = DCC.caja_chica_ID')
+                        ->order_by('DCC.ID')
                         ->where($array_where)
                         ->limit($length,$start)
                         ->get()
@@ -323,6 +347,19 @@ function saveConcept($nombre){
         if($this->db->insert('conceptos_caja_chica', $data)){
                 $result['id'] = $this->db->insert_id();
                 $result['nombre'] =$this->db->select('nombre')->from('conceptos_caja_chica')->where('ID',$result['id'])->get()->row();
+                return $result;
+                
+        }else{
+                return false;
+        }
+}
+
+function saveConceptOnModal($nombre){
+        $data =  array(
+                'nombre' => $nombre
+        );
+        if($this->db->insert('conceptos_caja_chica', $data)){
+                $result['id'] = $this->db->insert_id();
                 return $result;
                 
         }else{

@@ -15,32 +15,32 @@
                             <div class="row">
                             <input type="hidden" id="idDetail">
                                 <div class="col-md-6 mb-4">
-                                    <label for="locationPettyCashEdit">Ubicación</label>
+                                    <label for="locationPettyCashEdit">Ubicación<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <select id="locationPettyCashEdit" name="locationPettyCashEdit" class="form-control"></select>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="deductiblePettyCashEdit">Tipo deducible</label>
+                                    <label for="deductiblePettyCashEdit">Tipo deducible<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <select id="deductiblePettyCashEdit" name="deductiblePettyCashEdit" onchange="iva_sub_total_edit()" class="form-control"></select>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="conceptPettyCashEdit">Concepto</label>
+                                    <label for="conceptPettyCashEdit">Concepto<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <select  id="conceptPettyCashEdit" name="conceptPettyCashEdit" class="form-control"></select>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="teamPettyCashEdit">Equipo</label>
+                                    <label for="teamPettyCashEdit">Equipo<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <select id="teamPettyCashEdit" name="teamPettyCashEdit" class="form-control"></select>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="subtotalPettyCashEdit">Subtotal</label>
+                                    <label for="subtotalPettyCashEdit">Subtotal<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <input type="text" id="subtotalPettyCashEdit" name="subtotalPettyCashEdit" class="form-control" onkeyup="subTotal_edit()">
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="IVAPettyCashEdit">IVA</label>
+                                    <label for="IVAPettyCashEdit">IVA<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <input type="hidden" id="ivaEdit" value="<?php echo IVA?>">
                                     <input type="text" id="IVAPettyCashEdit" name="IVAPettyCashEdit" readonly class="form-control">
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="totalPettyCashEdit">Total</label>
+                                    <label for="totalPettyCashEdit">Total<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <input type="text" id="totalPettyCashEdit" name="totalPettyCashEdit" disabled class="form-control">
                                 </div>
                                 <div class="col-md-12 mb-12">

@@ -15,17 +15,17 @@
                             <div class="row">
                                 <input type="hidden" id="idUser" value="">
                                 <div class="col-md-6 mb-4">
-                                    <label for="fullName">Nombre completo</label>
+                                    <label for="fullName">Nombre completo<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="nombreCheckEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre</span>
                                     <input type="text" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="fullName" name="fullName" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Nombre" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="emailEdit">Correo</label>
+                                    <label for="emailEdit">Correo<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="correoCheckEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Correo</span>
                                     <input type="text" onkeyup="checkEmailEdit(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="emailEdit" name="emailEdit" pattern="/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i" placeholder="Example@Example.com" >
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="userEdit">Usuario</label>
+                                    <label for="userEdit">Usuario<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre de usuario</span>
                                     <input type="text" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="userEdit" name="userEdit" pattern="[A-Z,a-z,-,_,.,0-9]+@[a-z]+\.[a-z]+" placeholder="Usuario" required>
                                 </div>

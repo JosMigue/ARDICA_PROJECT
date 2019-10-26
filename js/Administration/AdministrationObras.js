@@ -162,7 +162,7 @@ function resetModalObras(){
     setTimeout(() => {
         $('#Code').val('');
         $('#nameObre').val('');
-        $('#tipoObra').val(0);
+        $('#tipoObra').val('');
     }, 500);
 }
 function resetModalObrasEdit(){

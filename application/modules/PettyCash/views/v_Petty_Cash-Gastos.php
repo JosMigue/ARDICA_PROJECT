@@ -26,10 +26,10 @@
     </div>
     </div>
     <div class="text-center">
-        <button class="btn btn-outline-info" id="btn_Filtrar_Petty_Cash">Filtrar</button>
+        <button class="btn btn-outline-info" id="btn_Filtrar_Petty_Cash_Detail">Filtrar</button>
     </div>
     <div class="text-center">
-        <button class="btn btn-outline-dark" id="btn-reset-filtrar-PettyCash" onclick="cleanFiltrosPettyCash()" style=" display:none; margin-top: 5px;">Resetear filtros</button>
+        <button class="btn btn-outline-dark" id="btn-reset-filtrar-PettyCash-Detail" onclick="cleanFiltrosPettyCash()" style=" display:none; margin-top: 5px;">Resetear filtros</button>
     </div>
     <br>
 </section>

@@ -330,6 +330,14 @@ $(document).ready( function(){
                               setTimeout(function () {
                                   location.reload('/pettyCash');
                             }, 1200);
+                          }else if(data == 'same value detail petty cash update'){
+                            Swal.fire({
+                              title: 'No se encontraron cambios...',
+                              animation: false,
+                              customClass: {
+                                popup: 'animated tada'
+                              }
+                            })
                           }
                   },
                   error:function(jqXHR, textStatus, errorThrown){
@@ -855,5 +863,7 @@ function subTotal_edit(){
     $("#totalPettyCashEdit").val(sub);
   }
 }
+
+
 
 

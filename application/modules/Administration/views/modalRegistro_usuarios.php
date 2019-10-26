@@ -14,17 +14,17 @@
                         <form method="post" action="" id="form_registro_usuario">
                             <div class="row">
                                 <div class="col-md-6 mb-4" id="name">
-                                    <label for="name">Nombre</label>
+                                    <label for="name">Nombre<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre</span>
                                     <input type="text" onkeyup="checkName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="firstName" name="firstName" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Nombre" required>
                                 </div>
                                 <div class="col-md-6 mb-4" id="lastName">
-                                    <label for="apellidoP">Apellido Paterno</label>
+                                    <label for="apellidoP">Apellido Paterno<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Apellido paterno</span>
                                     <input type="text" onkeyup="checkLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="apellidoP" name="apellidoP" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Apellido paterno" required>
                                 </div>
                                 <div class="col-md-6 mb-4" id="secondLastName">
-                                    <label for="apellidoM">Apellido Materno</label>
+                                    <label for="apellidoM">Apellido Materno<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="apellidoMCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Apellido materno</span>
                                     <input type="text" onkeyup="checkSLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="apellidoM" name="apellidoM" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Apellido materno" required>
                                 </div>
@@ -34,12 +34,12 @@
                                     <input type="text" onkeyup="checkEmail(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="email" name="email" pattern="[A-Z,a-z,-,_,.,0-9]+@[a-z]+\.[a-z]+" placeholder="Example@Example.com" >
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="email">Usuario</label>
+                                    <label for="email">Usuario<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="correoCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre de usuario</span>
                                     <input type="text" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="user" name="user" pattern="[A-Z,a-z,-,_,.,0-9]+@[a-z]+\.[a-z]+" placeholder="Usuario" required>
                                 </div>
                                 <div class="col-md-6 mb-4" id="password">
-                                    <label for="password">Contraseña</label>
+                                    <label for="password">Contraseña<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="contadorPassword" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Mínimo 8 caracteres</span>
                                     <input type="password" onkeyup="contadorPassword(this)" minlength="8" maxlength="20" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="password" pattern="/^[0-9a-zA-Z]+$/" name="password" placeholder="Tu contraseña" required>
                                 </div>

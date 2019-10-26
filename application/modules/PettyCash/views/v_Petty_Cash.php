@@ -12,19 +12,6 @@
         <input type="text" id="numberFilter" class="form-control" placeholder="Número">
     </div>
     <div class="col-md-3">
-        <label for="locationFilter">Localización</label>
-        <input type="text" id="locationFilter" class="form-control" placeholder="Localización">
-        <input type="hidden" name="selected_location" id="selected_location">
-    </div>
-    <div class="col-md-3 ">
-        <label for="deductibleFilter">Tipo de deducible</label>
-        <select name="deductibleFilter" id="deductibleFilter" class="form-control">
-        <option value="" selected>Seleccionar...</option>
-        <option value="1" >Deducible</option>
-        <option value="2" >No deducible</option>
-        </select>
-    </div>
-    <div class="col-md-3">
         <label for="dateFilter">fecha</label>
         <input type="text" id="dateFilter" name="dateFilter" class="form-control">
         <input type="hidden" name="dateOne" id="dateOne" value="">
@@ -34,11 +21,6 @@
         <label for="responsableFilter">Encargado</label>
         <input type="text" id="responsableFilter"  class="form-control" placeholder="Encargado">
         <input type="hidden" name="selected_responsable" id="selected_responsable">
-    </div>
-    <div class="col-md-3">
-        <label for="teamFilter">Equipo</label>
-        <input type="text" id="teamFilter"  class="form-control" placeholder="Equipo">
-        <input type="hidden" name="selected_team" id="selected_team">
     </div>
     <div class="col-md-3">
         <label for="statusPettyCashFilter">Estado</label>
@@ -84,3 +66,4 @@
             </tbody>
         </table>
     </div>
+  

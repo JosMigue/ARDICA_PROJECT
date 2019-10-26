@@ -15,12 +15,12 @@
                             <div class="row">
                             <input type="hidden" id="idObra" value="">
                                 <div class="col-md-6 mb-4">
-                                    <label for="nameObra">Nombre de la obra</label>
+                                    <label for="nameObra">Nombre de la obra<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="nombreCheckEdit" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre</span>
                                     <input type="text" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="nameObra" name="nameObra" placeholder="Nombre" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
-                                    <label for="typeEdit">Tipo</label>
+                                    <label for="typeEdit">Tipo<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <span id="" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Tipo</span>
                                     <select class="form-control" name="typeEdit" id="typeEdit" required>
 

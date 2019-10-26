@@ -123,6 +123,8 @@ class PettyCash extends MY_Controller {
 				break;
 				case 2: echo 'error detail petty cash update';
 				break;
+				case 3: echo 'same value detail petty cash update';
+				break;
 			}
 		}else{
 			redirect ("/pettyCash");
@@ -319,6 +321,15 @@ class PettyCash extends MY_Controller {
              if ($this->input->post('idCajaChicaDetail')!='') {
                 $array_where['caja_chica_ID']=$this->input->post('idCajaChicaDetail');
              }
+             if ($this->input->post('localizacionDetail')!='') {
+                $array_where['ubicacion']=$this->input->post('localizacionDetail');
+             }
+             if ($this->input->post('deducibleDetail')!='') {
+                $array_where['deducible']=$this->input->post('deducibleDetail');
+             }
+             if ($this->input->post('teamFilterDetail')!='') {
+                $array_where['equipo']=$this->input->post('teamFilterDetail');
+             }
 		$response=$this->m_PettyCash->getAllDetailPettyCash($start,$length,$array_where); 
 		$total_registros=$response['total']->total;
 		$response=$response['data'];  
@@ -357,6 +368,21 @@ public function plusPettyCashData(){
 		echo json_encode($response);
 	}else{
 		redirect('/pettyCash');
+	}
+}
+
+public function addConceptOnModal(){
+	if(isset($_POST['concept'])){
+		$this->load->model('m_PettyCash');
+		$nombre = $this->input->post('concept');
+		$response = $this->m_PettyCash->saveConceptOnModal($nombre); 
+		if(!$response){
+			echo false;
+		}else{
+			echo json_encode($response);
+		}
+	}else{
+		redirect('/pettyCash-detail');
 	}
 }
 	/*===========AUTOCOMPLETE FUNCTIONS SECTION BEGIN=============*/

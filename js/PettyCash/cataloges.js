@@ -626,3 +626,44 @@ function deleteObrasType(ObraType){
 
 /*================= CATALOGE PETTY CASH TYPES - DELETE - END =================*/
 
+
+$(document).ready(function(){
+  $("#btnAddConceptOnModal").click(function(){
+    $("#sectionAddConceptOnModal").show('slow');
+  });
+
+  $("#btnCancelOnModal").click(function(){
+    $("#sectionAddConceptOnModal").hide('fast');
+  });
+
+  $("#btnAddOnModalConcept").click(function(){
+    var concept = $("#inputConceptOnModal").val();
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: "POST",
+    url: "PettyCash/addConceptOnModal",
+    data: {concept : concept},
+    success: function(data){
+      if(data!=null){
+        var obj = $.parseJSON(data);
+        $("#sectionAddConceptOnModal").hide('fast');
+        var myselect = document.getElementById('conceptPettyCash');
+        var objOption = document.createElement("option");
+        objOption.text = concept;
+        objOption.value = obj["id"];
+        myselect.options.add(objOption);
+        alertify.success('Concepto guardado');
+      }else{
+        alertify.error('No se pudo guardar el concepto');
+      }
+    },
+    error: function(){
+      alertify.error('Error interno del servidor');
+    }
+    });
+  
+  
+  });
+});
