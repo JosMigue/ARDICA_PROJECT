@@ -64,9 +64,9 @@ $(document).ready(function(){
                       },
                       {"render": function ( data, type, row ) {
                         if(row.status == 1){
-                          return '<button class="btn btn-warning" value="'+row.ID+'" onclick="bringDataObra(this)"> editar</button><button onclick="Eliminar_Obra(this)" class="btn btn-danger" value="'+row.ID+'" name="'+row.name+'">Eliminar</button>'
+                          return '<button class="btn btn-warning" value="'+row.ID+'" onclick="bringDataObra(this)"><i class="material-icons">edit</i></button><button onclick="Eliminar_Obra(this)" class="btn btn-danger" value="'+row.ID+'" name="'+row.name+'"><i class="material-icons">clear</i></button>'
                         }else{
-                          return '<button class="btn btn-warning" value="'+row.ID+'" onclick="bringDataObra(this)"> editar</button><button onclick="Habilitar_Obra(this)" class="btn btn-success" value="'+row.ID+'" name="'+row.name+'">Habilitar</button>'
+                          return '<button class="btn btn-warning" value="'+row.ID+'" onclick="bringDataObra(this)"><i class="material-icons">create</i></button><button onclick="Habilitar_Obra(this)" class="btn btn-success" value="'+row.ID+'" name="'+row.name+'"><i class="material-icons">check</i></button>' 
                         }
                               },
                               "targets": 7

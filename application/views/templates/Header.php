@@ -70,8 +70,7 @@
                         Caja chica
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <button class="dropdown-item" data-toggle="modal" data-target="#modalAddPettyCash">Registra caja chica</button>
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas registradas</a>
+                        <button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas registradas</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash-detail') ?>">Agregar conceptos a caja chica</a>
                          <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Autorizar personas</a>
                         <div class="dropdown-divider"></div>

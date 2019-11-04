@@ -70,7 +70,7 @@ class M_Administration extends CI_Model {
                 'direccion_ip' => $this->input->ip_address(),
                 'usuario_idusuario' => $this->session->userdata('idUser'),
                 'registro_id' => $data['name'],
-                'campo' => 'Tabla usuarios',
+                'campo' => 'status',
                 'descripcion' => 'Registro de usuario para ingresar al sistema'
             ); 
             $this->db->insert('eventos_log', $log);
@@ -136,6 +136,16 @@ class M_Administration extends CI_Model {
             $this->db->set($data)->where('ID',$obj["id"])->update('users');
             $rows = $this->db->affected_rows();
           if($rows == 1){
+            $log = Array(
+                'tabla' => 'users',
+                'accion' => 5,
+                'direccion_ip' => $this->input->ip_address(),
+                'usuario_idusuario' => $this->session->userdata('idUser'),
+                'registro_id' => $obj["id"],
+                'campo' => 'name, nickname, phone, email',
+                'descripcion' => 'Proceso de activación de usuario'
+            ); 
+            $this->saveLogActivity($log);
               return 1;
           }else{
               return 2;
@@ -309,6 +319,12 @@ class M_Administration extends CI_Model {
         return $result;
         
     }
+
+    /*============================== FUNCTION FOR LOG BEGIN ==============================*/ 
+	public function saveLogActivity($log){
+        $this->db->insert('eventos_log', $log);
+	}
+	/*============================== FUNCTION FOR LOG END ==============================*/ 
 }
 
 /* End of file M_Administration.php */

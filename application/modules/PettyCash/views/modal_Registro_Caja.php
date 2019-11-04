@@ -16,20 +16,14 @@
                             <div class="row">
                                 <input type="hidden" id="idUser" value="">
                                 <div class="col-md-6 mb-4">
-                                <label for="numberPettyCash">Número<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="numberPettyCash" name="numberPettyCash" placeholder="número" onkeyup="numberInputCheck(this)" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><?php echo date("Y") ?></span>
-                                    </div>
-                                </div>
-                                <span id="numberMessage" style="font-size: 12px; display: none;  float: right;" class="text-danger my-2 font-weight-bold">El formato ingresado es incorrecto</span>
+                                    <label for="numberPettyCash">Número<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
+                                    <input type="text" class="form-control" id="numberPettyCash" name="numberPettyCash" placeholder="número" readonly required>
                                 </div>
                                 <div class="col-md-6 mb-4">                    
                                     <label for="datePettyCashBegin">Fecha de inicio<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <input type="date" id="beginDate" name="beginDate" onchange="valideDates()"class="form-control" value="<?php echo $fecha?>" >
                                 </div>
-                                <div class="col-md-6 mb-4">
+<!--                                 <div class="col-md-6 mb-4">
                                     <label for="datePettyCashBegin">Fecha de terminación<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <input type="date" id="finishDate" name="finishDate" onchange="valideDates()" class="form-control" >
                                     <span id="dateMessage" style="font-size: 12px; display: none;  float: right;" class="text-danger my-2 font-weight-bold">Las fecha de terminación es menor que la de inicio</span>
@@ -37,7 +31,7 @@
                                 <div class="col-md-6 mb-4">
                                     <label for="responsablePettyCash">Responsable<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <select  id="responsablePettyCash" name="responsablePettyCash" class="form-control"></select>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>

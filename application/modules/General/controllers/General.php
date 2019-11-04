@@ -157,7 +157,6 @@ class General extends MY_Controller {
 				   } */
 				  echo 'user OK';
 				}else{
-					
 					echo 'wrong password';
 				}
 			}else{

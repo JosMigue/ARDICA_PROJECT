@@ -7,6 +7,7 @@ class PettyCash extends MY_Controller {
 		$this->loadView("PettyCash/v_Petty_Cash",$data=null);
 		$this->load->view("PettyCash/modal_Registro_Caja");
 		$this->load->view("PettyCash/modal_RegistrarGastoCaja");
+		$this->load->view("PettyCash/modal_Editar_Caja");
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalRegistro_obras");
 		$this->load->view("Files/modalUploadFiles");
@@ -61,6 +62,55 @@ class PettyCash extends MY_Controller {
 		$this->load->view("Administration/modalRegistro_usuarios");
 		$this->load->view("Administration/modalRegistro_obras");
 		$this->load->view("Files/modalUploadFiles");
+	}
+
+	public function getLastNumerOfUser(){
+		if($this->session->userdata('logueado') == true){
+			$this->load->model("m_PettyCash");
+			$response = $this->m_PettyCash->getLastNumerOfUser();
+			echo json_encode($response);
+		}else{
+			redirect("/Administration");
+		}
+	}
+
+	public function getPettyCashDetail(){
+		if(isset($_POST['id'])){
+			$this->load->model("m_PettyCash");
+			$id = $this->input->post('id');
+			$response = $this->m_PettyCash->getPettyCashDetail($id);
+			if($response['data']!=null){
+				$tablaHeader = '<div class="text-center"><h3>Detalles</h3></div><div class="col-lg-12 table-responsive ancho_alto"><table  id="petty_Cash_Table-detail"  class="table table-bordered text-center">
+								<thead class="thead-dark">
+								<tr>
+								<th scope="col">Ubicación</th>
+								<th scope="col">Equipo</th>
+								<th scope="col">Concepto del Pago</th>
+								<th scope="col">Subtotal</th>
+								<th scope="col">IVA</th>
+								<th scope="col">Total</th>
+								<th scope="col">Deducible</th>
+								<th scope="col" style="width:500px!important;">Observaciones</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Acciones</th>
+								</tr>
+								</thead>
+								<tbody>';
+	
+				$tablaFotter = '</tbody></table></div>';
+				$tablaBody = '';
+				foreach($response['data'] as $data){
+					$tablaBody .= '<tr><td>'. $data->ubicacion.'</td>'.'<td>'. $data->equipo.'</td>'.'<td>'. $data->concepto.'</td>'.'<td>$'. $data->subtotal.'</td>'.'<td>$'. $data->IVA.'</td>'.'<td>$'. $data->total.'</td>'.'<td>'. $data->deducible.'</td>'.'<td><div style="width: 500px; overflow: auto; margin: auto;">'. $data->observacion.'</div></td>'.'<td>'. $data->registro.'</td><td><button type="button" class="btn btn-warning" value="'.$data->ID.'" onclick="bringDataPettyCash(this)" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="material-icons">create</i></button><button onclick="Delete_DetailPettyCash(this)" class="btn btn-danger" value="'.$data->ID.'" name="'.$data->numero.'" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">clear</i></button></td></tr>';
+				}
+				$suma = '<div style="background-color: #78AADD; width: 100%; overflow: auto;">La suma de la caja ha dado un subtotal neto de: $'.$response['suma']['total']->subtotal.' , suma total de iva: $'.$response['suma']['total']->iva.' y un total neto de: $'.$response['suma']['total']->total.'</div>';
+				$fullTabla = $tablaHeader.$tablaBody.$tablaFotter.$suma;
+			}else{
+				$fullTabla = '<td style="background-color:#F96666;" align="center" colspan="10">No se han encontrado detalles por el momento</td></tr>';
+			}
+			echo $fullTabla;
+		}else{
+			redirect("/pettyCash");
+		}
 	}
 
 	public function savePettyCash(){
@@ -240,7 +290,7 @@ class PettyCash extends MY_Controller {
 		$pettyCash = $this->m_PettyCash->getPettyCashTwo();
 		$options = '<option value="" selected >seleccionar...</option>';
 		foreach ($pettyCash as $caja) {
-			$options.='<option value="'.$caja->numero.'">'.$caja->numero.'</option>';
+			$options.='<option value="'.$caja->ID.'">'.$caja->numero.'</option>';
 		}
 		echo $options;
 	}
@@ -505,6 +555,33 @@ public function addConceptOnModal(){
 	}
 
 	/*================DELETE CATALOGE END=============================*/
+
+	/*======================REPORTS======================*/
+	public function generateReport(){
+		$this->load->library('Mydompdf');
+		$this->mydompdf->set_option('enable_html5_parser', TRUE);
+		/* $this->load->model('m_pettyCash'); */
+		/* $id_certificado=$_POST['certificado_id']; */
+		/* $nombre_pdf='Certificado-'.$id_certificado.'.pdf'; */
+		$nombre_pdf = 'PruebaPDF';
+		/* $datos=$this->Pesaje_model->certificado_pdf($id_certificado);  */
+/* 		$fecha=$datos->fecha_servicio;
+		$datos->fecha_servicio=date_format(date_create($fecha),"d/m/Y");
+		$datos->hora_servicio=date_format(date_create($fecha),"h:i:s A");  */
+/* 		$imagenQr=$this->createQr($datos,$id_certificado); */
+		/* if (file_exists('QR_library/Qrs/'.$imagenQr)) { */
+		   /* $datos->rutaQr=$imagenQr; */
+/* 			$data = array(
+				'title' => 'CERTIFICADO DE PESO', 
+				'folio_certificado'=>$id_certificado,
+				'datos' => $datos);  */  
+			  $html= $this->load->view("PettyCash/pdf",$data = null, true);  
+			  $this->mydompdf->load_html($html);
+			  $this->mydompdf->render();
+			  $this->mydompdf->stream($nombre_pdf, array("Attachment" => false));
+
+	/*======================REPORTS======================*/
+}
 
 }
 

@@ -6,8 +6,6 @@ $(document).ready( function(){
         rules: {
             numberPettyCash: {required: true},
             beginDate: { required: true},
-            finishDate: { required: true },
-            responsablePettyCash: { required: true},
         },
         messages: {
             numberPettyCash: {
@@ -16,22 +14,11 @@ $(document).ready( function(){
             beginDate: {
                 required: msg
             },
-            finishDate: {
-                required: msg
-            },
-            responsablePettyCash: {
-                required: msg
-            }
         },
         submitHandler: function (form) {
             obj = new Object;
             obj.numeroCajaChica = $("#numberPettyCash").val();
             obj.fechaInicio = $('#beginDate').val();
-            obj.fechaTermina = $('#finishDate').val();
-            obj.responsableCajaChica = $('#responsablePettyCash').val();
-
-            // RECUERDA FECHA NO MENOR A INICIAL VERIFICAR
-            if(Date.parse($('#finishDate').val()) > Date.parse($('#beginDate').val())){
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -113,13 +100,6 @@ $(document).ready( function(){
                         /* alert("HA OCURRIDO UN ERROR: "+error); */
                     },
                 });
-             }else{
-                Swal.fire({
-                    type: 'Error',
-                    title: 'Oops...',
-                    text: 'Ha ocurrido un error verifique que la fecha final no sea menor que la inicial.',
-                  })
-             }
         }
     });
     var numMsg = "Formato de número no válido";
@@ -168,7 +148,7 @@ $(document).ready( function(){
         },
         submitHandler: function (form) {
             obj = new Object;
-            obj.numeroCajaChica = $("#numberPettyCashSell").val();
+            obj.numeroCajaChica = $("#idPettyCash").val();
             obj.localizacionCajaChica = $('#locationPettyCash').val();
             obj.deducibleCajaChica = $('#deductiblePettyCash').val();
             obj.conceptoCajaChica = $('#conceptPettyCash').val();
@@ -456,6 +436,31 @@ $(document).ready( function(){
 
 });
 
+$("#btnAddPettyCash").click(function(){
+  var fecha = new Date();
+  var currentYear = fecha.getFullYear();
+  $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: "POST",
+    url: "PettyCash/getLastNumerOfUser",
+    success: function(response)
+    {
+      var obj = $.parseJSON(response);
+      if(obj.contar > 0 ){
+        var numero_de_caja = 1+parseInt(obj.contar);
+        $("#numberPettyCash").val('0'+(numero_de_caja)+'-'+currentYear);
+        $("#modalAddPettyCash").modal('show');
+      }else{
+        $("#numberPettyCash").val('01-'+currentYear);
+        $("#modalAddPettyCash").modal('show');
+      }
+    }
+  });
+
+});
+
 function valideDates(){
     var fechaInicial = $("#beginDate").val();
     var fechaFinal = $("#finishDate").val();
@@ -486,8 +491,8 @@ function Delete_PettyCash(pettyCash){
       })
       
       swalWithBootstrapButtons.fire({
-        title: '¿Está seguro que desea deshabilitar la caja chica '+pettyCash_Numero+'?',
-        text: "Se procederá a deshabilitar la caja chica!",
+        title: '¿Está seguro que desea cerrar la caja chica '+pettyCash_Numero+'?',
+        text: "Se procederá a cerrar la caja chica!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sí, completamente!',
@@ -507,7 +512,7 @@ function Delete_PettyCash(pettyCash){
                     if(data == 'Petty Cash is disabled'){
                         swalWithBootstrapButtons.fire(
                             'Hecho!',
-                            'La caja chica '+pettyCash_Numero+' ha sido deshabilitada',
+                            'La caja chica '+pettyCash_Numero+' ha sido cerrada',
                             'success'
                           )
                           setTimeout(() => {
@@ -785,7 +790,8 @@ function Delete_DetailPettyCash(detail){
 }
 
 function openModal(PettyCash){
-  var number = PettyCash.name
+  var number = PettyCash.name;
+  var idPetty = PettyCash.value;
   $("#locationPettyCash").val('');
   $("#deductiblePettyCash").val('');
   $("#conceptPettyCash").val('');
@@ -795,6 +801,7 @@ function openModal(PettyCash){
   $("#teamPettyCash").val('');
   $("#observationPettyCash").val('');
   document.getElementById('numberPettyCashSell').outerHTML = '<input type="text" class="form-control" id="numberPettyCashSell" name="numberPettyCashSell" readonly>'
+  $("#idPettyCash").val(idPetty);
   $("#numberPettyCashSell").val(number);
   $("#modalAddSellPettyCash").modal('show');
 }

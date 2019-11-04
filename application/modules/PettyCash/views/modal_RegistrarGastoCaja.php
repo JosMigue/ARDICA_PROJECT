@@ -16,6 +16,7 @@
                                 <div class="col-md-6 mb-4">
                                     <label for="numberPettyCashSell">Número de caja elegida<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
                                     <input type="text" class="form-control" id="numberPettyCashSell" name="numberPettyCashSell" readonly>
+                                    <input type="hidden" id="idPettyCash">
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label for="locationPettyCash">Ubicación<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>

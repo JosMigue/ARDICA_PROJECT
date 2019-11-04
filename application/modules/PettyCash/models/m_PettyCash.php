@@ -4,39 +4,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class m_PettyCash extends CI_Model {
 
+
+function getLastNumerOfUser(){
+        $result = $this->db->select('count(caja_consecutiva) as contar')
+                                        ->from('consecutivo_cajas')
+                                        ->where('ano', date("Y"))
+                                        ->where('Usuario',$this->session->userdata('idUser'))
+                                        ->get()
+                                        ->row();
+        return $result;                        
+        
+}
+
 function savePettyCash($pettyCash){
-        $exist = $this->db->select('numero')
-                ->from('caja_chica')
-                ->where('numero',$pettyCash["numeroCajaChica"].'-'.date("Y"))
-                ->get()
-                ->row();
-        if($exist == null || $exist == ''){
-                $data = array(
-                        'numero' => $pettyCash["numeroCajaChica"].'-'.date("Y"),
-                        'fecha_inicio' => $pettyCash["fechaInicio"],
-                        'fecha_terminacion' => $pettyCash["fechaTermina"],
-                        'encargado' => $pettyCash["responsableCajaChica"],
-                        'autorizada' => 0
-                        
-                );
-                if($this->db->insert('caja_chica', $data)){
-                        return 1;
-                }else{
-                        return 2;
-                }
-                
+        $numero =  $this->getLastNumerOfUser();
+        if($numero->contar > 0 || $numero->contar < 10){
+                $numeroCaja = '0'.($numero->contar+1); 
+                $numeroContar = $numero->contar;
+        }else if($numero->contar>10){
+                $numeroCaja = $numero+1;
+                $numeroContar = $numero->contar;
+        }else if($numero->contar == 0){
+                $numeroCaja = '01';
+                $numeroContar =  1;
+        }
+        $data = array(
+                'numero' => $numeroCaja.'-'.date("Y"),
+                'fecha_inicio' => $pettyCash["fechaInicio"],
+                'encargado' => $this->session->userdata('idUser'),
+                'autorizada' => 0
+                       
+        );
+        if($this->db->insert('caja_chica', $data)){
+                $dataConsecutive = array('caja_consecutiva' => $numeroContar, 'numero_caja' => $numeroCaja.'-'.date("Y"), 'Usuario' => $this->session->userdata('idUser'), 'ano' => date("Y"));
+                $this->db->insert('consecutivo_cajas', $dataConsecutive);
+                return 1;
         }else{
-                return 3;
-        };
+                return 2;
+        }
         
 
 }
 function saveDetailPettyCash($detail){
-        $id = $this->db->select('ID')
-                        ->from('caja_chica')
-                        ->where('numero',$detail["numeroCajaChica"])
-                        ->get()
-                        ->row();
                 if($detail["deducibleCajaChica"] == 1){
                         $sub = floatval($detail["subtotalCajaChica"]);
                         $iva = ($sub*IVA);
@@ -47,7 +56,7 @@ function saveDetailPettyCash($detail){
                         $total = $sub + $iva;
                 }
                 $data = array(
-                        'caja_chica_ID' => $id->ID,
+                        'caja_chica_ID' => $detail["numeroCajaChica"],
                         'ubicacion' => $detail["localizacionCajaChica"],
                         'deducible' => $detail["deducibleCajaChica"],
                         'concepto' => $detail["conceptoCajaChica"],
@@ -119,7 +128,8 @@ function updateDetailPettyCash($detail){
 
 function disablePettyCash($id){
         $data=array(
-                'estado_caja'=> 0
+                'estado_caja'=> 0,
+                'fecha_terminacion' => date("Y")."-". date("m")."-".date("d")
         );
         $this->db->set($data)->where('ID',$id)->update('caja_chica');
         /* $this->db->delete('users',$data); */
@@ -133,7 +143,8 @@ function disablePettyCash($id){
 
 function enablePettyCash($id){
         $data=array(
-                'estado_caja'=> 1
+                'estado_caja'=> 1,
+                'fecha_terminacion' => '0000-00-00'
         );
         $this->db->set($data)->where('ID',$id)->update('caja_chica');
         /* $this->db->delete('users',$data); */
@@ -155,7 +166,7 @@ function deleteDetailPettyCash($id){
 }
 
 function plusAll($number){
-        $response['total'] = $this->db->select('sum(subtotal) as subtotal, sum(total) as total')
+        $response['total'] = $this->db->select('sum(subtotal) as subtotal,sum(IVA) as iva, sum(total) as total')
                                         ->from('detalle_caja_chica')
                                         ->where('caja_chica_ID',$number)
                                         ->get()
@@ -181,6 +192,23 @@ function plusAll($number){
                                        
         return $response;
         
+}
+
+function getPettyCashDetail($id){
+        $consult = "SELECT DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro
+        FROM detalle_caja_chica DCC 
+        JOIN obras O ON O.ID = DCC.ubicacion 
+        JOIN conceptos_caja_chica COCA ON COCA.ID = DCC.concepto 
+        JOIN tipos_deducible TD ON DCC.deducible = TD.ID 
+        JOIN equipo  E ON E.ID = DCC.equipo 
+        JOIN caja_chica CC ON CC.ID = DCC.caja_chica_ID 
+        WHERE DCC.caja_chica_ID = ?";                
+
+        $result['suma'] = $this->plusAll($id);
+
+        $result['data'] = $this->db->query($consult,$id)->result();
+        
+        return $result;
 }
 
 function bringPettyCashData($id){
@@ -252,7 +280,7 @@ function getObresTypes(){
 function getPettyCash(){
         return $this->db->select('*')
                 ->from('caja_chica')
-                ->where('estado_caja',1)
+                ->where('encargado',$this->session->userdata('idUser'))
                 ->get()
                 ->result();
 }
@@ -261,54 +289,95 @@ function getPettyCashTwo(){
         return $this->db->select('*')
                 ->from('caja_chica')
                 ->where('estado_caja',1)
+                ->where('encargado',$this->session->userdata('idUser'))
                 ->get()
                 ->result();
 }
 
 function getAllPettyCash($start,$length,$array_like,$array_where){
-        $result['data'] = $this->db->select('CC.estado_caja as estado, CC.ID, CC.numero, CC.fecha_inicio as fIni, CC.fecha_terminacion as fFin, U.name as encargado, CC.fecha_registro as fRegistro')
-                        ->from('caja_chica CC')
-                        ->join('users U','U.ID = CC.encargado')
-                        ->like($array_like, 'after')
-                        ->where($array_where)
-                        ->limit($length,$start)
-                        ->get()
-                        ->result();
-        $result['total']=$this->db->select("count(1) as total")
-                        ->from('caja_chica')
-                        ->like($array_like)
-                        ->where($array_where)
-                        ->get()
-                        ->row();  
+        if($this->session->userdata('userType') == 1){
+                $result['data'] = $this->db->select('CC.estado_caja as estado, CC.ID, CC.numero, CC.fecha_inicio as fIni, CC.fecha_terminacion as fFin, U.name as encargado, CC.fecha_registro as fRegistro')
+                                ->from('caja_chica CC')
+                                ->join('users U','U.ID = CC.encargado')
+                                ->like($array_like, 'after')
+                                ->where($array_where)
+                                ->limit($length,$start)
+                                ->get()
+                                ->result();
+                $result['total']=$this->db->select("count(1) as total")
+                                ->from('caja_chica')
+                                ->like($array_like)
+                                ->where($array_where)
+                                ->get()
+                                ->row();  
+        }else{
+                $result['data'] = $this->db->select('CC.estado_caja as estado, CC.ID, CC.numero, CC.fecha_inicio as fIni, CC.fecha_terminacion as fFin, U.name as encargado, CC.fecha_registro as fRegistro')
+                                ->from('caja_chica CC')
+                                ->join('users U','U.ID = CC.encargado')
+                                ->like($array_like, 'after')
+                                ->where('CC.encargado',$this->session->userdata('idUser'))
+                                ->where($array_where)
+                                ->limit($length,$start)
+                                ->get()
+                                ->result();
+                $result['total']=$this->db->select("count(1) as total")
+                                ->from('caja_chica')
+                                ->like($array_like)
+                                ->where($array_where)
+                                ->where('encargado',$this->session->userdata('idUser'))
+                                ->get()
+                                ->row();  
+        }
         return $result;
         
     }
 function getAllDetailPettyCash($start,$length,$array_where){
-        $result['data'] = $this->db->select('DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro')
-                        ->from('detalle_caja_chica DCC')
-                        ->join('obras O', 'O.ID = DCC.ubicacion')
-                        ->join('conceptos_caja_chica COCA', 'COCA.ID=DCC.concepto')
-                        ->join('tipos_deducible TD','DCC.deducible=TD.ID')
-                        ->join('equipo E','E.ID = DCC.equipo')
-                        ->join('caja_chica CC','CC.ID = DCC.caja_chica_ID')
-                        ->order_by('DCC.ID')
-                        ->where($array_where)
-                        ->limit($length,$start)
-                        ->get()
-                        ->result();
+        $userPettyCash = $this->db->select('ID')
+                                ->from('caja_chica')
+                                ->where('encargado',$this->session->userdata('idUser'))
+                                ->get()
+                                ->result();  
+           
+        if($array_where != null){
+                $result['data'] = $this->db->select('DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro')
+                ->from('detalle_caja_chica DCC')
+                ->join('obras O', 'O.ID = DCC.ubicacion')
+                ->join('conceptos_caja_chica COCA', 'COCA.ID=DCC.concepto')
+                ->join('tipos_deducible TD','DCC.deducible=TD.ID')
+                ->join('equipo E','E.ID = DCC.equipo')
+                ->join('caja_chica CC','CC.ID = DCC.caja_chica_ID')
+                ->order_by('DCC.ID')
+                ->where($array_where)
+                ->where('CC.encargado',$this->session->userdata('idUser'))
+                ->limit($length,$start)
+                ->get()
+                ->result();
+        }else{
+                $consult = "SELECT DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro
+                        FROM detalle_caja_chica DCC 
+                        JOIN obras O ON O.ID = DCC.ubicacion 
+                        JOIN conceptos_caja_chica COCA ON COCA.ID = DCC.concepto 
+                        JOIN tipos_deducible TD ON DCC.deducible = TD.ID 
+                        JOIN equipo  E ON E.ID = DCC.equipo 
+                        JOIN caja_chica CC ON CC.ID = DCC.caja_chica_ID 
+                        WHERE DCC.caja_chica_ID IN (select ID from caja_chica where encargado = ? )";                
+                $result['data'] = $this->db->query($consult,$this->session->userdata('idUser'))->result();               
+        }
         $result['total']=$this->db->select("count(1) as total")
                         ->from('detalle_caja_chica')
                         ->where($array_where)
                         ->get()
-                        ->row();  
+                        ->row(); 
+
         return $result;
         
     }
 
 function getNumberAutocomplete(){
         return $this->db->select('numero')
+                        ->distinct()
                         ->from('caja_chica')
-                        ->where('estado',1)
+                        ->where('estado_caja',1)
                         ->get()
                         ->result();
 }

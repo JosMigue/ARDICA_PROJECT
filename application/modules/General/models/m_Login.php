@@ -99,7 +99,7 @@ class M_Login extends CI_Model {
 		$date=new DateTime(); 
 	    $this->db->trans_begin();
 	    $this->db->update('users',array('timeStamp' => $date->format('Y-m-d H:i:s')), array('ID' => $idUsuario));
-		$dataLog=array('tabla'=>'usuario','accion'=>2,'fecha'=>$date->format('Y-m-d H:i:s'),'direccion_ip'=>$this->input->ip_address(),'usuario_idusuario'=>$idUsuario,'registro_id'=>$idUsuario,'campo'=>'ultimo_acceso','descripcion'=>'inicio de sesion');
+		$dataLog=array('tabla'=>'usuario','accion'=>'Inicio de sesión','fecha'=>$date->format('Y-m-d H:i:s'),'direccion_ip'=>$this->input->ip_address(),'usuario_idusuario'=>$idUsuario,'registro_id'=>$idUsuario,'campo'=>'ultimo_acceso','descripcion'=>'inicio de sesion');
 	    $this->db->insert('eventos_log', $dataLog);
 	    if ($this->db->trans_status() === FALSE){ 
 	    	$this->db->trans_rollback();

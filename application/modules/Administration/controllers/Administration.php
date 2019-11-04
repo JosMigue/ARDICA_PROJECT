@@ -48,6 +48,16 @@ class Administration extends MY_Controller {
 			$this->load->model("m_Administration");
 			$user = $_POST["user"];
 			if($this->m_Administration->deleteUser($user)){
+				$log = Array(
+					'tabla' => 'users',
+					'accion' => 2,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $user,
+					'campo' => 'status',
+					'descripcion' => 'Proceso de desactivación de usuario'
+				); 
+				$this->m_Administration->saveLogActivity($log);
 				echo 'user has been deleted';
 			}else{
 				echo 'user has not been deleted';
@@ -59,6 +69,16 @@ class Administration extends MY_Controller {
 			$this->load->model("m_Administration");
 			$user = $_POST["user"];
 			if($this->m_Administration->enableUser($user)){
+				$log = Array(
+					'tabla' => 'users',
+					'accion' => 3,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $user,
+					'campo' => 'status',
+					'descripcion' => 'Proceso de activación de usuario'
+				); 
+				$this->m_Administration->saveLogActivity($log);
 				echo 'user has been enabled';
 			}else{
 				echo 'user has not been disabled';
@@ -99,6 +119,16 @@ class Administration extends MY_Controller {
 			$obra = $_POST["obj"];
 			if($this->m_Administration->verifyObra($obra["codigoObra"],$obra["nombreObra"])){
 				if($this->m_Administration->saveObra($obra)){
+					$log = Array(
+						'tabla' => 'obras',
+						'accion' => 1,
+						'direccion_ip' => $this->input->ip_address(),
+						'usuario_idusuario' => $this->session->userdata('idUser'),
+						'registro_id' => $obras["codigoObra"],
+						'campo' => 'TODO',
+						'descripcion' => 'Guardar nueva obra'
+					); 
+					$this->m_Administration->saveLogActivity($log);
 					echo 'success obra';
 				}else{
 					echo 'error obra';
@@ -135,6 +165,16 @@ class Administration extends MY_Controller {
 			$this->load->model("m_Administration");
 			$obra = $_POST["obra"];
 			if($this->m_Administration->deleteObra($obra)){
+				$log = Array(
+					'tabla' => 'obras',
+					'accion' => 2,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $obra,
+					'campo' => 'status',
+					'descripcion' => 'Proceso de desactivación de obra'
+				); 
+				$this->m_Administration->saveLogActivity($log);
 				echo 'Obra has been deleted';
 			}else{
 				echo 'Obra has not been deleted';
@@ -147,6 +187,16 @@ class Administration extends MY_Controller {
 			$obra = $_POST["obra"];
 			$this->load->model("m_Administration");
 			if($this->m_Administration->habilitaObra($obra)){
+				$log = Array(
+					'tabla' => 'obras',
+					'accion' => 2,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $obra,
+					'campo' => 'status',
+					'descripcion' => 'Proceso de activación de obra'
+				); 
+				$this->m_Administration->saveLogActivity($log);
 				echo 'Obra has been enabled';
 			}else{
 				echo 'Obra has not been disabled';
@@ -162,7 +212,18 @@ class Administration extends MY_Controller {
 			switch($response){
 				case 0: echo 'no changes';
 				break;
-				case 1: echo 'success Obra Edit';
+				case 1: 
+				$log = Array(
+					'tabla' => 'obras',
+					'accion' => 5,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $obra["id"],
+					'campo' => 'TODO',
+					'descripcion' => 'Actualización de datos de una obra'
+				); 
+				$this->m_Administration->saveLogActivity($log);
+				echo 'success Obra Edit';
 				break;
 				case 2: echo 'error Obra Edit';
 				break;
@@ -280,5 +341,6 @@ class Administration extends MY_Controller {
 			echo json_encode($json_data);  
 	}
 	/* ================================FILTERS SECTION END================================ */
+
 
 }

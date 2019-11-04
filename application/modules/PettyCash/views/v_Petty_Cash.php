@@ -51,6 +51,7 @@
         <table  id="petty_Cash_Table"  class="table table-bordered text-center" >
             <thead class="thead-dark">
                 <tr>
+                    <th scope="">Det</th>
                     <th scope="col">E</th>
                     <th scope="col">ID</th>
                     <th scope="col">ID_DB</th>

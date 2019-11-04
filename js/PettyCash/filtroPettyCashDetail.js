@@ -322,6 +322,7 @@ $("#numberDetailFilter").change(function(){
     success: function(data)
     {
       var obj = $.parseJSON(data);
+      
       document.getElementById('total_table').outerHTML = '<div class="row justify-content-end" id = "total_table"style="display: none;"><div class="alert alert-primary" role="alert" style="overflow: auto; height: 100px; width: 400px !important;">Los detalles de la caja chica '+obj.cajaChica.numero+' tiene un subtotal neto de $'+obj.total.subtotal+' y un total neto de $'+obj.total.total+'</div></div>'
       $("#total_table").show('fast');
     },

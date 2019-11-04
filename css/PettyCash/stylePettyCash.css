@@ -33,3 +33,11 @@
 	border-radius:50px;
 	padding: 0px;
 }
+
+td.details-control {
+    background: url('../../img/Icons/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../../img/Icons/details_close.png') no-repeat center center;
+}

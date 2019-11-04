@@ -33,6 +33,7 @@
 <script type="text/javascript" src="js/PettyCash/cataloges.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/PettyCash/filtroPettyCashDetail.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/PettyCash/resetsInputs.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+<script type="text/javascript" src="js/PettyCash/reportes.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 
 <script type="text/javascript" src="js/Files/Files.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 </body>

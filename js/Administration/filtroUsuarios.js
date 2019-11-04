@@ -66,9 +66,9 @@
                       },
                       {"render": function ( data, type, row ) {
                         if(row.status == 1){
-                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"> editar</button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'">Eliminar</button>'
+                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">clear</i></button>'
                         }else{
-                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"> editar</button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'">Habilitar</button>'
+                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'
                         }
                               },
                               "targets": 9
@@ -174,9 +174,9 @@ $('#btnfiltrar').click(function(){
                       },
                       {"render": function ( data, type, row ) {
                         if(row.status == 1){
-                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"> editar</button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'">Eliminar</button>'
+                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">clear</i></button>'
                         }else{
-                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"> editar</button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'">Habilitar</button>'
+                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'
                         }
                               },
                               "targets": 9
@@ -285,9 +285,9 @@ $('#btnfiltrar').click(function(){
                     },
                     {"render": function ( data, type, row ) {
                       if(row.status == 1){
-                        return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"> editar</button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'">Eliminar</button>'
+                        return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">clear</i></button>'
                       }else{
-                        return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"> editar</button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'">Habilitar</button>'
+                        return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'
                       }
                             },
                             "targets": 9
