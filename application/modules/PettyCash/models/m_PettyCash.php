@@ -16,14 +16,15 @@ function getLastNumerOfUser(){
         
 }
 
+
 function savePettyCash($pettyCash){
         $numero =  $this->getLastNumerOfUser();
         if($numero->contar > 0 || $numero->contar < 10){
                 $numeroCaja = '0'.($numero->contar+1); 
-                $numeroContar = $numero->contar;
+                $numeroContar = $numero->contar+1;
         }else if($numero->contar>10){
                 $numeroCaja = $numero+1;
-                $numeroContar = $numero->contar;
+                $numeroContar = $numero->contar+1;
         }else if($numero->contar == 0){
                 $numeroCaja = '01';
                 $numeroContar =  1;
@@ -283,6 +284,26 @@ function getPettyCash(){
                 ->where('encargado',$this->session->userdata('idUser'))
                 ->get()
                 ->result();
+}
+function getPettyCashReport($id){
+        $result['data'] =  $this->db->select('*')
+                ->from('caja_chica')
+                ->where('encargado',$this->session->userdata('idUser'))
+                ->where('ID',$id)
+                ->get()
+                ->result();
+
+                $consult = "SELECT DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro
+                FROM detalle_caja_chica DCC 
+                JOIN obras O ON O.ID = DCC.ubicacion 
+                JOIN conceptos_caja_chica COCA ON COCA.ID = DCC.concepto 
+                JOIN tipos_deducible TD ON DCC.deducible = TD.ID 
+                JOIN equipo  E ON E.ID = DCC.equipo 
+                JOIN caja_chica CC ON CC.ID = DCC.caja_chica_ID 
+                WHERE DCC.caja_chica_ID IN (select ID from caja_chica where encargado = ? )";                
+        $result['detail'] = $this->db->query($consult,$this->session->userdata('idUser'))->result();                       
+
+        return $result;
 }
 
 function getPettyCashTwo(){

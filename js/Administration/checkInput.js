@@ -15,25 +15,35 @@ function checkEmail(obj) {
   function checkLastName(obj) {
     var inputText = obj.value;
     nameRegex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/;
-    if (nameRegex.test(inputText)) {
-        document.getElementById("apellidoPCheck").innerHTML = '<span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca su apellido paterno.</span>';
+    if(inputText-length == 0){
+      document.getElementById("apellidoPCheck").innerHTML = '<span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca su apellido paterno</span>';
         $('#button_sumbit_modal').attr('disabled', false);
+    }else{
+      if (nameRegex.test(inputText)) {
+          document.getElementById("apellidoPCheck").innerHTML = '<span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca su apellido paterno</span>';
+          $('#button_sumbit_modal').attr('disabled', false);
       } else {
-        $('#button_sumbit_modal').attr('disabled', true);
-        document.getElementById("apellidoPCheck").innerHTML = '<span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Apellido no válido</span>';
+          $('#button_sumbit_modal').attr('disabled', true);
+          document.getElementById("apellidoPCheck").innerHTML = '<span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Apellido no válido</span>';
       }
+    }
   }
   
   function checkName(obj) {
     var inputText = obj.value;
     nameRegex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/;
+    if(inputText.length == 0){
+      document.getElementById("nombreCheck").innerHTML = '<span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca su nombre</span>';
+        $('#button_sumbit_modal').attr('disabled', false);
+    }else{
       if (nameRegex.test(inputText)) {
-        document.getElementById("nombreCheck").innerHTML = '<span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca su nombre.</span>';
+        document.getElementById("nombreCheck").innerHTML = '<span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca su nombre</span>';
         $('#button_sumbit_modal').attr('disabled', false);
       } else {
         document.getElementById("nombreCheck").innerHTML = '<span id="nombreCheck" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Nombre no válido</span>';
         $('#button_sumbit_modal').attr('disabled', true);
       }
+    } 
   }
   
   

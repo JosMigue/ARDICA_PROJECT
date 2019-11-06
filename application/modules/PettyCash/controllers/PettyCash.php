@@ -24,6 +24,15 @@ class PettyCash extends MY_Controller {
 		$this->load->view("Files/modalUploadFiles");
 	}
 
+	public function reportPettyCash()
+	{
+		$this->loadView("PettyCash/v_generar_reporte",$data=null);
+		$this->load->view("PettyCash/modal_Registro_Caja");
+		$this->load->view("Administration/modalRegistro_usuarios");
+		$this->load->view("Administration/modalRegistro_obras");
+		$this->load->view("Files/modalUploadFiles");
+	}
+
 	public function catalogo_deducible(){
 		$this->load->model("m_PettyCash");
 		$data["data"] = $this->m_PettyCash->getDeductibles();
@@ -558,30 +567,22 @@ public function addConceptOnModal(){
 
 	/*======================REPORTS======================*/
 	public function generateReport(){
-		$this->load->library('Mydompdf');
-		$this->mydompdf->set_option('enable_html5_parser', TRUE);
-		/* $this->load->model('m_pettyCash'); */
-		/* $id_certificado=$_POST['certificado_id']; */
-		/* $nombre_pdf='Certificado-'.$id_certificado.'.pdf'; */
-		$nombre_pdf = 'PruebaPDF';
-		/* $datos=$this->Pesaje_model->certificado_pdf($id_certificado);  */
-/* 		$fecha=$datos->fecha_servicio;
-		$datos->fecha_servicio=date_format(date_create($fecha),"d/m/Y");
-		$datos->hora_servicio=date_format(date_create($fecha),"h:i:s A");  */
-/* 		$imagenQr=$this->createQr($datos,$id_certificado); */
-		/* if (file_exists('QR_library/Qrs/'.$imagenQr)) { */
-		   /* $datos->rutaQr=$imagenQr; */
-/* 			$data = array(
-				'title' => 'CERTIFICADO DE PESO', 
-				'folio_certificado'=>$id_certificado,
-				'datos' => $datos);  */  
-			  $html= $this->load->view("PettyCash/pdf",$data = null, true);  
-			  $this->mydompdf->load_html($html);
-			  $this->mydompdf->render();
-			  $this->mydompdf->stream($nombre_pdf, array("Attachment" => false));
+		$mpdf = new \Mpdf\Mpdf();
+		$html = $this->load->view('PettyCash/pdf',[],true);
+		$mpdf->WriteHTML($html);
+		$mpdf->Output();
+	}
 
+	public function generateReportePettyCash(){
+		$idPettyCash = $_POST['pettyCashSelect'];
+		$this->load->model('m_PettyCash');
+		$data = $this->m_PettyCash->getPettyCashReport($idPettyCash);
+		$mpdf = new \Mpdf\Mpdf();
+		$html = $this->load->view('PettyCash/reportPettyCash',$data,true);
+		$mpdf->WriteHTML($html);
+		$mpdf->Output();
+	}
 	/*======================REPORTS======================*/
-}
-
+	
 }
 

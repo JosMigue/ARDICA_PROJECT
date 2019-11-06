@@ -1,4 +1,4 @@
-<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span><div class="modal fade bd-example-modal-lg" id="modalRegistroObra" tabindex="-1" role="dialog"
+<div class="modal fade bd-example-modal-lg" id="modalRegistroObra" tabindex="-1" role="dialog"
     aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

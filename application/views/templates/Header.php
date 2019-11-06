@@ -97,6 +97,17 @@
                         <a class="dropdown-item"href="<?php echo site_url('/cataloges-team') ?>">Equipos</a>
                         <a class="dropdown-item"href="<?php echo site_url('/cataloges-obre') ?>">Tipos de obras</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Reportes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item"href="<?php echo site_url('/administration/generateReportUsers') ?>" target="_blank">Reporte de usuarios</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash-reports') ?>">Reporte de caja chica</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-team') ?>">Reporte de obras</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-obre') ?>">Reporte de gastos</a>
+                </li>
             <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

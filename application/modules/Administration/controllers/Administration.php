@@ -342,5 +342,20 @@ class Administration extends MY_Controller {
 	}
 	/* ================================FILTERS SECTION END================================ */
 
+	/* ================================REPORTS SECTION BEGIN================================ */
+	public function generateReportUsers(){
+		if($this->session->userdata('logueado') == true){
+		$this->load->model('m_Administration');
+		$data['data'] = $this->m_Administration->bringUser();
+		$mpdf = new \Mpdf\Mpdf();
+		$html = $this->load->view('Administration/reporteUsuarios',$data,true);
+		$mpdf->WriteHTML($html);
+		$mpdf->Output();
+		}else{
+			$this->load->view('Administration/forbiden');
+		}
+	}
+	/* ================================REPORTS SECTION END================================ */
+
 
 }
