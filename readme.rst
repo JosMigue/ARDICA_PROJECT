@@ -21,9 +21,9 @@ give you chance to separate the controller, model and view in to some module so 
 Server Requirements
 *******************
 
-PHP version 5.6 or newer is recommended.
+For this project is recommended use PHP 7.3.0. . Newer version could goes wrong with it.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
+It should (maybe) work on 5.3.7 as well, but we strongly advise you NOT to run
 such old versions of PHP, because of potential security and performance
 issues, as well as missing features.
 
