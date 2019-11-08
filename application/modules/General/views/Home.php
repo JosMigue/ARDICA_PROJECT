@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="css/General/menuStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bulma-0.7.5/css/bulma.min.css">
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
 
@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
+                    <a  class="nav-link" onclick="openNav()">Herramientas</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -67,6 +67,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </li>
         </div>
     </nav>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="<?php echo site_url('/administration/generateReportUsers') ?>" target="_blank">Reporte de usuarios</a>
+        <a href="<?php echo site_url('/pettyCash-reports') ?>">Reporte de caja chica</a>
+        <a href="<?php echo site_url('/administration/generateReportObras') ?>" target="_blank">Reporte de obras o ubicaciones</a>
+        <a href="#">¿Hay algún problema?</a>
+    </div>
     <div id="titulo">
         <p id="subheader">Menú principal</p>
     </div>

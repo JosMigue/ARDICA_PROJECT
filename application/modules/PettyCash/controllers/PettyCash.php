@@ -293,6 +293,20 @@ class PettyCash extends MY_Controller {
 		}
 		echo $options;
 	}
+	public function getPettyCashSelect(){
+		$this->load->model("m_PettyCash");
+		$id = $this->input->post('id');
+		$pettyCash = $this->m_PettyCash->getPettyCashSelect($id);
+		if($pettyCash == '' || $pettyCash == null){
+			$options = '<option value="" selected >El usuario no cuenta con ninguna caja chica...</option>';
+		}else{
+			$options = '<option value="" selected >seleccionar...</option>';
+			foreach ($pettyCash as $caja) {
+				$options.='<option value="'.$caja->ID.'">'.$caja->numero.'</option>';
+			}
+		}
+		echo $options;
+	}
 
 	public function getPettyCashTwo(){
 		$this->load->model("m_PettyCash");
@@ -577,8 +591,26 @@ public function addConceptOnModal(){
 		$idPettyCash = $_POST['pettyCashSelect'];
 		$this->load->model('m_PettyCash');
 		$data = $this->m_PettyCash->getPettyCashReport($idPettyCash);
-		$mpdf = new \Mpdf\Mpdf();
+		$mpdfConfig = array(
+			'margin_top' => 30,     // 30mm not pixel
+		);
+		$mpdf = new \Mpdf\Mpdf($mpdfConfig);
 		$html = $this->load->view('PettyCash/reportPettyCash',$data,true);
+		$mpdf->SetHTMLHeader('
+		<table width="100%">
+			<tr>
+				<td width="50%" >Reporte de caja chica en plataforma</td>
+				<td width="50%" style="text-align: right;"><img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"></td>
+			</tr>
+		</table> <hr>');
+		$mpdf->SetHTMLFooter('
+		<table width="100%">
+			<tr>
+				<td width="33%">{DATE j-m-Y}</td>
+				<td width="33%" align="center">{PAGENO}/{nbpg}</td>
+				<td width="33%" style="text-align: right;">Reporte de caja chica y gastos</td>
+			</tr>
+		</table>');
 		$mpdf->WriteHTML($html);
 		$mpdf->Output();
 	}

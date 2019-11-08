@@ -285,6 +285,15 @@ function getPettyCash(){
                 ->get()
                 ->result();
 }
+
+function getPettyCashSelect($id){
+        return $this->db->select('*')
+                        ->from('caja_chica')
+                        ->where('encargado',$id)
+                        ->get()
+                        ->result();
+        
+}
 function getPettyCashReport($id){
         $result['data'] =  $this->db->select('*')
                 ->from('caja_chica')

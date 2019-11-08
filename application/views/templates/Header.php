@@ -105,8 +105,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"href="<?php echo site_url('/administration/generateReportUsers') ?>" target="_blank">Reporte de usuarios</a>
                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash-reports') ?>">Reporte de caja chica</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-team') ?>">Reporte de obras</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-obre') ?>">Reporte de gastos</a>
+                        <a class="dropdown-item"href="<?php echo site_url('/administration/generateReportObras') ?> " target="_blank">Reporte de obras</a>
                 </li>
             <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

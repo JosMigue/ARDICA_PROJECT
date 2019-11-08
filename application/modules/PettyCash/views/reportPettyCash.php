@@ -1,65 +1,78 @@
-    <div class="col-lg-12 table-responsive ancho_alto">
+    <style>
+    .fila {
+        color: black;
+        background-color:  #e6e6e6;
+    }
+    .tabla ,.fila, .columna {
+        border-collapse: collapse;
+        border: .1mm solid black;
+    }
+    </style>
+    
         <table  id="petty_Cash_Table"  class="table table-bordered text-center" >
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Número</th>
-                    <th scope="col">Fecha de incio</th>
-                    <th scope="col">Fecha de terminación</th>
-                    <th scope="col">Encargado</th>
-                    <th scope="col">Fecha de registro</th>
+                    <th scope="col"><h3>Caja chica</h3></th>
+                </tr>
+                <tr>
+                    <th class="fila" scope="col">ID</th>
+                    <th class="fila" scope="col">Número</th>
+                    <th class="fila" scope="col">Fecha de incio</th>
+                    <th class="fila" scope="col">Fecha de terminación</th>
+                    <th class="fila" scope="col">Encargado</th>
+                    <th class="fila" scope="col">Fecha de registro</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach($data as $datos){?>
             <tr>
-                <th scope="row"><?php echo $datos->ID?></th>
-                <td><?php echo $datos->numero?></td>
-                <td><?php echo $datos->fecha_inicio?></td>
-                <td><?php echo $datos->fecha_terminacion?></td>
-                <td><?php echo $datos->encargado?></td>
-                <td><?php echo $datos->fecha_registro?></td>
+                <th class="columna"><?php echo $datos->ID?></th>
+                <td class="columna" ><?php echo $datos->numero?></td>
+                <td class="columna" ><?php echo $datos->fecha_inicio?></td>
+                <td class="columna" ><?php echo $datos->fecha_terminacion?></td>
+                <td class="columna" ><?php echo $datos->encargado?></td>
+                <td class="columna" ><?php echo $datos->fecha_registro?></td>
             </tr>
             <?php }?>
             </tbody>
         </table>
-    </div>
-detalle
 
-    <div class="col-lg-12 table-responsive ancho_alto">
+    <div class="text-center">
+        <h3>Detalle</h3>
+    </div>
         <table  id="petty_Cash_Table-detail"  class="table table-bordered text-center" >
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">caja</th>
-                    <th scope="col">Ubicación</th>
-                    <th scope="col">Equipo</th>
-                    <th scope="col">Concepto del Pago</th>
-                    <th scope="col">Subtotal</th>
-                    <th scope="col">IVA</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Deducible</th>
-                    <th scope="col">Observaciónes</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">acciones</th>
+                    <th class="fila" scope="col">ID</th>
+                    <th class="fila" scope="col">caja</th>
+                    <th class="fila" scope="col">Ubicación</th>
+                    <th class="fila" scope="col">Equipo</th>
+                    <th class="fila" scope="col">Concepto del Pago</th>
+                    <th class="fila" scope="col">Subtotal</th>
+                    <th class="fila" scope="col">IVA</th>
+                    <th class="fila" scope="col">Total</th>
+                    <th class="fila" scope="col">Deducible</th>
+                    <th class="fila" scope="col">Observaciónes</th>
+                    <th class="fila" scope="col">Fecha</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach($detail as $detalle){?>
             <tr>
-                <th scope="row"><?php echo $detalle->ID?></th>
-                <td><?php echo $detalle->numero?></td>
-                <td><?php echo $detalle->ubicacion?></td>
-                <td><?php echo $detalle->equipo?></td>
-                <td><?php echo $detalle->concepto?></td>
-                <td><?php echo $detalle->subtotal?></td>
-                <td><?php echo $detalle->IVA?></td>
-                <td><?php echo $detalle->total?></td>
-                <td><?php echo $detalle->deducible?></td>
-                <td><?php echo $detalle->observacion?></td>
-                <td><?php echo $detalle->registro?></td>
+                <th class="columna"><?php echo $detalle->ID?></th>
+                <td class="columna" ><?php echo $detalle->numero?></td>
+                <td class="columna" ><?php echo $detalle->ubicacion?></td>
+                <td class="columna" ><?php echo $detalle->equipo?></td>
+                <td class="columna" ><?php echo $detalle->concepto?></td>
+                <td class="columna" ><?php echo $detalle->subtotal?></td>
+                <td class="columna" ><?php echo $detalle->IVA?></td>
+                <td class="columna" ><?php echo $detalle->total?></td>
+                <td class="columna" ><?php echo $detalle->deducible?></td>
+                <td class="columna" ><?php echo $detalle->observacion?></td>
+                <td class="columna" ><?php echo $detalle->registro?></td>
             </tr>
             <?php }?>
             </tbody>
         </table>
-    </div>
+
+

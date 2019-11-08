@@ -243,6 +243,17 @@ class Administration extends MY_Controller {
         $result = $this->m_Administration->search_obra();
 		echo json_encode($result);
 	}
+
+	function getAllUsersSelect(){
+		$this->load->model("m_Administration");
+		$tipos = $this->m_Administration->bringUser();
+		$select = '<option value="" selected >seleccionar...</option>';
+		foreach ($tipos as $tipo) {
+			$select.='<option value="'.$tipo->ID.'">'.$tipo->name.'</option>';
+		}
+
+		echo $select;
+	}
 	
 	/* ================================FILTERS SECTION BEGIN================================ */
 	function getAllUsers(){
@@ -347,8 +358,56 @@ class Administration extends MY_Controller {
 		if($this->session->userdata('logueado') == true){
 		$this->load->model('m_Administration');
 		$data['data'] = $this->m_Administration->bringUser();
-		$mpdf = new \Mpdf\Mpdf();
+		$mpdfConfig = array(
+			'margin_top' => 30,     // 30mm not pixel
+		);
+		$mpdf = new \Mpdf\Mpdf($mpdfConfig);
 		$html = $this->load->view('Administration/reporteUsuarios',$data,true);
+		$mpdf->SetHTMLHeader('
+		<table width="100%">
+			<tr>
+				<td width="50%" >Reporte de usuarios en plataforma</td>
+				<td width="50%" style="text-align: right;"><img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"></td>
+			</tr>
+		</table> <hr>');
+		$mpdf->SetHTMLFooter('
+		<table width="100%">
+			<tr>
+				<td width="33%">{DATE j-m-Y}</td>
+				<td width="33%" align="center">{PAGENO}/{nbpg}</td>
+				<td width="33%" style="text-align: right;">Reporte de usuarios</td>
+			</tr>
+		</table>');
+		$mpdf->WriteHTML($html);
+		$mpdf->Output();
+		}else{
+			$this->load->view('Administration/forbiden');
+		}
+	}
+	public function generateReportObras(){
+		if($this->session->userdata('logueado') == true){
+		$this->load->model('m_Administration');
+		$data['data'] = $this->m_Administration->bringObras();
+		$mpdfConfig = array(
+			'margin_top' => 30,     // 30mm not pixel
+		);
+		$mpdf = new \Mpdf\Mpdf($mpdfConfig);
+		$html = $this->load->view('Administration/reporteObras',$data,true);
+		$mpdf->SetHTMLHeader('
+		<table width="100%">
+			<tr>
+				<td width="50%" >Reporte de obras o ubicaciones en plataforma</td>
+				<td width="50%" style="text-align: right;"><img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"></td>
+			</tr>
+		</table> <hr>');
+		$mpdf->SetHTMLFooter('
+		<table width="100%">
+			<tr>
+				<td width="33%">{DATE j-m-Y}</td>
+				<td width="33%" align="center">{PAGENO}/{nbpg}</td>
+				<td width="33%" style="text-align: right;">Reporte de obras y ubicaciones</td>
+			</tr>
+		</table>');
 		$mpdf->WriteHTML($html);
 		$mpdf->Output();
 		}else{

@@ -4,10 +4,10 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         type: "POST",
-        url: "PettyCash/getPettyCash",
+        url: "Administration/getAllUsersSelect",
         success: function(response)
         {
-            $('#pettyCashSelect').html(response).fadeIn();
+            $('#pettyCashResponsableSelect').html(response).fadeIn();
         }
     });
 });
@@ -23,6 +23,22 @@ function generateReportDetails(pettyCash){
         },
         error:function(){
             alert("No");
+        }
+    });
+}
+
+function bringPettyCashOfUser(user){
+    var idUser = user.value;
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: "PettyCash/getPettyCashSelect",
+        data: {id:idUser},
+        success: function(response)
+        {
+            $('#pettyCashSelect').html(response).fadeIn();
         }
     });
 }
