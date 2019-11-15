@@ -4,26 +4,197 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Administration extends MY_Controller {
 	public function index()
 	{
-		$this->load->model("m_Administration");
-		$data['data'] = $this->m_Administration->bringUser();
-		$this->loadView("Administration/v_Administration",$data);
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalEditarUsuario");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("Files/modalUploadFiles");
+		if($this->checkUser()){
+			$this->load->model("m_Administration");
+			$data['data'] = $this->m_Administration->bringUser();
+			$header['header'] = $this->asignHeader();
+			$this->loadView("Administration/v_Administration",$data,$header);
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalEditarUsuario");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect('/');
+		}
 	}
 
 	public function obras()
 	{
-		$this->load->model("m_Administration");
-		$data['data'] = $this->m_Administration->bringObras();
-		$this->loadView("Administration/v_Administration_obras",$data);
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("Administration/modalEditarObra"); 
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("Files/modalUploadFiles");
+		if($this->checkUser()){
+			$this->load->model("m_Administration");
+			$data['data'] = $this->m_Administration->bringObras();
+			$header['header'] = $this->asignHeader();
+			$this->loadView("Administration/v_Administration_obras",$data,$header);
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Administration/modalEditarObra"); 
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect('/');
+		}
+	}
+
+	public function asignHeader(){
+		if($this->session->userdata('userType') == 1){
+			$header = '<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Administración
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="'. site_url("/administration").'">Lista de usuarios</a>
+				<button class="dropdown-item" id="button_add_user"  data-toggle="modal" onclick="resetModal()" data-target="#modalRegistro" >Registrar usuario</button>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="'. site_url("/administration.obras").'">Lista de obras</a>
+				<button class="dropdown-item" id="button_add_user" data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</button>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Caja chica
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
+				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
+				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
+				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
+				<a class="dropdown-item" href="#"></a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Archivos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="'. site_url("/files").'">Administrador de archivos</a>
+				<button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivo</button>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'. site_url("/cataloges-deductible").'">Tipo de deducible</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-concept").'">Conceptos</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-team").'">Equipos</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-obre").'">Tipos de obras</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Reportes
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'. site_url("/administration/generateReportUsers").'" target="_blank">Reporte de usuarios</a>
+				<a class="dropdown-item"href="'. site_url("/pettyCash-reports").'">Reporte de caja chica</a>
+				<a class="dropdown-item"href="'. site_url("/administration/generateReportObras").'" target="_blank">Reporte de obras</a>
+		</li>';
+		}
+
+		if($this->session->userdata('userType') == 2){
+			$header = '
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Caja chica
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
+				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
+				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
+				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
+				<a class="dropdown-item" href="#"></a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'. site_url("/cataloges-deductibl").'o de deducible</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-concept").'">Conceptos</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-team").'">Equipos</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-obre").'">Tipos de obras</a>
+		</li>';
+		}
+		if($this->session->userdata('userType') == 3){
+			$header = '
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Archivos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="'.site_url("/files").'">Administrador de archivos</a>
+				<button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivo</button>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'.site_url("/cataloges-deductible").'">Tipo de deducible</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-concept") .'">Conceptos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-team") .'">Equipos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-obre") .'">Tipos de obras</a>
+		</li>';
+		}
+		if($this->session->userdata('userType') == 4){
+			$header = '
+			<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Caja chica
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'.site_url("/pettyCash").'">Cajas chicas asignadas</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'.site_url("/cataloges-deductible").'">Tipo de deducible</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-concept").'">Conceptos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-team").'">Equipos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-obre").'">Tipos de obras</a>
+		</li>';
+		}
+		if($this->session->userdata('userType') == 5){
+			$header = '
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'.site_url("/cataloges-deductible").'">Tipo de deducible</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-concept").'">Conceptos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-team").'">Equipos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-obre").'">Tipos de obras</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Reportes
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'. site_url("/administration/generateReportUsers").'" target="_blank">Reporte de usuarios</a>
+				<a class="dropdown-item"href="'. site_url("/pettyCash-reports").'">Reporte de caja chica</a>
+				<a class="dropdown-item"href="'. site_url("/administration/generateReportObras").' " target="_blank">Reporte de obras</a>
+		<';
+		}
+
+		return $header;
 	}
 
 	public function saveUser(){
@@ -148,6 +319,17 @@ class Administration extends MY_Controller {
 		}
 
 		echo $algo;
+	}
+
+	public function getTypesUsers(){
+		$this->load->model("m_Administration");
+		$tipos = $this->m_Administration->usersTypes();
+		$roles  = '<option value="" selected >seleccionar...</option>';
+		foreach ($tipos as $tipo) {
+			$roles.='<option value="'.$tipo->ID.'">'.$tipo->nombre.'</option>';
+		}
+
+		echo $roles;
 	}
 
 	public function getObraData(){
@@ -295,6 +477,7 @@ class Administration extends MY_Controller {
 			$array['email']=$row->email;
 			$array['fechaRegistro']=$row->dateSave;
 			$array['lastLogin']=$row->timeStamp;
+			$array['rol']=$row->role;
 			$datos[]=$array; 
 		}
 		$json_data=array(
@@ -379,7 +562,7 @@ class Administration extends MY_Controller {
 			</tr>
 		</table>');
 		$mpdf->WriteHTML($html);
-		$mpdf->Output();
+		$mpdf->Output('Reporte de usuarios_'.date("d")."-".date("m")."-".date("Y").'.pdf', I);
 		}else{
 			$this->load->view('Administration/forbiden');
 		}
@@ -415,6 +598,12 @@ class Administration extends MY_Controller {
 		}
 	}
 	/* ================================REPORTS SECTION END================================ */
-
+	public function checkUser(){
+		if($this->session->userdata('userType') == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 }

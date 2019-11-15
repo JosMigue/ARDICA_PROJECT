@@ -178,9 +178,144 @@ class General extends MY_Controller {
 
   public function logueado() {
 	 if($this->session->userdata('logueado')){
-/* 		  $idUsuario=$this->session->userdata('id');
-		  $data['modulos']=$this->m_Login->getModulesPerfil($idUsuario);  */
-		  $data='';
+		 $data['data'] =  '<h1>No cuenta con menú</h1>';
+		if($this->session->userdata('userType')== 1){
+			$data['data'] = '<div class="row" >
+			<div class="col text-center">
+				<div class="contenedor" id="uno">
+					<a href="'.site_url("/administration").'">
+						<img class="icon" src="img/administrator-icon.png">
+						<p class="texto">Adminsitración</p>
+					</a>
+				</div>
+			</div>
+			<div class="col text-center" >
+				<div class="contenedor" id="dos">
+					<a href="'.site_url("/pettyCash").'">
+						<img class="icon" src="img/petty-cash-icon.png">
+						<p class="texto">Caja chica</p>
+					</a>
+				</div>
+			</div>
+			<div class="col text-center" >
+				<div class="contenedor" id="tres">
+					<a href="'.site_url("/files").'">
+						<img class="icon" src="img/file-icon.jpg">
+						<p class="texto">Archivos</p>
+					</a>
+				</div>
+			</div>
+		
+		  </div>
+		  <div class="row">
+		  <div class="col text-center" >
+				<div class="contenedor" id="cuatro">
+					<a href="'.site_url("/cataloges-deductible").'">
+						<img class="icon" src="img/catalogo_mini.png">
+						<p class="texto">Cátalogos</p>
+					</a>
+				</div>
+			</div>
+			<div class="col text-center" >
+				<div class="contenedor" id="cinco">
+					<a href="'.site_url("/pettyCash-reports").'">
+						<img class="icon" src="img/reporte-png.png">
+						<p class="texto">Reportes</p>
+					</a>
+				</div>
+			</div>
+			<div class="col">
+				
+			</div>
+		  </div>';
+		}
+		if($this->session->userdata('userType')== 3){
+			$data['data'] = '  <div class="row" >
+			<div class="col text-center">
+			</div>
+			<div class="col text-center">
+				<div class="contenedor" id="tres">
+					<a href="'.site_url("/files").'">
+						<img class="icon" src="img/file-icon.jpg">
+						<p class="texto">Archivos</p>
+					</a>
+				</div>
+			</div>
+			<div class="col text-center" >
+			</div>
+		  </div>
+		  <div class="row">
+		  <div class="col text-center">
+		  </div>
+		  <div class="col text-center" >
+		  	<div class="contenedor" id="cuatro">
+		  		<a href="'.site_url("/cataloges-deductible").'">
+			  		<img class="icon" src="img/catalogo_mini.png">
+			  		<p class="texto">Cátalogos</p>
+		  		</a>
+	  		</div>
+		  </div>
+		  <div class="col text-center">
+		  </div>
+		  </div>';
+		}
+		if($this->session->userdata('userType')== 4 || $this->session->userdata('userType')== 2 ){
+			$data['data'] = '  <div class="row" >
+			<div class="col text-center">
+			</div>
+			<div class="col text-center" >
+				<div class="contenedor" id="dos">
+					<a href="'.site_url("/pettyCash").'">
+						<img class="icon" src="img/petty-cash-icon.png">
+						<p class="texto">Caja chica</p>
+					</a>
+				</div>
+			</div>
+			<div class="col text-center" >
+			</div>
+		
+		  </div>
+		  <div class="row">
+		  <div class="col text-center" >
+
+			</div>
+			<div class="col text-center" >
+				<div class="contenedor" id="cuatro">
+					<a href="'.site_url("/cataloges-deductible").'">
+						<img class="icon" src="img/catalogo_mini.png">
+						<p class="texto">Cátalogos</p>
+					</a>
+				</div>
+			</div>
+			<div class="col">
+				
+			</div>
+		  </div>';
+		}
+		if($this->session->userdata('userType')== 5){
+			$data['data'] = '  <div class="row" >
+			<div class="col text-center">
+			</div>
+			<div class="col text-center">
+				<div class="contenedor" id="cinco">
+					<a href="'.site_url("/pettyCash-reports").'">
+						<img class="icon" src="img/reporte-png.png">
+						<p class="texto">Reportes</p>
+					</a>
+				</div>
+			</div>
+			<div class="col text-center" >
+			</div>
+		  </div>
+		  <div class="row">
+		  <div class="col text-center">
+		  </div>
+		  <div class="col text-center" >
+		  </div>
+		  <div class="col text-center">
+		  </div>
+		  </div>';
+		}
 		$this->loadHome('General/Home',$data); 
 
 	 }else{

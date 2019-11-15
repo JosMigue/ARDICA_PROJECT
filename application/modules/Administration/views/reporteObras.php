@@ -3,15 +3,18 @@
   color: black;
   background-color:  #e6e6e6;
 }
-.tabla ,.fila, .columna {
+
+.columna{
+    border: 1px solid black;
     border-collapse: collapse;
-  border: .1mm solid black;
+    text-align: center;
 }
- table{
+ .tabla{
+    border: 1px solid black;
+    border-collapse: collapse;
      width: 100%;
  }
 </style>
-<div class="">
         <table class="tabla" >
             <thead>
                 <tr>
@@ -36,4 +39,3 @@
             <?php }?>
             </tbody>
         </table>
-    </div>

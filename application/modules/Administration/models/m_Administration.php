@@ -49,6 +49,13 @@ class M_Administration extends CI_Model {
         }
     }
 
+    function usersTypes(){
+        return $this->db->select('*')
+                    ->from('roles_usuarios')
+                    ->get()
+                    ->result();
+    }
+
     function saveUser($obj){
         $opciones = [
             'cost' => 12,
@@ -61,7 +68,7 @@ class M_Administration extends CI_Model {
             'phone'=>$obj["telefono"],
             'email' =>$obj["email"],
             'status'=>1,
-            'typeUser'=>0
+            'typeUser'=>$obj["rol"]
           );
         if($this->db->insert('users', $data)){
             $log = Array(
@@ -285,11 +292,12 @@ class M_Administration extends CI_Model {
 
     /*This is the section for filters functions*/
     function getAllUsers($start,$length,$array_like,$array_where){
-        $result['data'] = $this->db->select('*')
-                        ->from('users')
+        $result['data'] = $this->db->select('U.status, U.ID, U.name, U.nickname, U.phone, U.email, U.dateSave, U.timeStamp, RU.nombre as role')
+                        ->from('users U')
                         ->like($array_like, 'after')
                         ->where($array_where)
                         ->limit($length,$start)
+                        ->join('roles_usuarios RU','RU.ID = U.typeUser')
                         ->get()
                         ->result();
         $result['total']=$this->db->select("count(1) as total")

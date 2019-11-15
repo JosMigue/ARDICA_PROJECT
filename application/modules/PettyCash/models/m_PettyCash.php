@@ -295,10 +295,11 @@ function getPettyCashSelect($id){
         
 }
 function getPettyCashReport($id){
-        $result['data'] =  $this->db->select('*')
-                ->from('caja_chica')
+        $result['data'] =  $this->db->select('CC.ID, CC.numero, CC.fecha_inicio, CC.fecha_terminacion, U.name as encargado, CC.fecha_registro')
+                ->from('caja_chica CC')
                 ->where('encargado',$this->session->userdata('idUser'))
-                ->where('ID',$id)
+                ->join('users U','CC.encargado = U.ID')
+                ->where('CC.ID',$id)
                 ->get()
                 ->result();
 

@@ -54,6 +54,7 @@
                     <th scope="col">Correo</th>
                     <th scope="col">Fecha de registro</th>
                     <th scope="col">último acceso</th>
+                    <th scope="col">Rol que desempeña</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>

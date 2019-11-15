@@ -9,7 +9,7 @@
 <body>
   <h1 class="text-center">Generar reporte de caja chica</h1>
 <div class="shadow p-3 mb-5 bg-white rounded" style="width: 80%; margin: auto; margin-top: 20px;">
-<form  action="pettyCash/generateReportePettyCash" method="POST">
+<form  action="pettyCash/generateReportePettyCash" target="_blank" method="POST">
   <div class="form-group">
     <label for="pettyCashSelect">Encargado</label>
     <select class="form-control" name="pettyCashResponsableSelect" onchange="bringPettyCashOfUser(this)"id="pettyCashResponsableSelect" required></select>

@@ -44,7 +44,8 @@
                 {data: "phone"},
                 {data: "email"},
                 {data: "fechaRegistro"},
-                {data: "lastLogin"}
+                {data: "lastLogin"},
+                {data: "rol"}
               ], 
               "lengthMenu": [[50,100,200], [50,100,200]],
               "columnDefs": [{ className: "contador", "targets": [ 1 ] }, 
@@ -71,7 +72,7 @@
                           return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'
                         }
                               },
-                              "targets": 9
+                              "targets": 10
                       },
                       {"render": function ( data, type, row ) {
                        if(row.phone == null || row.phone == ''){
@@ -152,7 +153,9 @@ $('#btnfiltrar').click(function(){
                 {data: "phone"},
                 {data: "email"},
                 {data: "fechaRegistro"},
-                {data: "lastLogin"}
+                {data: "lastLogin"},
+                {data: "rol"}
+                
               ], 
               "lengthMenu": [[50,100,200], [50,100,200]],
               "columnDefs": [{ className: "contador", "targets": [ 1 ] }, 
@@ -179,7 +182,7 @@ $('#btnfiltrar').click(function(){
                           return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'
                         }
                               },
-                              "targets": 9
+                              "targets": 10
                       },
                       {"render": function ( data, type, row ) {
                        if(row.phone == null || row.phone == ''){
@@ -263,7 +266,8 @@ $('#btnfiltrar').click(function(){
               {data: "phone"},
               {data: "email"},
               {data: "fechaRegistro"},
-              {data: "lastLogin"}
+              {data: "lastLogin"},
+              {data: "rol"}
             ], 
             "lengthMenu": [[50,100,200], [50,100,200]],
             "columnDefs": [{ className: "contador", "targets": [ 1 ] }, 
@@ -290,7 +294,7 @@ $('#btnfiltrar').click(function(){
                         return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'
                       }
                             },
-                            "targets": 9
+                            "targets": 10
                     },
                     {"render": function ( data, type, row ) {
                      if(row.phone == null || row.phone == ''){

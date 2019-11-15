@@ -23,8 +23,8 @@ class MY_Controller extends MX_Controller
 		$this->form_validation->CI =& $this;
 	}
 
-	function loadView($view, $data){
-		$this->load->view("templates/Header");
+	function loadView($view, $data, $header){
+		$this->load->view("templates/Header",$header);
 		$this->load->view($view, $data);
 		$this->load->view("templates/Footer");
 

@@ -10,7 +10,8 @@ $(document).ready(function () {
             user: { required:true},
             email: { required:false},
             password: {required:true, maxlength:20, minlength:8},
-            address: { required:false, minlength:10}
+            address: { required:false, minlength:10},
+            rol: {required:true}
         },
         messages: {
             firstName: {
@@ -34,6 +35,9 @@ $(document).ready(function () {
                 required: msg,
                 minlength: "El telefono debe contra con 10 digitos"
             },
+            rol:{
+                required: msg,
+            },
 
             user: msg,
         },
@@ -46,6 +50,7 @@ $(document).ready(function () {
             obj.user = $('#user').val();
             obj.contrasena = $('#password').val();
             obj.telefono = $('#address').val();
+            obj.rol = $('#rol').val();
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -180,6 +185,18 @@ $(document).ready(function () {
     });
 
     /*============================= FILTROS SECTION END============================= */
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: "Administration/getTypesUsers",
+        success: function(response)
+        {
+            $('#rol').html(response).fadeIn();
+        }
+    });
     });
 
 
@@ -338,8 +355,7 @@ $("#destroySession").click(function(){
                 type: "POST",
                 url: "General/cerrar_sesion",
                 success: function (response) {
-                    location.reload('/');
-                    $("#sessionCloseAlert").show();
+                    location.reload('/home');
                 },
                 error:function(jqXHR, textStatus, errorThrown){
                     if (jqXHR.status === 0) {
@@ -387,3 +403,5 @@ $("#destroySession").click(function(){
         }
       })
 });
+
+

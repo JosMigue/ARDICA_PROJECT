@@ -4,73 +4,108 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class PettyCash extends MY_Controller {
 	public function index()
 	{
-		$this->loadView("PettyCash/v_Petty_Cash",$data=null);
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("PettyCash/modal_RegistrarGastoCaja");
-		$this->load->view("PettyCash/modal_Editar_Caja");
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("Files/modalUploadFiles");
+		if($this->checkUser()){
+			$header['header'] = $this->asignHeader();
+			$this->loadView("PettyCash/v_Petty_Cash",$data=null,$header);
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("PettyCash/modal_RegistrarGastoCaja");
+			$this->load->view("PettyCash/modal_Editar_Caja");
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect ('/');
+		}
 	}
 
 	public function detailPettyCash()
 	{
-		$this->loadView("PettyCash/v_Petty_Cash-Gastos",$data=null);
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("PettyCash/modal_RegistrarGastoCaja");
-		$this->load->view("PettyCash/modal_Editar_Caja");
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("Files/modalUploadFiles");
+		if($this->checkUser()){
+			$header['header'] = $this->asignHeader();
+			$this->loadView("PettyCash/v_Petty_Cash-Gastos",$data=null,$header);
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("PettyCash/modal_RegistrarGastoCaja");
+			$this->load->view("PettyCash/modal_Editar_Caja");
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect ('/');
+		}
 	}
 
 	public function reportPettyCash()
 	{
-		$this->loadView("PettyCash/v_generar_reporte",$data=null);
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("Files/modalUploadFiles");
+		if( $this->session->userdata('userType') == 5 || $this->session->userdata('userType') == 1){
+			$header['header'] = $this->asignHeader();
+			$this->loadView("PettyCash/v_generar_reporte",$data=null,$header);
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect ('/');
+		}	
 	}
 
 	public function catalogo_deducible(){
-		$this->load->model("m_PettyCash");
-		$data["data"] = $this->m_PettyCash->getDeductibles();
-		$this->loadView("PettyCash/v_tiposDeducible",$data);
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("Files/modalUploadFiles");
+		if($this->session->userdata('logueado')){
+			$this->load->model("m_PettyCash");
+			$header['header'] = $this->asignHeader();
+			$data["data"] = $this->m_PettyCash->getDeductibles();
+			$this->loadView("PettyCash/v_tiposDeducible",$data,$header);
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect ('/');
+		}
 	}
 
 	public function catalogo_concepto(){
-		$this->load->model("m_PettyCash");
-		$data["data"] = $this->m_PettyCash->getConcepts();
-		$this->loadView("PettyCash/v_conceptos",$data);
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("Files/modalUploadFiles");
+		if($this->session->userdata('logueado')){
+			$this->load->model("m_PettyCash");
+			$header['header'] = $this->asignHeader();
+			$data["data"] = $this->m_PettyCash->getConcepts();
+			$this->loadView("PettyCash/v_conceptos",$data,$header);
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect ('/');
+		}
 	}
 
 	public function catalogo_equipo(){
-		$this->load->model("m_PettyCash");
-		$data["data"] = $this->m_PettyCash->getTeams();
-		$this->loadView("PettyCash/v_equipo",$data);
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("Files/modalUploadFiles");
+		if($this->session->userdata('logueado')){
+			$this->load->model("m_PettyCash");
+			$header['header'] = $this->asignHeader();
+			$data["data"] = $this->m_PettyCash->getTeams();
+			$this->loadView("PettyCash/v_equipo",$data,$header);
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect ('/');
+		}
 	}
 
 	public function catalogo_obra(){
-		$this->load->model("m_PettyCash");
-		$data["data"] = $this->m_PettyCash->getObresTypes();
-		$this->loadView("PettyCash/v_tipos_obras",$data);
-		$this->load->view("PettyCash/modal_Registro_Caja");
-		$this->load->view("Administration/modalRegistro_usuarios");
-		$this->load->view("Administration/modalRegistro_obras");
-		$this->load->view("Files/modalUploadFiles");
+		if($this->session->userdata('logueado')){
+			$this->load->model("m_PettyCash");
+			$header['header'] = $this->asignHeader();
+			$data["data"] = $this->m_PettyCash->getObresTypes();
+			$this->loadView("PettyCash/v_tipos_obras",$data,$header);
+			$this->load->view("PettyCash/modal_Registro_Caja");
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect ('/');
+		}
 	}
 
 	public function getLastNumerOfUser(){
@@ -79,7 +114,7 @@ class PettyCash extends MY_Controller {
 			$response = $this->m_PettyCash->getLastNumerOfUser();
 			echo json_encode($response);
 		}else{
-			redirect("/Administration");
+			redirect("/");
 		}
 	}
 
@@ -588,33 +623,207 @@ public function addConceptOnModal(){
 	}
 
 	public function generateReportePettyCash(){
-		$idPettyCash = $_POST['pettyCashSelect'];
-		$this->load->model('m_PettyCash');
-		$data = $this->m_PettyCash->getPettyCashReport($idPettyCash);
-		$mpdfConfig = array(
-			'margin_top' => 30,     // 30mm not pixel
-		);
-		$mpdf = new \Mpdf\Mpdf($mpdfConfig);
-		$html = $this->load->view('PettyCash/reportPettyCash',$data,true);
-		$mpdf->SetHTMLHeader('
-		<table width="100%">
-			<tr>
-				<td width="50%" >Reporte de caja chica en plataforma</td>
-				<td width="50%" style="text-align: right;"><img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"></td>
-			</tr>
-		</table> <hr>');
-		$mpdf->SetHTMLFooter('
-		<table width="100%">
-			<tr>
-				<td width="33%">{DATE j-m-Y}</td>
-				<td width="33%" align="center">{PAGENO}/{nbpg}</td>
-				<td width="33%" style="text-align: right;">Reporte de caja chica y gastos</td>
-			</tr>
-		</table>');
-		$mpdf->WriteHTML($html);
-		$mpdf->Output();
+		if($this->session->userdata('userType') == 5 || $this->session->userdata('userType') == 1){
+			$idPettyCash = $_POST['pettyCashSelect'];
+			$this->load->model('m_PettyCash');
+			$data = $this->m_PettyCash->getPettyCashReport($idPettyCash);
+			$mpdfConfig = array(
+				'margin_top' => 30,     // 30mm not pixel
+			);
+			$mpdf = new \Mpdf\Mpdf($mpdfConfig);
+			$html = $this->load->view('PettyCash/reportPettyCash',$data,true);
+			$mpdf->SetHTMLHeader('
+				<table width="100%">
+					<tr>
+						<td width="50%" >Reporte de caja chica en plataforma</td>
+						<td width="50%" style="text-align: right;"><img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"></td>
+					</tr>
+				</table> <hr>');
+			$mpdf->SetHTMLFooter('
+				<table width="100%">
+					<tr>
+						<td width="33%">{DATE j-m-Y}</td>
+						<td width="33%" align="center">{PAGENO}/{nbpg}</td>
+						<td width="33%" style="text-align: right;">Reporte de caja chica y gastos</td>
+					</tr>
+				</table>');
+			$mpdf->WriteHTML($html);
+			$mpdf->Output('Reporte de caja chica_'.date("d")."-".date("m")."-".date("Y").'.pdf',"I");
+		}else{
+			$this->load->view('PettyCash/forbiden');
+		}
 	}
 	/*======================REPORTS======================*/
-	
+	public function checkUser(){
+		if($this->session->userdata('userType') == 2 || $this->session->userdata('userType') == 4 || $this->session->userdata('userType') == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+	public function asignHeader(){
+		if($this->session->userdata('userType') == 1){
+			$header = '<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Administración
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="'. site_url("/administration").'">Lista de usuarios</a>
+				<button class="dropdown-item" id="button_add_user"  data-toggle="modal" onclick="resetModal()" data-target="#modalRegistro" >Registrar usuario</button>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="'. site_url("/administration.obras").'">Lista de obras</a>
+				<button class="dropdown-item" id="button_add_user" data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</button>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Caja chica
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
+				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
+				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
+				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
+				<a class="dropdown-item" href="#"></a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Archivos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="'. site_url("/files").'">Administrador de archivos</a>
+				<button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivo</button>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'. site_url("/cataloges-deductible").'">Tipo de deducible</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-concept").'">Conceptos</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-team").'">Equipos</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-obre").'">Tipos de obras</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Reportes
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'. site_url("/administration/generateReportUsers").'" target="_blank">Reporte de usuarios</a>
+				<a class="dropdown-item"href="'. site_url("/pettyCash-reports").'">Reporte de caja chica</a>
+				<a class="dropdown-item"href="'. site_url("/administration/generateReportObras").'" target="_blank">Reporte de obras</a>
+		</li>';
+		}
+
+		if($this->session->userdata('userType') == 2){
+			$header = '
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Caja chica
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
+				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
+				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
+				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
+				<a class="dropdown-item" href="#"></a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'. site_url("/cataloges-deductibl").'o de deducible</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-concept").'">Conceptos</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-team").'">Equipos</a>
+				<a class="dropdown-item"href="'. site_url("/cataloges-obre").'">Tipos de obras</a>
+		</li>';
+		}
+		if($this->session->userdata('userType') == 3){
+			$header = '
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Archivos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="'.site_url("/files").'">Administrador de archivos</a>
+				<button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivo</button>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'.site_url("/cataloges-deductible").'">Tipo de deducible</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-concept") .'">Conceptos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-team") .'">Equipos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-obre") .'">Tipos de obras</a>
+		</li>';
+		}
+		if($this->session->userdata('userType') == 4){
+			$header = '
+			<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Caja chica
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'.site_url("/pettyCash").'">Cajas chicas asignadas</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'.site_url("/cataloges-deductible").'">Tipo de deducible</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-concept").'">Conceptos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-team").'">Equipos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-obre").'">Tipos de obras</a>
+		</li>';
+		}
+		if($this->session->userdata('userType') == 5){
+			$header = '
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catálogos
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'.site_url("/cataloges-deductible").'">Tipo de deducible</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-concept").'">Conceptos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-team").'">Equipos</a>
+				<a class="dropdown-item"href="'.site_url("/cataloges-obre").'">Tipos de obras</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Reportes
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item"href="'. site_url("/administration/generateReportUsers").'" target="_blank">Reporte de usuarios</a>
+				<a class="dropdown-item"href="'. site_url("/pettyCash-reports").'">Reporte de caja chica</a>
+				<a class="dropdown-item"href="'. site_url("/administration/generateReportObras").' " target="_blank">Reporte de obras</a>
+		';
+		}
+
+		return $header;
+	}
+
+
 }
 

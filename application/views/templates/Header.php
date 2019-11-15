@@ -52,61 +52,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Administración
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo site_url('/administration')?>">Lista de usuarios</a>
-                        <button class="dropdown-item" id="button_add_user"  data-toggle="modal" onclick="resetModal()" data-target="#modalRegistro" >Registrar usuario</button>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?php echo site_url('/administration.obras')?>">Lista de obras</a>
-                        <button class="dropdown-item" id="button_add_user" data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</button>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Caja chica
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Cajas chicas registradas</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash-detail') ?>">Agregar conceptos a caja chica</a>
-                         <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Autorizar personas</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash') ?>">Reportes</a>
-                        <a class="dropdown-item" href="#"></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Archivos
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo site_url('/files')?>">Administrador de archivos</a>
-                        <button class="dropdown-item" data-toggle="modal" data-target="#modalSubirArchivo">Subir archivo</button>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Catálogos
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-deductible') ?>">Tipo de deducible</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-concept') ?>">Conceptos</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-team') ?>">Equipos</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/cataloges-obre') ?>">Tipos de obras</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Reportes
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item"href="<?php echo site_url('/administration/generateReportUsers') ?>" target="_blank">Reporte de usuarios</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/pettyCash-reports') ?>">Reporte de caja chica</a>
-                        <a class="dropdown-item"href="<?php echo site_url('/administration/generateReportObras') ?> " target="_blank">Reporte de obras</a>
-                </li>
+                    <?php echo $header?>
             <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

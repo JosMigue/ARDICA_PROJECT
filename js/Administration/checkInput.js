@@ -113,6 +113,12 @@ function checkEmail(obj) {
     }
   }
 
+  function checkSelectRol(rol){
+    if(rol.value == 1){
+      alertify.warning('Advertencia: Ha elegido el rol de administardor, recuerde que este usuarios tendrá los mismos privilegios que usted');
+    }
+  }
+
   function checkEmailEdit(obj) {
     var inputText = obj.value;
     emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;

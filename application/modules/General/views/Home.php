@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body>
     <div class="line">
-        <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30">
+        <img  src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30">
     </div>
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="<?php echo site_url('/') ?>">
@@ -40,9 +40,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a  class="nav-link" onclick="openNav()">Herramientas</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -67,49 +64,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </li>
         </div>
     </nav>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="<?php echo site_url('/administration/generateReportUsers') ?>" target="_blank">Reporte de usuarios</a>
-        <a href="<?php echo site_url('/pettyCash-reports') ?>">Reporte de caja chica</a>
-        <a href="<?php echo site_url('/administration/generateReportObras') ?>" target="_blank">Reporte de obras o ubicaciones</a>
-        <a href="#">¿Hay algún problema?</a>
-    </div>
-    <div id="titulo">
-        <p id="subheader">Menú principal</p>
-    </div>
     <!--============Menu Options start ============-->
-    <div class="menu-options">
-    <div class="columns is-variable bd-klmn-columns is-3">
-      <div class="column is-4" id="button_menu">
-        <div class="bd-notification is-primary has-text-centered">
-        <div class="contenedor" id="uno">
-            <a href="<?php echo site_url('/administration') ?>">
-                <img class="icon" src="img/Icons/Admin_Icon.png">
-                <p class="texto">Adminsitración</p>
-            </a>
-        </div>
-        </div>
-      </div>
-      <div class="column is-4" id="button_menu">
-        <div class="bd-notification is-primary has-text-centered">
-        <div class="contenedor" id="dos">
-            <a href="<?php echo site_url('/pettyCash')?>">
-            <img class="icon" src="img/Icons/Petty_Cash_Icon.png">
-            <p class="texto">Caja chica</p>
-        </div>
-        </div>
-      </div>
-      <div class="column is-4" id="button_menu">
-        <div class="bd-notification is-primary has-text-centered">
-        <div class="contenedor" id="tres">
-        <a href="<?php echo site_url('/files')?>">
-            <img class="icon" src="img/Icons/Files_Icon.png">
-            <p class="texto">Archivos</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    </div>
+
+    <?php echo $data?>
+ 
+
+
+
+
     <!--============Menu Options end ============-->
     <!-- Footer -->
     <footer class="page-footer font-small blue">

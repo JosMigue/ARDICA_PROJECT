@@ -6,7 +6,7 @@
   <span class="bg-403">403</span>
   <div class="text">
     <span class="hero-text"></span>
-    <span class="msg">No puedo <span>dejarte</span> entrar.</span>
+    <span class="msg">Acceso <span>restringido</span> para un usuario desconocido.</span>
     <span class="support">
       <span>¿Hay algún error?</span>
       <a href="#">Contacta al soporte técnico</a>

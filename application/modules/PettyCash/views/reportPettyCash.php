@@ -3,17 +3,15 @@
         color: black;
         background-color:  #e6e6e6;
     }
-    .tabla ,.fila, .columna {
-        border-collapse: collapse;
-        border: .1mm solid black;
+    
+    table{
+    border-collapse: collapse;
+     width: 100%;
     }
     </style>
     
-        <table  id="petty_Cash_Table"  class="table table-bordered text-center" >
+        <table  id="petty_Cash_Table"  border="1" >
             <thead class="thead-dark">
-                <tr>
-                    <th scope="col"><h3>Caja chica</h3></th>
-                </tr>
                 <tr>
                     <th class="fila" scope="col">ID</th>
                     <th class="fila" scope="col">Número</th>
@@ -40,7 +38,7 @@
     <div class="text-center">
         <h3>Detalle</h3>
     </div>
-        <table  id="petty_Cash_Table-detail"  class="table table-bordered text-center" >
+        <table  id="petty_Cash_Table-detail" border="1"  class="table table-bordered text-center" >
             <thead class="thead-dark">
                 <tr>
                     <th class="fila" scope="col">ID</th>
