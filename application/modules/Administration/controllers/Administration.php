@@ -58,7 +58,6 @@ class Administration extends MY_Controller {
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
-				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
 				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
@@ -106,7 +105,6 @@ class Administration extends MY_Controller {
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
-				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
 				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>

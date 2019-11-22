@@ -625,8 +625,9 @@ public function addConceptOnModal(){
 	public function generateReportePettyCash(){
 		if($this->session->userdata('userType') == 5 || $this->session->userdata('userType') == 1){
 			$idPettyCash = $_POST['pettyCashSelect'];
+			$responsableId = $_POST['pettyCashResponsableSelect'];
 			$this->load->model('m_PettyCash');
-			$data = $this->m_PettyCash->getPettyCashReport($idPettyCash);
+			$data = $this->m_PettyCash->getPettyCashReport($idPettyCash,$responsableId);
 			$mpdfConfig = array(
 				'margin_top' => 30,     // 30mm not pixel
 			);
@@ -685,7 +686,6 @@ public function addConceptOnModal(){
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
-				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
 				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
@@ -733,7 +733,6 @@ public function addConceptOnModal(){
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
-				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
 				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
@@ -745,10 +744,10 @@ public function addConceptOnModal(){
 				Catálogos
 			</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				<a class="dropdown-item"href="'. site_url("/cataloges-deductibl").'o de deducible</a>
-				<a class="dropdown-item"href="'. site_url("/cataloges-concept").'">Conceptos</a>
-				<a class="dropdown-item"href="'. site_url("/cataloges-team").'">Equipos</a>
-				<a class="dropdown-item"href="'. site_url("/cataloges-obre").'">Tipos de obras</a>
+			<a class="dropdown-item"href="'. site_url("/cataloges-deductible").'">Tipo de deducible</a>
+			<a class="dropdown-item"href="'. site_url("/cataloges-concept").'">Conceptos</a>
+			<a class="dropdown-item"href="'. site_url("/cataloges-team").'">Equipos</a>
+			<a class="dropdown-item"href="'. site_url("/cataloges-obre").'">Tipos de obras</a>
 		</li>';
 		}
 		if($this->session->userdata('userType') == 3){

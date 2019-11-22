@@ -5,7 +5,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       lo que evitará que en foturas modificaciones  (en el caso del uso del Chrome) no será necesario limpiar la cache 
       una vez que el sistema esté en producción */
       $cacheSaver =  new DateTime();
-      
+      $rol  =  array(
+        "1" => 'Administrador',
+        "2" => 'Caja chica',
+        "3" => 'Archivos',
+        "4" => 'Capturador de gastos',
+        "5" => 'Reportes'   
+    );
 ?>
 
 <!DOCTYPE html>
@@ -16,10 +22,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Menú principal</title>
-    <link rel="stylesheet" href="css/General/menuStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bulma-0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/General/menuStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
 
 </head>
 
@@ -58,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     aria-haspopup="true" aria-expanded="false" v-pre>
                     <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" id="destroySession">Cerrar Sesión </a>
                 </div>
             </li>

@@ -4,10 +4,17 @@
       lo que evitará que en foturas modificaciones  (en el caso del uso del Chrome) no será necesario limpiar la cache 
       una vez que el sistema esté en producción */
       $cacheSaver =  new DateTime();
-      if($this->session->userData('logueado')==False){
+      if($this->session->userdata('logueado')==False){
         header('Location: /ARDICA');
         exit;
     }
+    $rol  =  array(
+        "1" => 'Administrador',
+        "2" => 'Caja chica',
+        "3" => 'Archivos',
+        "4" => 'Capturador de gastos',
+        "5" => 'Reportes'   
+    );
       ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -53,15 +60,17 @@
                     <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                     <?php echo $header?>
-            <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            </ul>
+            <ul class="navbar-nav justify-content-end">
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" id="destroySession">Cerrar Sesión</a>
-                    </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" id="destroySession">Cerrar Sesión</a>
+                        </div>
+                </li>
             </ul>
-            </li>
         </div>
     </nav>
+    <p class="text-right" style="margin-right: 50px;" >Usted ha ingresado como: <?php echo $rol[$this->session->userdata('userType')]; ?></p>

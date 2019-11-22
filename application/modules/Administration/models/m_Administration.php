@@ -298,6 +298,7 @@ class M_Administration extends CI_Model {
                         ->where($array_where)
                         ->limit($length,$start)
                         ->join('roles_usuarios RU','RU.ID = U.typeUser')
+                        ->order_by('U.ID')
                         ->get()
                         ->result();
         $result['total']=$this->db->select("count(1) as total")

@@ -311,6 +311,12 @@ class General extends MY_Controller {
 		  <div class="col text-center">
 		  </div>
 		  <div class="col text-center" >
+		  	<div class="contenedor" id="cuatro">
+		  		<a href="'.site_url("/cataloges-deductible").'">
+			  		<img class="icon" src="img/catalogo_mini.png">
+			  		<p class="texto">Cátalogos</p>
+		  		</a>
+	  		</div>
 		  </div>
 		  <div class="col text-center">
 		  </div>

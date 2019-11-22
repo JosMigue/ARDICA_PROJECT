@@ -66,7 +66,9 @@
                               "targets": 0
                       },
                       {"render": function ( data, type, row ) {
-                        if(row.status == 1){
+                        if(row.status == 1 && row.rol == 'Administrador'){
+                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>'
+                        }else if(row.status == 1){
                           return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">clear</i></button>'
                         }else{
                           return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'
@@ -176,7 +178,9 @@ $('#btnfiltrar').click(function(){
                               "targets": 0
                       },
                       {"render": function ( data, type, row ) {
-                        if(row.status == 1){
+                        if(row.status == 1 && row.rol == 'Administrador'){
+                          return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>'
+                        }else if(row.status == 1){
                           return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">clear</i></button>'
                         }else{
                           return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'
@@ -288,7 +292,9 @@ $('#btnfiltrar').click(function(){
                             "targets": 0
                     },
                     {"render": function ( data, type, row ) {
-                      if(row.status == 1){
+                      if(row.status == 1 && row.rol == 'Administrador'){
+                        return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>'
+                      }else if(row.status == 1){
                         return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="Eliminar_usurario(this)"class="btn btn-danger" value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">clear</i></button>'
                       }else{
                         return '<button class="btn btn-warning" value="'+row.Id_db+'" onclick="bringDataUser(this)"><i class="material-icons">create</i></button>   <button onclick="habilitarUsuario(this)"class="btn btn-success"  value="'+row.Id_db+'" name="'+row.name+'"><i class="material-icons">check</i></button>'

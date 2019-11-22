@@ -294,10 +294,9 @@ function getPettyCashSelect($id){
                         ->result();
         
 }
-function getPettyCashReport($id){
+function getPettyCashReport($id,$resposable){
         $result['data'] =  $this->db->select('CC.ID, CC.numero, CC.fecha_inicio, CC.fecha_terminacion, U.name as encargado, CC.fecha_registro')
                 ->from('caja_chica CC')
-                ->where('encargado',$this->session->userdata('idUser'))
                 ->join('users U','CC.encargado = U.ID')
                 ->where('CC.ID',$id)
                 ->get()
@@ -311,7 +310,7 @@ function getPettyCashReport($id){
                 JOIN equipo  E ON E.ID = DCC.equipo 
                 JOIN caja_chica CC ON CC.ID = DCC.caja_chica_ID 
                 WHERE DCC.caja_chica_ID IN (select ID from caja_chica where encargado = ? )";                
-        $result['detail'] = $this->db->query($consult,$this->session->userdata('idUser'))->result();                       
+        $result['detail'] = $this->db->query($consult,$resposable)->result();                       
 
         return $result;
 }

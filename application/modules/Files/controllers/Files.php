@@ -4,12 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Files extends MY_Controller {
 	public function index()
 	{	
-		$this->load->model("m_Files");
-		$data['data'] = $this->m_Files->BringFiles();
-		$header['header'] = $this->asignHeader();
-		$this->loadView("Files/v_Files",$data,$header);
-		$this->load->view("Files/modalUploadFiles");
-		$this->load->view("Files/previewFile");
+		if($this->checkUser()){
+			$this->load->model("m_Files");
+			$data['data'] = $this->m_Files->BringFiles();
+			$header['header'] = $this->asignHeader();
+			$this->loadView("Files/v_Files",$data,$header);
+			$this->load->view("Files/modalUploadFiles");
+			$this->load->view("Files/previewFile");
+		}else{
+			redirect('/');
+		}
 	}
 
 	function fileStore()  
@@ -63,7 +67,6 @@ class Files extends MY_Controller {
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
-				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
 				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
@@ -111,7 +114,6 @@ class Files extends MY_Controller {
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 				<button class="dropdown-item" id="btnAddPettyCash">Registra caja chica</button>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Cajas chicas registradas</a>
-				<a class="dropdown-item"href="'. site_url("/pettyCash-detail").'">Agregar conceptos a caja chica</a>
 				 <a class="dropdown-item"href="'. site_url("/pettyCash").'">Autorizar personas</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item"href="'. site_url("/pettyCash").'">Reportes</a>
@@ -200,6 +202,14 @@ class Files extends MY_Controller {
 		}
 
 		return $header;
+	}
+
+	public function checkUser(){
+		if($this->session->userdata('userType') == 3 || $this->session->userdata('userType') == 1){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }
