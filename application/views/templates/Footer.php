@@ -5,7 +5,7 @@
       una vez que el sistema esté en producción */
       $cacheSaver =  new DateTime();
       ?>
-<!-- <script type="text/javascript" src="assets/Bootstrap/js/jquery-3.3.1.slim.min.js"></script> -->
+
 <script type="text/javascript" src="assets/jQuery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/Bootstrap/js/popper.min.js"></script>

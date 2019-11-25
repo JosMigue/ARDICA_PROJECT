@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="container">
+            <div class="">
             <div class="alert alert-danger" id="warning-alert-files" role="alert" style="display: none; margin-top:10px;"> <p style="text-align: justify;">Los tipos permitidos en el sistema son imágenes (JPG, PNG, JPEG) y documentos de texto (docx, doc, xlsx, xls, pdf).</p> </div>
                     <form method="post" id="upload_form" enctype="multipart/form-data">
                         <div class="text-center">

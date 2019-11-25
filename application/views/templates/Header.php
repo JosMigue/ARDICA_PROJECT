@@ -45,32 +45,23 @@
         <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30">
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
-<!--         <a class="navbar-brand" href="<?php echo site_url('/') ?>">
-            <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30"
-                class="d-inline-block align-top" alt="">
-        </a> -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>
-                </li>
-                    <?php echo $header?>
-            </ul>
-            <ul class="navbar-nav justify-content-end">
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
-                    </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" id="destroySession">Cerrar Sesión</a>
-                        </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <?php echo $header ?>
+    <ul class="navbar-nav justify-content-end">
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <span class="caret"><?php echo $this->session->userdata('nameUser')?></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" id="destroySession">Cerrar Sesión</a>
+            </div>
+        </li>
+    </ul>
+  </div>
+</nav>
     <p class="text-right" style="margin-right: 50px;" >Usted ha ingresado como: <?php echo $rol[$this->session->userdata('userType')]; ?></p>
