@@ -46,7 +46,7 @@ function savePettyCash($pettyCash){
         
 
 }
-function saveDetailPettyCash($detail){
+function saveDetailPettyCash($detail,$user){
                 if($detail["deducibleCajaChica"] == 1){
                         $sub = floatval($detail["subtotalCajaChica"]);
                         $iva = ($sub*IVA);
@@ -65,7 +65,8 @@ function saveDetailPettyCash($detail){
                         'IVA' => $iva,
                         'total' => $total,
                         'equipo' => $detail["equipoCajachica"],
-                        'observaciones' => $detail["observacion"]
+                        'observaciones' => $detail["observacion"],
+                        'capturadorGasto' => $user
                         
                 );
                 if($this->db->insert('detalle_caja_chica', $data)){
@@ -166,6 +167,26 @@ function deleteDetailPettyCash($id){
         
 }
 
+function authorizePersonal($idPettyCash, $UserOwner, $userAuthorized){
+        $data =  array(
+                'ID_User_Owner' => $UserOwner,
+                'ID_User_Authorized' => $userAuthorized,
+                'ID_PettyCash' => $idPettyCash
+        );
+        $compare = $this->db->select('ID_PettyCash')->from('authorizeduserspettycash')->where('ID_User_Authorized', $userAuthorized)->get()->result();
+        if(count($compare) == 0){
+                if($this->db->insert('authorizeduserspettycash', $data))
+                {
+                        return true;
+                }else{
+                        return false;
+                }
+        }else{
+                return 'duplicate';
+        }
+        
+}
+
 function plusAll($number){
         $response['total'] = $this->db->select('sum(subtotal) as subtotal,sum(IVA) as iva, sum(total) as total')
                                         ->from('detalle_caja_chica')
@@ -196,13 +217,32 @@ function plusAll($number){
 }
 
 function getPettyCashDetail($id){
-        $consult = "SELECT DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro
+        $consult = "SELECT DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro, U.name as capturadorGasto
+        FROM detalle_caja_chica DCC 
+        JOIN obras O ON O.ID = DCC.ubicacion 
+        JOIN conceptos_caja_chica COCA ON COCA.ID = DCC.concepto 
+        JOIN tipos_deducible TD ON DCC.deducible = TD.ID 
+        JOIN equipo  E ON E.ID = DCC.equipo 
+        JOIN caja_chica CC ON CC.ID = DCC.caja_chica_ID
+        JOIN users U ON U.ID = DCC.capturadorGasto 
+        WHERE DCC.caja_chica_ID = ?";                
+
+        $result['suma'] = $this->plusAll($id);
+
+        $result['data'] = $this->db->query($consult,$id)->result();
+        
+        return $result;
+}
+
+function getPettyCashDetailAuthorized($id){
+        $consult = "SELECT DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro, U.name as capturadorGasto
         FROM detalle_caja_chica DCC 
         JOIN obras O ON O.ID = DCC.ubicacion 
         JOIN conceptos_caja_chica COCA ON COCA.ID = DCC.concepto 
         JOIN tipos_deducible TD ON DCC.deducible = TD.ID 
         JOIN equipo  E ON E.ID = DCC.equipo 
         JOIN caja_chica CC ON CC.ID = DCC.caja_chica_ID 
+        JOIN users U ON U.ID = DCC.capturadorGasto
         WHERE DCC.caja_chica_ID = ?";                
 
         $result['suma'] = $this->plusAll($id);
@@ -294,6 +334,12 @@ function getPettyCashSelect($id){
                         ->result();
         
 }
+
+function getAuthorizedUsers(){
+        $query = 'SELECT * FROM users where typeUser = 4 OR typeUser = 2 order by name';
+        return $this->db->query($query)->result();
+}
+
 function getPettyCashReport($id,$resposable){
         $result['data'] =  $this->db->select('CC.ID, CC.numero, CC.fecha_inicio, CC.fecha_terminacion, U.name as encargado, CC.fecha_registro')
                 ->from('caja_chica CC')
@@ -340,7 +386,7 @@ function getAllPettyCash($start,$length,$array_like,$array_where){
                                 ->where($array_where)
                                 ->get()
                                 ->row();  
-        }else{
+        }else if($this->session->userdata('userType') == 2){
                 $result['data'] = $this->db->select('CC.estado_caja as estado, CC.ID, CC.numero, CC.fecha_inicio as fIni, CC.fecha_terminacion as fFin, U.name as encargado, CC.fecha_registro as fRegistro')
                                 ->from('caja_chica CC')
                                 ->join('users U','U.ID = CC.encargado')
@@ -361,44 +407,25 @@ function getAllPettyCash($start,$length,$array_like,$array_where){
         return $result;
         
     }
-function getAllDetailPettyCash($start,$length,$array_where){
-        $userPettyCash = $this->db->select('ID')
+
+function getAllPettyCashAuthorized($start,$length,$array_like,$array_where){
+        if($this->session->userdata('userType') == 4 || $this->session->userdata('userType') == 2 || $this->session->userdata('userType') == 1){
+                $query = 'SELECT CC.estado_caja as estado, CC.ID, CC.numero, CC.fecha_inicio as fIni, 
+                CC.fecha_terminacion as fFin, U.name as encargado, CC.fecha_registro as fRegistro
+                FROM caja_chica CC 
+                JOIN Users U ON CC.encargado = U.ID
+                JOIN authorizeduserspettycash ACCC ON CC.ID  = ACCC.ID_PettyCash
+                WHERE CC.ID IN (SELECT ACC.ID_PettyCash FROM authorizeduserspettycash ACC) AND ACCC.ID_User_Authorized = ? AND CC.estado_caja = 1';
+
+                $result['data'] = $this->db->query($query,$this->session->userdata('idUser'))->result();
+                $result['total']=$this->db->select("count(1) as total")
                                 ->from('caja_chica')
+                                ->like($array_like)
+                                ->where($array_where)
                                 ->where('encargado',$this->session->userdata('idUser'))
                                 ->get()
-                                ->result();  
-           
-        if($array_where != null){
-                $result['data'] = $this->db->select('DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro')
-                ->from('detalle_caja_chica DCC')
-                ->join('obras O', 'O.ID = DCC.ubicacion')
-                ->join('conceptos_caja_chica COCA', 'COCA.ID=DCC.concepto')
-                ->join('tipos_deducible TD','DCC.deducible=TD.ID')
-                ->join('equipo E','E.ID = DCC.equipo')
-                ->join('caja_chica CC','CC.ID = DCC.caja_chica_ID')
-                ->order_by('DCC.ID')
-                ->where($array_where)
-                ->where('CC.encargado',$this->session->userdata('idUser'))
-                ->limit($length,$start)
-                ->get()
-                ->result();
-        }else{
-                $consult = "SELECT DCC.ID, CC.numero , O.name as ubicacion, E.nombre as equipo, COCA.nombre as concepto, DCC.subtotal, DCC.IVA, DCC.total, TD.nombre as deducible, DCC.observaciones as observacion, DCC.fecha_registro as registro
-                        FROM detalle_caja_chica DCC 
-                        JOIN obras O ON O.ID = DCC.ubicacion 
-                        JOIN conceptos_caja_chica COCA ON COCA.ID = DCC.concepto 
-                        JOIN tipos_deducible TD ON DCC.deducible = TD.ID 
-                        JOIN equipo  E ON E.ID = DCC.equipo 
-                        JOIN caja_chica CC ON CC.ID = DCC.caja_chica_ID 
-                        WHERE DCC.caja_chica_ID IN (select ID from caja_chica where encargado = ? )";                
-                $result['data'] = $this->db->query($consult,$this->session->userdata('idUser'))->result();               
+                                ->row(); 
         }
-        $result['total']=$this->db->select("count(1) as total")
-                        ->from('detalle_caja_chica')
-                        ->where($array_where)
-                        ->get()
-                        ->row(); 
-
         return $result;
         
     }

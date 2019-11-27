@@ -28,6 +28,7 @@
 <script type="text/javascript" src="js/Administration/filtroObra.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/PettyCash/pettyCash.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/PettyCash/filtroPettyCash.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
+<script type="text/javascript" src="js/PettyCash/filtroPettyCashAsigned.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/PettyCash/checkInputPettyCash.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/PettyCash/autocomplete.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
 <script type="text/javascript" src="js/PettyCash/cataloges.js?<?php echo $cacheSaver->getTimestamp()?>"></script>

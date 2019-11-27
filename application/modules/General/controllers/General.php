@@ -259,7 +259,40 @@ class General extends MY_Controller {
 		  </div>
 		  </div>';
 		}
-		if($this->session->userdata('userType')== 4 || $this->session->userdata('userType')== 2 ){
+		if($this->session->userdata('userType')== 4){
+			$data['data'] = '  <div class="row" >
+			<div class="col text-center">
+			</div>
+			<div class="col text-center" >
+				<div class="contenedor" id="dos">
+					<a href="'.site_url("/pettyCash-asigned").'">
+						<img class="icon" src="img/petty-cash-icon.png">
+						<p class="texto">Caja chica</p>
+					</a>
+				</div>
+			</div>
+			<div class="col text-center" >
+			</div>
+		
+		  </div>
+		  <div class="row">
+		  <div class="col text-center" >
+
+			</div>
+			<div class="col text-center" >
+				<div class="contenedor" id="cuatro">
+					<a href="'.site_url("/cataloges-deductible").'">
+						<img class="icon" src="img/catalogo_mini.png">
+						<p class="texto">Cátalogos</p>
+					</a>
+				</div>
+			</div>
+			<div class="col">
+				
+			</div>
+		  </div>';
+		}
+		if( $this->session->userdata('userType')== 2){
 			$data['data'] = '  <div class="row" >
 			<div class="col text-center">
 			</div>
