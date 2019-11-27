@@ -840,7 +840,7 @@ public function authorizePersonal(){
 		}
 	}
 	public function checkUserGastos(){
-		if($this->session->userdata('userType') == 4 || $this->session->userdata('userType') == 2){
+		if($this->session->userdata('userType') == 4 || $this->session->userdata('userType') == 2 || $this->session->userdata('userType') == 1){
 			return true;
 		}else{
 			return false;

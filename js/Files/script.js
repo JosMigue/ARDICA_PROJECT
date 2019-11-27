@@ -458,6 +458,62 @@ $('#saveFolder').click(function(){
         }
 	});
 
+
+
+	$("#eliminar").click(function(){
+		var path =$("#pathSelected").val();
+		var classes = $("#pathSelected").attr('class');
+		const swalWithBootstrapButtons = Swal.mixin({
+			customClass: {
+			  confirmButton: 'btn btn-success',
+			  cancelButton: 'btn btn-danger'
+			},
+			buttonsStyling: false
+		  })
+		  
+		  swalWithBootstrapButtons.fire({
+			title: '¿Estás segura(o) que desea borar este archivo?',
+			text: "Esta acción no se puede corregir",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Sí, Borrar!',
+			cancelButtonText: 'No, cancelar!',
+			reverseButtons: true
+		  }).then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: "Files/fileErase",
+					type: "POST",
+					data: {path:path, classes:classes},
+					success:function(response){
+						swalWithBootstrapButtons.fire(
+							'Borrado!',
+							'El archivo ha sido borrado.',
+							'success'
+						  )
+						  setTimeout(() => {
+							  location.reload('/files');
+						  }, 1500);
+					},
+					error:function(){
+						alert('error');
+					}
+				});
+
+			} else if (
+			  /* Read more about handling dismissals below */
+			  result.dismiss === Swal.DismissReason.cancel
+			) {
+			  swalWithBootstrapButtons.fire(
+				'Cancelado',
+				'La ación ha sido cancelada',
+				'error'
+			  )
+			}
+		  })
+
+	});
+
 });
 
 function readURL(input) {

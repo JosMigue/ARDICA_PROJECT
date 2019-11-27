@@ -83,6 +83,7 @@
 			</div>
 		</div>
 	</div>
+  <input type="hidden" id="urlFile" value="">
 
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -123,7 +124,9 @@
             case 3:
                 $('li.folders').bind("contextmenu", function(e2){
                    var ruta=$(this).find('a').attr('href');
+                   var exaclass=$(this).find('a').attr('class');
                     $('#pathSelected').val(ruta);
+                    $( "#pathSelected" ).attr( "class", exaclass );
                     $("#menu").css({'display':'block', 'left':e2.pageX, 'top':e2.pageY});
                     return false;
           });
@@ -138,7 +141,9 @@
             case 3:
                 $('li.files').bind("contextmenu", function(e2){
                   var ruta=$(this).find('a').attr('href');
+                  var exaclass=$(this).find('a').attr('class');
                     $('#pathSelected').val(ruta);
+                    $( "#pathSelected" ).attr( "class", exaclass );
                     $("#menu").css({'display':'block', 'left':e2.pageX, 'top':e2.pageY});
                     return false;
           });

@@ -46,6 +46,21 @@ class Files extends MY_Controller {
 			 }  
 		}   
 	}
+	function fileErase()  
+    {  
+		if(isset($_POST['path'])){
+			$path = $_POST['path'];
+			$type = $_POST['classes'];
+			if($type == 'files'){
+				unlink($path);
+			}else if($type == 'folders'){
+				rmdir($path);
+			}
+		}else{
+			redirect('/');
+		}
+		
+	}
 	
 	public function scanDirectory(){
 		$dir = "Raiz";
