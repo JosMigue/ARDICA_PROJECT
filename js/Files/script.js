@@ -8,8 +8,10 @@ $(document).ready(function(){
 $('#saveFolder').click(function(){
 		var nameFolder=$('#nameFolder').val();
     	$.post('Files/createFolder',{currentPath: currentPath, nameFolder: nameFolder}, function(data) {
-    		alert(data);
-    		location.reload();
+			alertify.success('Success message');
+			setTimeout(() => {				
+				location.reload();
+			}, 500);
     	});
     });
 	$.get('Files/scanDirectory', function(data) {
@@ -472,13 +474,13 @@ $('#saveFolder').click(function(){
 		  })
 		  
 		  swalWithBootstrapButtons.fire({
-			title: '¿Estás segura(o) que desea borar este archivo?',
-			text: "Esta acción no se puede corregir",
+			title: '¿Estás segura(o) que desea borrar este archivo?',
+			html: '<p class="font-weight-bolder" style="color: red !important;" >Esta acción no se puede corregir</p>',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonText: 'Sí, Borrar!',
 			cancelButtonText: 'No, cancelar!',
-			reverseButtons: true
+			reverseButtons: false
 		  }).then((result) => {
 			if (result.value) {
 				$.ajax({
@@ -487,7 +489,7 @@ $('#saveFolder').click(function(){
 					data: {path:path, classes:classes},
 					success:function(response){
 						swalWithBootstrapButtons.fire(
-							'Borrado!',
+							'Hecho!',
 							'El archivo ha sido borrado.',
 							'success'
 						  )

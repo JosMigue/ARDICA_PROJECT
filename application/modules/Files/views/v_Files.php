@@ -110,7 +110,6 @@
 <input type="hidden" id="pathSelected">
 
 	<!-- Include our script files -->
-
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<script src="js/Files/script.js"></script>

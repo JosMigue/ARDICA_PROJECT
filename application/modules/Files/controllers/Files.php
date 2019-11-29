@@ -5,10 +5,8 @@ class Files extends MY_Controller {
 	public function index()
 	{	
 		if($this->checkUser()){
-			$this->load->model("m_Files");
-			$data['data'] = $this->m_Files->BringFiles();
 			$header['header'] = $this->asignHeader();
-			$this->loadView("Files/v_Files",$data,$header);
+			$this->loadView("Files/v_Files",$data= null,$header);
 			$this->load->view("Files/modalUploadFiles");
 			$this->load->view("Files/previewFile");
 		}else{
@@ -54,6 +52,13 @@ class Files extends MY_Controller {
 			if($type == 'files'){
 				unlink($path);
 			}else if($type == 'folders'){
+
+				$files = glob($path.'/*'); // get all file names
+				foreach($files as $file){ // iterate files
+  				if(is_file($file)){
+					  unlink($file); // delete file
+				  }
+				}  
 				rmdir($path);
 			}
 		}else{
@@ -61,6 +66,7 @@ class Files extends MY_Controller {
 		}
 		
 	}
+
 	
 	public function scanDirectory(){
 		$dir = "Raiz";
