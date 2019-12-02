@@ -204,8 +204,8 @@ function Eliminar_usurario(usuario){
     var user = usuario.value;
     var userName = usuario.name;
     Swal.fire({
-        title: '¿Está seguro que desea eliminar el usuario '+userName+'?',
-        text: "Esta acción no se puede corregir!",
+        title: '¿Está seguro que desea deshailitar el usuario '+userName+'?',
+        text: "El usuario dejará de terner acceso al sistema!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

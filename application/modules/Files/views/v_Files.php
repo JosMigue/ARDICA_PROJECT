@@ -43,16 +43,16 @@
       <tr>
         <td style="padding-left: 7px; padding-right: 7px;">
          <ul class="ulmenu2">
-          <li class="limenu2"><i class="fas fa-copy"></i></li> 
-          <li class="limenu2"><i class="fas fa-expand-arrows-alt"></i></li>
+          <!-- <li class="limenu2"><i class="fas fa-copy"></i></li> 
+          <li class="limenu2"><i class="fas fa-expand-arrows-alt"></i></li> -->
           <li class="limenu2"><i class="fas fa-edit" ></i></li>
           <li class="limenu2"><i class="fas fa-trash-alt" ></i></li>
         </ul>
       </td>
       <td>
          <ul class="ulmenu">
-            <li class="limenu" data-clipboard-text="" id="copiar" >Copiar</li> 
-            <li class="limenu" id="mover">Mover</li>
+<!--             <li class="limenu" data-clipboard-text="" id="copiar" >Copiar</li> 
+            <li class="limenu" id="mover">Mover</li> -->
             <li class="limenu" id="renombrar">Renombrar</li>
             <li class="limenu" id="eliminar">Eliminar</li>
         </ul>

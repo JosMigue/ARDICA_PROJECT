@@ -9,6 +9,7 @@ class Files extends MY_Controller {
 			$this->loadView("Files/v_Files",$data= null,$header);
 			$this->load->view("Files/modalUploadFiles");
 			$this->load->view("Files/previewFile");
+			$this->load->view("Files/modalRenameFile");
 		}else{
 			redirect('/');
 		}
@@ -56,10 +57,48 @@ class Files extends MY_Controller {
 				$files = glob($path.'/*'); // get all file names
 				foreach($files as $file){ // iterate files
   				if(is_file($file)){
-					  unlink($file); // delete file
+					unlink($file); // delete file
 				  }
+				if(is_dir($file)){
+					rmdir($file);
 				}  
+				}
 				rmdir($path);
+			}
+		}else{
+			redirect('/');
+		}
+		
+	}
+
+	function renameFile()  
+    {  
+		if(isset($_POST['nameFile']) && isset($_POST['newNameFile'])&& isset($_POST['typeFile']) && isset($_POST['newPath'])){
+			$newName = $_POST['newNameFile'];
+			$oldName = $_POST['nameFile'];
+			$type = $_POST['typeFile'];
+			$newPath = $_POST['newPath'];
+			$complete = $newPath.$newName.'.'.$type;
+			$class = $_POST['classes'];
+			if($class== 'files'){
+				if(rename( $oldName, $complete))
+				   { 
+					   echo "El archivo se ha renombrado correctamente al nombre: $newName" ;
+				   }
+				  else
+				  {
+					   echo "Ya existe un archivo con el mismo nombre" ;
+				  }
+			}else{
+				$folderCompleteName = $newPath.$newName;
+				if(rename($oldName, $folderCompleteName))
+				{ 
+					echo "El archivo se ha renombrado correctamente al nombre: $newName";
+				}
+			   else
+			   {
+					echo "Ya existe un archivo con el mismo nombre" ;
+			   }
 			}
 		}else{
 			redirect('/');
@@ -69,17 +108,22 @@ class Files extends MY_Controller {
 
 	
 	public function scanDirectory(){
-		$dir = "Raiz";
-		$response = $this->scan($dir);
-		header('Content-type: application/json');
-		echo json_encode(array(
-			"name" => "Raiz",
-			"type" => "folder",
-			"path" => $dir,
-			"items" => $response
-		));
+		if($this->checkUser()){
+			$dir = "Raiz";
+			$response = $this->scan($dir);
+			header('Content-type: application/json');
+			echo json_encode(array(
+				"name" => "Raiz",
+				"type" => "folder",
+				"path" => $dir,
+				"items" => $response
+			));
+		}else{
+			redirect('/');
+		}
 	}
 	private function scan($dir){
+	
 
 	$files = array();
 
@@ -124,18 +168,22 @@ class Files extends MY_Controller {
 }
 
 public function createFolder(){
-	$directorio=$_POST['currentPath'];
-	$nameFolder=$_POST['nameFolder'];
-	$path=$directorio."/".$nameFolder;
-	if (is_dir($directorio)) {
-		if (file_exists($path)) {
-			echo "Ya existe el directorio";
+	if($this->checkUser()){
+		$directorio=$_POST['currentPath'];
+		$nameFolder=$_POST['nameFolder'];
+		$path=$directorio."/".$nameFolder;
+		if (is_dir($directorio)) {
+			if (file_exists($path)) {
+				echo "Ya existe el directorio";
+			}else{
+				mkdir($path, 0700);
+				echo "directorio creado correctamente";
+			}	
 		}else{
-			mkdir($path, 0700);
-			echo "directorio creado correctamente";
-		}	
+			echo "No se encontró la ruta ".$directorio;
+		}
 	}else{
-		echo "No se encontró la ruta ".$directorio;
+		redirect('/');
 	}
 }
 

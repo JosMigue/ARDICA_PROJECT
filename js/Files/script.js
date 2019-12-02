@@ -8,7 +8,7 @@ $(document).ready(function(){
 $('#saveFolder').click(function(){
 		var nameFolder=$('#nameFolder').val();
     	$.post('Files/createFolder',{currentPath: currentPath, nameFolder: nameFolder}, function(data) {
-			alertify.success('Success message');
+			alertify.success('Directorio creado correctamente');
 			setTimeout(() => {				
 				location.reload();
 			}, 500);
@@ -503,7 +503,6 @@ $('#saveFolder').click(function(){
 				});
 
 			} else if (
-			  /* Read more about handling dismissals below */
 			  result.dismiss === Swal.DismissReason.cancel
 			) {
 			  swalWithBootstrapButtons.fire(
@@ -516,7 +515,84 @@ $('#saveFolder').click(function(){
 
 	});
 
+
+	$("#mover").click(function(){
+		alertify.error('La función de mover no ha sido implementada aún');
+	});
+	$("#renombrar").click(function(){
+		$("#modalRenameFile").modal('show');
+	});
+	$("#copiar").click(function(){
+		alertify.error('La función de copiar no ha sido implementada aún');
+	});
+
+	$("#btnRenameFile").click(function(){
+		/*Hi, maybe you are wondering about my 'programing style' (on this function), but I didn't know another way for make it better
+		  if you have a better way to do this code, go ahead, you're free for do it, THANKS*/
+
+		var path = $("#pathSelected").val();
+		var classes = $("#pathSelected").attr('class');
+		var newNameFile = $("#newNameFile").val();
+		var patt = new RegExp(/^[0-9a-zA-Z]+$/);
+		var res = patt.test(newNameFile);
+		if(res){
+			var sizeString = path.length;
+			var counter =  0;
+			var typeFile='';
+			var trigger;
+			 for (i = sizeString; i>=0; i--){
+				if(path.charAt(i)=='/'){
+					counter++;
+				}
+				if(path.charAt(i)=='.'){
+					trigger = i;
+				}
+			}
+			var bandera = 0;
+			var nameFile='';
+			for (i = 0; i<sizeString; i++){
+				if(bandera != counter){
+					nameFile +=path.charAt(i);
+				}
+				if(path.charAt(i)== '/'){
+					bandera++;
+				}
+				if(i>trigger){
+					typeFile += path.charAt(i);
+				}
+			}
+			$.ajax({
+				url: 'Files/renameFile',
+				type: 'POST',
+				data: {nameFile:path,newNameFile:newNameFile,newPath:nameFile,typeFile:typeFile,classes:classes,}, 
+				success:function(res){
+					alertify.success(res);
+					$("#modalRenameFile").modal('hide');
+					setTimeout(() => {
+						location.reload();
+					}, 1500);
+				},
+				error:function(){
+					
+				}
+			});
+		}else{
+			alertify.error('Error: El nuevo nombre no es valido. Verifique lo que ha escrito.');
+		} 
+	});
+
 });
+
+function checkNewNameFile(input){
+	var str = input.value;
+	var patt = new RegExp(/^[0-9a-zA-Z]+$/);
+	var res = patt.test(str);
+	if(res){
+		$("#alertNewNameFile").hide('slow');
+	}else{
+		$("#alertNewNameFile").show('fast');
+	}
+}
 
 function readURL(input) {
 	if (input.files && input.files[0]) {
