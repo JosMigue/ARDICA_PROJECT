@@ -175,7 +175,7 @@ $(document).ready(function () {
             Swal.fire({
               position: 'center',
               type: 'success',
-              title: 'La caja chica ha sido registrada',
+              title: 'El gasto ha sido registrado correctamente',
               showConfirmButton: false,
               timer: 1000
             });

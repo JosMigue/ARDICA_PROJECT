@@ -32,7 +32,6 @@ $(document).ready(()=>{
                 url: "Administration/saveObra",
                 data: { obj: obj },
                 success: function (data) {
-                    /* alert(data); */
                     if (data == 'error obra') {
                         Swal.fire({
                             type: 'Error',
@@ -208,7 +207,7 @@ function Eliminar_Obra(obra){
     var idObra = obra.value;
     var nombre = obra.name;
     Swal.fire({
-        title: '¿Está seguro que desea eliminar la obra "'+nombre+'"?',
+        title: '¿Está seguro que desea deshabilitar la obra "'+nombre+'"?',
         text: "Esta acción no se puede corregir!",
         type: 'warning',
         showCancelButton: true,

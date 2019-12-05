@@ -152,14 +152,15 @@ class Administration extends MY_Controller {
 				if($this->m_Administration->saveObra($obra)){
 					$log = Array(
 						'tabla' => 'obras',
-						'accion' => 1,
+						'accion' => 'Guardar',
 						'direccion_ip' => $this->input->ip_address(),
 						'usuario_idusuario' => $this->session->userdata('idUser'),
-						'registro_id' => $obras["codigoObra"],
+						'registro_id' => $obra["codigoObra"],
 						'campo' => 'TODO',
 						'descripcion' => 'Guardar nueva obra'
 					); 
 					$this->m_Administration->saveLogActivity($log);
+
 					echo 'success obra';
 				}else{
 					echo 'error obra';

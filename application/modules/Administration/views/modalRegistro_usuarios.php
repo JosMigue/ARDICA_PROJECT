@@ -15,17 +15,17 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <label for="name">Nombre<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
-                                    <span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Nombre</span>
+                                    <span id="nombreCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca el nombre</span>
                                     <input type="text" onkeyup="checkName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="firstName" name="firstName" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Nombre" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label for="apellidoP">Apellido Paterno<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
-                                    <span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Apellido paterno</span>
+                                    <span id="apellidoPCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca el apellido paterno</span>
                                     <input type="text" onkeyup="checkLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="apellidoP" name="apellidoP" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Apellido paterno" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label for="apellidoM">Apellido Materno<span style="font-size: 20px;  float: center;" class="text-danger my-2 font-weight-bold">*</span></label>
-                                    <span id="apellidoMCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Apellido materno</span>
+                                    <span id="apellidoMCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca el apellido materno</span>
                                     <input type="text" onkeyup="checkSLastName(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="apellidoM" name="apellidoM" pattern="/^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+(\s*[a-zA-ZÁÉÍÓÚáéíóúÑñ])[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$/" placeholder="Apellido materno" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
