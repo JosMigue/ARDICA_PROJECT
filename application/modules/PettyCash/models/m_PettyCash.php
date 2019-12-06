@@ -560,5 +560,8 @@ function deleteObrasType($id){
         }
 }
 
-
+public function saveLogActivity($log){
+        $this->db->insert('eventos_log', $log);
+        }
+        
 }

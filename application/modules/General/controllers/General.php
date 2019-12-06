@@ -382,47 +382,6 @@ class General extends MY_Controller {
   }
 
 
-
-
-
-   public function vista_contenido(){
-
-		   $this->cargar_vista('principal',$data=null);
-
-   }
-
-   public function vista_contenido2(){
-
-		   $this->cargar_vista('Ayuda',$data=null);
-
-   }
-
-   public function panel_principal(){
-
-		   $this->cargar_vista3('principal');
-
-   }
-
-
-
-   public function perfil(){
-
-		$this->load->model('m_Login');
-
-		$respuesta['datos']=$this->m_Login->get_informacion_usuario($this->session->userdata('id'));
-
-		$this->cargar_vista3('Login/v_perfil', $respuesta);
-
-   }
-
-
-
-
-
-
-
-
-
 }
 
 

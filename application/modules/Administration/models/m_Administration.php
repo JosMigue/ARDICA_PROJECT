@@ -71,16 +71,6 @@ class M_Administration extends CI_Model {
             'typeUser'=>$obj["rol"]
           );
         if($this->db->insert('users', $data)){
-            $log = Array(
-                'tabla' => 'usuarios',
-                'accion' => 'Guardar',
-                'direccion_ip' => $this->input->ip_address(),
-                'usuario_idusuario' => $this->session->userdata('idUser'),
-                'registro_id' => $data['name'],
-                'campo' => 'status',
-                'descripcion' => 'Registro de usuario para ingresar al sistema'
-            ); 
-            $this->db->insert('eventos_log', $log);
             return true;
         }else{
             return false;
@@ -160,6 +150,15 @@ class M_Administration extends CI_Model {
         }  
     }
 
+    function bringLog(){
+        return $this->db->select('EL.id, EL.tabla, AIL.nombre_Accion as accion, EL.fecha, EL.direccion_ip as ip, U.name as usuario, EL.registro_id as registro, EL.campo, EL.descripcion')
+                    ->from('eventos_log EL')
+                    ->join('users U','U.ID = EL.usuario_idusuario')
+                    ->join('acciones_id_log AIL','AIL.ID = EL.accion')
+                    ->get()
+                    ->result();
+        
+    }
     function bringObraEdit($id){
         return $this->db->select('*')
         ->from('obras')

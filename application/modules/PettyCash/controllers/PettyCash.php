@@ -196,6 +196,18 @@ class PettyCash extends MY_Controller {
 			$obj = $this->input->post("obj");
 			$this->load->model("m_PettyCash");
 			$response = $this->m_PettyCash->savePettyCash($obj);
+			if($response == 1){
+				$log = Array(
+					'tabla' => 'caja_chica',
+					'accion' => 1,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $obj['numero'].'-'.date('Y'),
+					'campo' => 'NUEVO REGISTRO',
+					'descripcion' => 'Registro de caja chica'
+				); 
+				$this->m_PettyCash->saveLogActivity($log);
+			}
 			switch($response){
 				case 1: echo 'success petty cash'; 
 				break;
@@ -215,6 +227,18 @@ class PettyCash extends MY_Controller {
 			$obj =  $this->input->post('obj');
 			$user = $this->session->userdata('idUser');
 			$response = $this->m_PettyCash->saveDetailPettyCash($obj,$user);
+			if($response == 1){
+				$log = Array(
+					'tabla' => 'detalle_caja_chica',
+					'accion' => 1,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => 'Caja chica: '.$obj['caja_chica_ID'],
+					'campo' => 'NUEVO REGISTRO',
+					'descripcion' => 'Registro de gastos de caja chica'
+				); 
+				$this->m_PettyCash->saveLogActivity($log);
+			}
 			switch($response){
 				case 1: echo 'success detail petty cash'; 
 				break;
@@ -231,6 +255,18 @@ class PettyCash extends MY_Controller {
 			$this->load->model("m_PettyCash");
 			$id =  $this->input->post('id');
 			$response = $this->m_PettyCash->deleteDetailPettyCash($id);
+			if($response == 1){
+				$log = Array(
+					'tabla' => 'detalle_caja_chica',
+					'accion' => 6,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $id,
+					'campo' => 'BORRADO DE REGISTRO',
+					'descripcion' => 'Eliminación de un gasto de una caja chica'
+				); 
+				$this->m_PettyCash->saveLogActivity($log);
+			}
 			switch($response){
 				case 1: echo 'delete detail is done'; 
 				break;
@@ -247,6 +283,18 @@ class PettyCash extends MY_Controller {
 			$this->load->model("m_PettyCash");
 			$obj =  $this->input->post('obj');
 			$response = $this->m_PettyCash->updateDetailPettyCash($obj);
+			if($response == 1){
+				$log = Array(
+					'tabla' => 'detalle_caja_chica',
+					'accion' => 2,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $obj['idDetalle'],
+					'campo' => 'ACTUALIZACIÓN DE REGISTRO',
+					'descripcion' => 'Actualización de detalle de una caja chica'
+				); 
+				$this->m_PettyCash->saveLogActivity($log);
+			}
 			switch($response){
 				case 1: echo 'success detail petty cash updated'; 
 				break;
@@ -266,6 +314,16 @@ class PettyCash extends MY_Controller {
 			$id = $this->input->post("id");
 			$response = $this->m_PettyCash->disablePettyCash($id);
 			if($response){
+				$log = Array(
+					'tabla' => 'detalle_caja_chica',
+					'accion' => 3,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $id,
+					'campo' => 'estado_caja',
+					'descripcion' => 'Desactivación de caja chica'
+				); 
+				$this->m_PettyCash->saveLogActivity($log);
 				echo 'Petty Cash is disabled';
 			}else{
 				echo 'Petty Cash disabled error';
@@ -281,6 +339,16 @@ class PettyCash extends MY_Controller {
 			$id = $this->input->post("id");
 			$response = $this->m_PettyCash->enablePettyCash($id);
 			if($response){
+				$log = Array(
+					'tabla' => 'detalle_caja_chica',
+					'accion' => 4,
+					'direccion_ip' => $this->input->ip_address(),
+					'usuario_idusuario' => $this->session->userdata('idUser'),
+					'registro_id' => $id,
+					'campo' => 'estado_caja',
+					'descripcion' => 'Activación de caja chica'
+				); 
+				$this->m_PettyCash->saveLogActivity($log);
 				echo 'Petty Cash is enabled';
 			}else{
 				echo 'Petty Cash enabled error';
@@ -647,6 +715,16 @@ public function addConceptOnModal(){
 		if(!$response){
 			echo false;
 		}else{
+			$log = Array(
+				'tabla' => 'conceptos_caja_chica',
+				'accion' => 1,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $nombre,
+				'campo' => 'NUEVO REGISTRO',
+				'descripcion' => 'Registro de concepto desde modal'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo json_encode($response);
 		}
 	}else{
@@ -660,6 +738,16 @@ public function authorizePersonal(){
 		$obj = $_POST['obj'];
 		$response = $this->m_PettyCash->authorizePersonal($obj['pettyCash'],$obj['userOwner'],$obj['userAuthorized']);
 		if($response == 'success'){
+			$log = Array(
+				'tabla' => 'authorizeduserspettycash',
+				'accion' => 1,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => 'NUEVA AUTORIZACIÓN',
+				'campo' => 'NUEVO REGISTRO',
+				'descripcion' => 'Autorización de personas a la caja chica: '.$obj['pettyCash'].'del usuario: '.$obj['userOwner'].'al usuario: '.$obj['userAuthorized']
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo 'success';
 		}else if(!$response == 'error'){
 			echo 'error';
@@ -703,6 +791,16 @@ public function authorizePersonal(){
 		$name = $this->input->post('deductible');
 		$response = $this->m_PettyCash->saveDeductible($name);
 		if($response!= false){
+				$log = Array(
+				'tabla' => 'tipos_deducible',
+				'accion' => 1,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $name,
+				'campo' => 'NUEVO REGISTRO',
+				'descripcion' => 'Registro de un nuevo tipo de deducible'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo json_encode($response);
 		}else{
 			echo 'error';
@@ -714,6 +812,16 @@ public function authorizePersonal(){
 		$name = $this->input->post('concept');
 		$response = $this->m_PettyCash->saveConcept($name);
 		if($response!= false){
+				$log = Array(
+				'tabla' => 'conceptos_caja_chica',
+				'accion' => 1,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $name,
+				'campo' => 'NUEVO REGISTRO',
+				'descripcion' => 'Registro de nuevo concepto'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo json_encode($response);
 		}else{
 			echo 'error';
@@ -725,6 +833,16 @@ public function authorizePersonal(){
 		$name = $this->input->post('team');
 		$response = $this->m_PettyCash->saveTeam($name);
 		if($response!= false){
+				$log = Array(
+				'tabla' => 'equipo',
+				'accion' => 1,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $name,
+				'campo' => 'NUEVO REGISTRO',
+				'descripcion' => 'Registro de nuevo equipo'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo json_encode($response);
 		}else{
 			echo 'error';
@@ -736,6 +854,16 @@ public function authorizePersonal(){
 		$name = $this->input->post('obra_type');
 		$response = $this->m_PettyCash->saveObrasType($name);
 		if($response!= false){
+				$log = Array(
+				'tabla' => 'obras_type',
+				'accion' => 1,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $name,
+				'campo' => 'NUEVO REGISTRO',
+				'descripcion' => 'Registro de nuevo tipo de obra'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo json_encode($response);
 		}else{
 			echo 'error';
@@ -750,6 +878,16 @@ public function authorizePersonal(){
 		$id = $this->input->post('deductible');
 		$response = $this->m_PettyCash->deleteDeductible($id);
 		if($response){
+				$log = Array(
+				'tabla' => 'tipos_deducible',
+				'accion' => 3,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $id,
+				'campo' => 'estado',
+				'descripcion' => 'Proceso de desactivación de tipo de deducible'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo true;
 		}else{
 			echo false;
@@ -761,6 +899,16 @@ public function authorizePersonal(){
 		$id = $this->input->post('concept');
 		$response = $this->m_PettyCash->deleteConcept($id);
 		if($response){
+				$log = Array(
+				'tabla' => 'conceptos_caja_chica',
+				'accion' => 3,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $id,
+				'campo' => 'estado',
+				'descripcion' => 'Proceso de deactivación de concepto'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo true;
 		}else{
 			echo false;
@@ -772,6 +920,16 @@ public function authorizePersonal(){
 		$id = $this->input->post('team');
 		$response = $this->m_PettyCash->deleteTeam($id);
 		if($response){
+				$log = Array(
+				'tabla' => 'equipos',
+				'accion' => 3,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $id,
+				'campo' => 'estado',
+				'descripcion' => 'Proceso de deactivación de un equipo'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo true;
 		}else{
 			echo false;
@@ -783,6 +941,16 @@ public function authorizePersonal(){
 		$id = $this->input->post('obra_type');
 		$response = $this->m_PettyCash->deleteObrasType($id);
 		if($response){
+				$log = Array(
+				'tabla' => 'obras_type',
+				'accion' => 3,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $id,
+				'campo' => 'estado',
+				'descripcion' => 'Proceso de deactivación de tipos de obra'
+			); 
+			$this->m_PettyCash->saveLogActivity($log);
 			echo true;
 		}else{
 			echo false;

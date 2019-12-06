@@ -12,8 +12,6 @@ class Administration extends MY_Controller {
 			$this->load->view("Administration/modalRegistro_usuarios");
 			$this->load->view("Administration/modalEditarUsuario");
 			$this->load->view("Administration/modalRegistro_obras");
-			$this->load->view("PettyCash/modal_Registro_Caja");
-			$this->load->view("Files/modalUploadFiles");
 		}else{
 			redirect('/');
 		}
@@ -29,8 +27,21 @@ class Administration extends MY_Controller {
 			$this->load->view("Administration/modalRegistro_usuarios");
 			$this->load->view("Administration/modalRegistro_obras");
 			$this->load->view("Administration/modalEditarObra"); 
-			$this->load->view("PettyCash/modal_Registro_Caja");
-			$this->load->view("Files/modalUploadFiles");
+		}else{
+			redirect('/');
+		}
+
+	}
+	public function logActivity()
+	{
+		if($this->checkUser()){
+			$this->load->model("m_Administration");
+			$data['data'] = $this->m_Administration->bringLog();
+			$header['header'] = $this->asignHeader();
+			$this->loadView("Administration/v_log_Activity",$data,$header);
+			$this->load->view("Administration/modalRegistro_usuarios");
+			$this->load->view("Administration/modalRegistro_obras");
+			$this->load->view("Administration/modalEditarObra"); 
 		}else{
 			redirect('/');
 		}
@@ -49,7 +60,10 @@ class Administration extends MY_Controller {
       <a class="nav-link" href="'. site_url("/administration.obras").'">Lista de obras</a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" id="button_add_user" data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</a>
+      <a class="nav-link"  data-toggle="modal" onclick="resetModalObras()" data-target="#modalRegistroObra" >Registrar obra</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="'. site_url("/administration.dashboard").'">Log activity</a>
       </li>
     </ul>';
 		}
@@ -64,6 +78,16 @@ class Administration extends MY_Controller {
 			$name = $obj["Nombre"]." ".$obj["ApellidoP"]." ".$obj["ApellidoM"];
 			if(!$this->m_Administration->verifyUser($obj["user"],$name)){
 				if($this->m_Administration->saveUser($obj)){
+					$log = Array(
+						'tabla' => 'users',
+						'accion' => 1,
+						'direccion_ip' => $this->input->ip_address(),
+						'usuario_idusuario' => $this->session->userdata('idUser'),
+						'registro_id' => $name,
+						'campo' => 'NUEVO REGISTRO',
+						'descripcion' => 'Registro de usuario para acceder al sistema -> rol:'. $obj['rol']
+					); 
+					$this->m_Administration->saveLogActivity($log);
 					echo 'user is null';
 				}else{
 					echo 'user fail';
@@ -81,12 +105,12 @@ class Administration extends MY_Controller {
 			if($this->m_Administration->deleteUser($user)){
 				$log = Array(
 					'tabla' => 'users',
-					'accion' => 2,
+					'accion' => 3,
 					'direccion_ip' => $this->input->ip_address(),
 					'usuario_idusuario' => $this->session->userdata('idUser'),
 					'registro_id' => $user,
 					'campo' => 'status',
-					'descripcion' => 'Proceso de desactivación de usuario'
+					'descripcion' => 'Proceso de desactivación de usuario ->'.$user
 				); 
 				$this->m_Administration->saveLogActivity($log);
 				echo 'user has been deleted';
@@ -102,12 +126,12 @@ class Administration extends MY_Controller {
 			if($this->m_Administration->enableUser($user)){
 				$log = Array(
 					'tabla' => 'users',
-					'accion' => 3,
+					'accion' => 4,
 					'direccion_ip' => $this->input->ip_address(),
 					'usuario_idusuario' => $this->session->userdata('idUser'),
 					'registro_id' => $user,
 					'campo' => 'status',
-					'descripcion' => 'Proceso de activación de usuario'
+					'descripcion' => 'Proceso de activación de usuario ->'.$user
 				); 
 				$this->m_Administration->saveLogActivity($log);
 				echo 'user has been enabled';
@@ -133,6 +157,18 @@ class Administration extends MY_Controller {
 			$this->load->model("m_Administration");
 			$user = $_POST["obj"];
 			$response = $this->m_Administration->updateUser($user);
+			if($response == 1){
+				$log = Array(
+				'tabla' => 'users',
+				'accion' => 2,
+				'direccion_ip' => $this->input->ip_address(),
+				'usuario_idusuario' => $this->session->userdata('idUser'),
+				'registro_id' => $user["id"],
+				'campo' => 'EDITAR REGISTRO DE USUARIO',
+				'descripcion' => 'Editra datos de usuario ->'.$user['id']
+			); 
+			$this->m_Administration->saveLogActivity($log);
+			}
  			switch($response){
 				case 1: echo 'success';
 				break;
@@ -152,12 +188,12 @@ class Administration extends MY_Controller {
 				if($this->m_Administration->saveObra($obra)){
 					$log = Array(
 						'tabla' => 'obras',
-						'accion' => 'Guardar',
+						'accion' => 1,
 						'direccion_ip' => $this->input->ip_address(),
 						'usuario_idusuario' => $this->session->userdata('idUser'),
 						'registro_id' => $obra["codigoObra"],
-						'campo' => 'TODO',
-						'descripcion' => 'Guardar nueva obra'
+						'campo' => 'NUEVO REGISTRO',
+						'descripcion' => 'Guardar nueva obra, código ->'.$obra['codigoObra']
 					); 
 					$this->m_Administration->saveLogActivity($log);
 
@@ -210,7 +246,7 @@ class Administration extends MY_Controller {
 			if($this->m_Administration->deleteObra($obra)){
 				$log = Array(
 					'tabla' => 'obras',
-					'accion' => 2,
+					'accion' => 3,
 					'direccion_ip' => $this->input->ip_address(),
 					'usuario_idusuario' => $this->session->userdata('idUser'),
 					'registro_id' => $obra,
@@ -232,7 +268,7 @@ class Administration extends MY_Controller {
 			if($this->m_Administration->habilitaObra($obra)){
 				$log = Array(
 					'tabla' => 'obras',
-					'accion' => 2,
+					'accion' => 4,
 					'direccion_ip' => $this->input->ip_address(),
 					'usuario_idusuario' => $this->session->userdata('idUser'),
 					'registro_id' => $obra,
@@ -258,11 +294,11 @@ class Administration extends MY_Controller {
 				case 1: 
 				$log = Array(
 					'tabla' => 'obras',
-					'accion' => 5,
+					'accion' => 2,
 					'direccion_ip' => $this->input->ip_address(),
 					'usuario_idusuario' => $this->session->userdata('idUser'),
 					'registro_id' => $obra["id"],
-					'campo' => 'TODO',
+					'campo' => 'ACTUALIZACIÓN DE REGISTRO',
 					'descripcion' => 'Actualización de datos de una obra'
 				); 
 				$this->m_Administration->saveLogActivity($log);
