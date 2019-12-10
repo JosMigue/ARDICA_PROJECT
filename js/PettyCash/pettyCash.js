@@ -390,6 +390,9 @@ $(document).ready(function () {
             timer: 1000
           });
           $('#modalAuthorizePersonal').modal('hide');
+          setTimeout(() => {
+              location.reload();
+          }, 1200);
         }else if(res == 'error'){
           Swal.fire({
             icon: 'error',
@@ -534,6 +537,7 @@ $.ajax({
 
 });
 
+
 $("#btnAddPettyCash").click(function () {
   var fecha = new Date();
   var currentYear = fecha.getFullYear();
@@ -557,6 +561,24 @@ $("#btnAddPettyCash").click(function () {
   });
 
 });
+
+function getAllAuthorizedPeople(user){
+  var userId = user.value;
+$.confirm({
+  title: 'Lista de los usuarios authorizados en sus cajas',
+  columnClass: 'col-md-12',
+  content: function(){
+    var self = this;
+    return $.ajax({
+        url: 'PettyCash/getAutorizedPeople',
+        data: {user:userId},
+        method: 'post'
+    }).done(function (response) {
+        self.setContentAppend(response);
+    })
+}
+});
+}
 
 function valideDates() {
   var fechaInicial = $("#beginDate").val();
@@ -882,6 +904,9 @@ function Delete_DetailPettyCash(detail) {
     }
   })
 }
+
+
+
 
 function openModal(PettyCash) {
   var number = PettyCash.name;

@@ -16,6 +16,7 @@
         </select>
         <input id ="owner" type="hidden" value ="<?php echo $this->session->userdata('idUser')?>">
       <div class="modal-footer">
+      <button class="btn btn-primary" onclick="getAllAuthorizedPeople(this)" id="btnSeeAuthorizedPeople" value="<?php echo $this->session->userdata('idUser')?>">Ver usuarios autorizados</buttton>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button id="btnAuthorizePersonal" class="btn btn-primary">Guardar</button>
       </div>

@@ -42,7 +42,7 @@
 
 <body>
     <div class="line">
-        <img src="img/Ardica_Construcciones_SA_de__CV_Logo.png" width="100" height="30">
+        <img  src="img/Grupo_A-Icon.jpg">
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
     <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>

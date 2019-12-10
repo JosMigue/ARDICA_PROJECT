@@ -177,7 +177,7 @@ th, td { white-space: nowrap; }
   }
 
   .line {
-	  background-color: rgb(170, 12, 12);
+	  background-color: #05599F;
 	  height: 80px;
 	  display: flex;
 	  justify-content: right;
@@ -188,10 +188,13 @@ th, td { white-space: nowrap; }
 	  border: black;
   }
   nav{
-    background-color: #1a1a68 !important;
+    background-color: #47c0e6 !important;
     }
     .navbar-light .navbar-nav .nav-link {
-      color: rgb(177, 177, 177);
+      color: rgb(255, 255, 255);
+  }
+  a {
+    color: rgb(255, 255, 255) !important;
   }
   .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
     color: white;

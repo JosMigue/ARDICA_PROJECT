@@ -120,11 +120,11 @@ footer {
     background-color: #0d293669;
   }
   nav{
-	background-color: #1a1a68 !important;
+	background-color: #47c0e6 !important;
   }
   
   .line {
-	  background-color: rgb(170, 12, 12);
+	  background-color: #05599F;
 	  height: 80px;
 	  display: flex;
 	  justify-content: right;
@@ -136,7 +136,7 @@ footer {
   }
 
  a {
-	   color: rgb(136, 129, 129) !important;
+	   color: rgb(216, 211, 211) !important;
    }
 
    /* The side navigation menu */

@@ -173,7 +173,7 @@ function authorizePersonal($idPettyCash, $UserOwner, $userAuthorized){
                 'ID_User_Authorized' => $userAuthorized,
                 'ID_PettyCash' => $idPettyCash
         );
-        $compare = $this->db->select('ID_PettyCash')->from('authorizeduserspettycash')->where('ID_User_Authorized', $userAuthorized)->get()->result();
+        $compare = $this->db->select('ID_PettyCash')->from('authorizeduserspettycash')->where('ID_User_Authorized', $userAuthorized)->where('ID_PettyCash',$idPettyCash)->get()->result();
         if(count($compare) == 0){
                 if($this->db->insert('authorizeduserspettycash', $data))
                 {
@@ -419,10 +419,10 @@ function getAllPettyCashAuthorized($start,$length,$array_like,$array_where){
 
                 $result['data'] = $this->db->query($query,$this->session->userdata('idUser'))->result();
                 $result['total']=$this->db->select("count(1) as total")
-                                ->from('caja_chica')
+                                ->from('authorizeduserspettycash')
                                 ->like($array_like)
                                 ->where($array_where)
-                                ->where('encargado',$this->session->userdata('idUser'))
+                                ->where('ID_User_Authorized',$this->session->userdata('idUser'))
                                 ->get()
                                 ->row(); 
         }
@@ -558,6 +558,17 @@ function deleteObrasType($id){
         }else{
                 return false;
         }
+}
+
+public function getAuthorizedOPeople($user){
+        $result['data']  = $this->db->select('CJ.numero as ID_PettyCash, U.name as ID_User_Authorized, AUPC.date_Time as dateTime')
+                ->from('authorizeduserspettycash AUPC')
+                ->join('users U','U.ID = AUPC.ID_User_Authorized')
+                ->join('caja_chica CJ','CJ.ID = AUPC.ID_PettyCash')
+                ->where('AUPC.ID_User_Owner',$user)
+                ->get()
+                ->result();        
+        return $result;
 }
 
 public function saveLogActivity($log){

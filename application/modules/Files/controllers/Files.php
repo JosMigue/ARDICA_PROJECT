@@ -31,16 +31,16 @@ class Files extends MY_Controller {
 			 }  
 			 else 
 			 {  
-				  $data = $this->upload->data(); 
+/* 				  $data = $this->upload->data(); 
 				  $insert['name'] = $data['file_name'];
 				  $this->db->insert('files',$insert);
-				  $getId = $this->db->insert_id();
+				  $getId = $this->db->insert_id(); */
 
-				  $arr = array('msg' => 'El archivo no pudo subirse', 'success' => false);
+/* 				  $arr = array('msg' => 'El archivo no pudo subirse', 'success' => false);
 
-				  if($getId){
+				  if($getId){ */
 				   $arr = array('msg' => 'El archivo ha sido subido exitosamente', 'success' => true);
-				  }
+			/* 	  } */
 				  echo json_encode($arr);
 			 }  
 		}   

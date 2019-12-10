@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class PettyCash extends MY_Controller {
 	public function index()
 	{
-		if($this->checkUser()){
+ 		if($this->checkUser()){
 			$header['header'] = $this->asignHeader();
 			$this->loadView("PettyCash/v_Petty_Cash",$data=null,$header);
 			$this->load->view("PettyCash/modal_Registro_Caja");
@@ -13,7 +13,7 @@ class PettyCash extends MY_Controller {
 			$this->load->view("PettyCash/modal_Autoriza_Personal");
 		}else{
 			redirect ('/');
-		}
+		} 
 	}
 
 	public function asignedPettyCash(){
@@ -202,7 +202,7 @@ class PettyCash extends MY_Controller {
 					'accion' => 1,
 					'direccion_ip' => $this->input->ip_address(),
 					'usuario_idusuario' => $this->session->userdata('idUser'),
-					'registro_id' => $obj['numero'].'-'.date('Y'),
+					'registro_id' => 'NUEVO',
 					'campo' => 'NUEVO REGISTRO',
 					'descripcion' => 'Registro de caja chica'
 				); 
@@ -233,7 +233,7 @@ class PettyCash extends MY_Controller {
 					'accion' => 1,
 					'direccion_ip' => $this->input->ip_address(),
 					'usuario_idusuario' => $this->session->userdata('idUser'),
-					'registro_id' => 'Caja chica: '.$obj['caja_chica_ID'],
+					'registro_id' => 'Caja chica: '.$obj['numeroCajaChica'],
 					'campo' => 'NUEVO REGISTRO',
 					'descripcion' => 'Registro de gastos de caja chica'
 				); 
@@ -749,13 +749,39 @@ public function authorizePersonal(){
 			); 
 			$this->m_PettyCash->saveLogActivity($log);
 			echo 'success';
-		}else if(!$response == 'error'){
+		}else if($response == 'error'){
 			echo 'error';
 		}else if($response == 'duplicate'){
 			echo 'duplicate';
 		}
 	}else{
 		redirect('/pettyCash');
+	}
+}
+
+public function getAutorizedPeople(){
+	if(isset($_POST['user'])){
+		$this->load->model('m_PettyCash');
+		$user = $_POST['user'];
+		$result = $this->m_PettyCash->getAuthorizedOPeople($user);
+$table = '<table class="table text-centerb">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Caja chica</th>
+      <th scope="col">Usuario authorizado</th>
+      <th scope="col">Fecha de autorización</th>
+    </tr>
+  </thead>
+  <tbody>';
+  $tableBody = '';
+  foreach($result['data'] as $resultado){
+	$tableBody .= '<tr><td>'.$resultado->ID_PettyCash.'</td><td>'.$resultado->ID_User_Authorized.'</td><td>'.$resultado->dateTime.'</td></tr>';
+  }
+  $tableFooter =' </tbody>
+</table>';	
+  echo $table.$tableBody.$tableFooter;
+	}else{
+		redirect('/');
 	}
 }
 	/*===========AUTOCOMPLETE FUNCTIONS SECTION BEGIN=============*/
