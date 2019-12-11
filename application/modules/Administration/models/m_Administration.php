@@ -296,7 +296,7 @@ class M_Administration extends CI_Model {
                         ->like($array_like, 'after')
                         ->where($array_where)
                         ->limit($length,$start)
-                        ->join('roles_usuarios RU','RU.ID = U.typeUser')
+                        ->join('roles_usuarios RU','RU.ID_ROL = U.typeUser')
                         ->order_by('U.ID')
                         ->get()
                         ->result();

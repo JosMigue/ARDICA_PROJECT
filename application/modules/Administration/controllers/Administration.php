@@ -223,7 +223,7 @@ class Administration extends MY_Controller {
 		$tipos = $this->m_Administration->usersTypes();
 		$roles  = '<option value="" selected >seleccionar...</option>';
 		foreach ($tipos as $tipo) {
-			$roles.='<option value="'.$tipo->ID.'">'.$tipo->nombre.'</option>';
+			$roles.='<option value="'.$tipo->ID_ROL.'">'.$tipo->nombre.'</option>';
 		}
 
 		echo $roles;

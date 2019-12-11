@@ -42,7 +42,7 @@
 
 <body>
     <div class="line">
-        <img  src="img/Grupo_A-Icon.jpg">
+        <img  src="img/GRUPO_A-LOGO.png">
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
     <a class="nav-link" href="<?php echo site_url('/') ?>">Inicio<span class="sr-only">(current)</span></a>

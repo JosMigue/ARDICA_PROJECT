@@ -499,7 +499,7 @@ class PettyCash extends MY_Controller {
 				 $array_where['fecha_inicio'] = $this->input->post('fechaIni');
 			 }
 			 if($this->input->post('fechaFin')!=''){
-				$array_where['fecha_terminacion'] = $this->input->post('fechaIni');
+				$array_where['fecha_terminacion'] = $this->input->post('fechaFin');
 			 }
 			 if ($this->input->post('autorizadaCajaChica')!=''){
 				 if($this->input->post('autorizadaCajaChica')==2){
@@ -759,26 +759,47 @@ public function authorizePersonal(){
 	}
 }
 
+public function deleteAuthorizedPersonal(){
+	if($this->checkUser()){
+		if($_POST['user'] && $_POST['pettyCash']){
+			$this->load->model('m_PettyCash');
+			$user = $_POST['user'];
+			$pettyCash = $_POST['pettyCash'];
+			$owner = $this->session->userdata('idUser');
+			if($this->m_PettyCash->deleteAuthorizedPersonal($user,$pettyCash,$owner)){
+				echo true;
+			}else{
+				echo false;
+			}
+		}else{
+			redirect('/');
+		}
+	}else{
+		redirect('/');
+	}
+
+}
 public function getAutorizedPeople(){
 	if(isset($_POST['user'])){
 		$this->load->model('m_PettyCash');
 		$user = $_POST['user'];
 		$result = $this->m_PettyCash->getAuthorizedOPeople($user);
-$table = '<table class="table text-centerb">
+$table = '<div class="col-lg-12 table-responsive ancho_alto_table"><table class="table text-center" id="authorizedPersonalTable">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Caja chica</th>
       <th scope="col">Usuario authorizado</th>
       <th scope="col">Fecha de autorización</th>
+      <th scope="col">Acción</th>
     </tr>
   </thead>
   <tbody>';
   $tableBody = '';
   foreach($result['data'] as $resultado){
-	$tableBody .= '<tr><td>'.$resultado->ID_PettyCash.'</td><td>'.$resultado->ID_User_Authorized.'</td><td>'.$resultado->dateTime.'</td></tr>';
+	$tableBody .= '<tr><td>'.$resultado->ID_PettyCash.'</td><td>'.$resultado->ID_User_Authorized.'</td><td>'.$resultado->dateTime.'</td><td><button class="btn btn-danger" onclick="deleteAuthorizedPersonal(this)" value="'.$resultado->idUser.'" name="'.$resultado->idCaja.'"><i class="material-icons">delete</i></button></tr>';
   }
   $tableFooter =' </tbody>
-</table>';	
+</table></div>';	
   echo $table.$tableBody.$tableFooter;
 	}else{
 		redirect('/');

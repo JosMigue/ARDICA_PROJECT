@@ -561,7 +561,7 @@ function deleteObrasType($id){
 }
 
 public function getAuthorizedOPeople($user){
-        $result['data']  = $this->db->select('CJ.numero as ID_PettyCash, U.name as ID_User_Authorized, AUPC.date_Time as dateTime')
+        $result['data']  = $this->db->select('CJ.numero as ID_PettyCash, CJ.ID as idCaja, U.ID as idUser, U.name as ID_User_Authorized, AUPC.date_Time as dateTime')
                 ->from('authorizeduserspettycash AUPC')
                 ->join('users U','U.ID = AUPC.ID_User_Authorized')
                 ->join('caja_chica CJ','CJ.ID = AUPC.ID_PettyCash')
@@ -569,6 +569,14 @@ public function getAuthorizedOPeople($user){
                 ->get()
                 ->result();        
         return $result;
+}
+public function deleteAuthorizedPersonal($user, $pettyCash, $owner){
+        if($this->db->where('ID_User_Owner',$owner)->where('ID_User_Authorized',$user)->where('ID_PettyCash',$pettyCash)->delete('authorizeduserspettycash')){
+                return true;
+        }else{
+                return false;
+        }
+        
 }
 
 public function saveLogActivity($log){

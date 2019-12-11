@@ -390,9 +390,9 @@ $(document).ready(function () {
             timer: 1000
           });
           $('#modalAuthorizePersonal').modal('hide');
-          setTimeout(() => {
+/*           setTimeout(() => {
               location.reload();
-          }, 1200);
+          }, 1200); */
         }else if(res == 'error'){
           Swal.fire({
             icon: 'error',
@@ -561,6 +561,71 @@ $("#btnAddPettyCash").click(function () {
   });
 
 });
+
+function deleteAuthorizedPersonal(object){
+    var user = object.value;
+    var pettyCash = object.name;
+    var i = object.parentNode.parentNode.rowIndex;
+         $.ajax({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              type: "POST",
+              url: "PettyCash/deleteAuthorizedPersonal",
+              data: {user : user, pettyCash: pettyCash},
+              success: function(data)
+              {   
+                  if(data){
+                      document.getElementById("authorizedPersonalTable").deleteRow(i);
+                      alertify.success('Hecho, se le ha quitado el acceso al usuario a sus caja chica');
+                  }else{
+                      alertify.error('Ha ocurrido un error');
+                  }
+              },
+              error: function(jqXHR, textStatus, errorThrown){
+                  if (jqXHR.status === 0) {
+      
+                      alert('Sin conexión internet: Verificar tu conexion.');
+          
+                    } else if (jqXHR.status == 404) {
+          
+                      alert('Página o función no encontrada [404]');
+          
+                    } else if (jqXHR.status == 500) {
+                      $.confirm({
+                          title: 'Error interno del servidor [500]',
+                          content: 'Algo ocurrió, intente más tarde o contacte al administrador del sistema',
+                          type: 'red',
+                          typeAnimated: true,
+                          buttons: {
+                              cerrar:{
+                                  text: 'Cerrar',
+                                  close: function () {
+                                  }
+                              }
+                          }
+                      });
+          
+                    } else if (textStatus === 'parsererror') {
+          
+                      alert('Fallo al solicitar el JSON.');
+          
+                    } else if (textStatus === 'timeout') {
+          
+                      alert('Tiempo agotado.');
+          
+                    } else if (textStatus === 'abort') {
+          
+                      alert('Petición Ajax abortada.');
+          
+                    } else {
+          
+                      alert('Error desconocido: ' + jqXHR.responseText);
+          
+                    }
+              }
+          });
+}
 
 function getAllAuthorizedPeople(user){
   var userId = user.value;

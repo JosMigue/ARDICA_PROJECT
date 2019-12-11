@@ -87,12 +87,12 @@
 
 }
 
+.ancho_alto_table{
 
+  max-width: 100%; max-height: 200px;
+  margin: auto;
 
-
-
-
-
+}
 
 th, td { white-space: nowrap; }
 
@@ -105,8 +105,6 @@ th, td { white-space: nowrap; }
     .zoom:hover {
   transform: scale(1.1); 
 }
-
-
 
 .my-error-class{
     color:red;
@@ -183,14 +181,18 @@ th, td { white-space: nowrap; }
 	  justify-content: right;
 	  align-items: center;
   }
+
   .line > img {
 	  margin-left: 30px;
-	  border: black;
+    border: black;
+    height: 70px;
   }
+
   nav{
     background-color: #47c0e6 !important;
     }
-    .navbar-light .navbar-nav .nav-link {
+    
+  .navbar-light .navbar-nav .nav-link {
       color: rgb(255, 255, 255);
   }
   a {

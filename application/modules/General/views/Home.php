@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body>
     <div class="line">
-        <img  src="img/Grupo_A-Icon.jpg">
+        <img  src="img/GRUPO_A-LOGO.png">
     </div>
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="<?php echo site_url('/') ?>">
