@@ -10,14 +10,19 @@
 <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/Bootstrap/js/popper.min.js"></script>
 <script type="text/javascript" src="assets/jQuery/jquery-ui.js"></script>
-<script src="assets/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js"></script> 
+<script type="text/javascript" src="assets/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js"></script> 
 <script type="text/javascript" src="js/jquery.validate.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> -->
+<script type="text/javascript" src="assets/sweetalert/sweetalert2@8.js"></script> 
 <script type="text/javascript" src="assets/dataTables/jquery.dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script> -->
+<script type="text/javascript" src="assets/jQuery-confirm/jquery-confirm.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> -->
+<script type="text/javascript" src="assets/daterangepicker/moment.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->
+<script type="text/javascript" src="assets/daterangepicker/daterangepicker.min.js"></script>
+<!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script> -->
+<script type="text/javascript" src="assets/alertifyjs/alertify.min.js"></script>
 
 
 <script type="text/javascript" src="js/Administration/autocomplete.js?<?php echo $cacheSaver->getTimestamp()?>"></script>

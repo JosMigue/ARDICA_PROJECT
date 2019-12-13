@@ -1,15 +1,4 @@
 html, body{
-	/*Responsive backgroud*/
-/* 	background-image: url(../../img/blue-gradient.jpg); 
-	background-color: rgb(8, 34, 71) !important; 
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-	background-color: #464646;
-	background: rgb(198,0,0);
-	background: radial-gradient(circle, rgba(198,0,0,1) 0%, rgba(11,61,108,1) 75%); */
 	background-color: white;
 }
 *{
@@ -137,7 +126,7 @@ footer {
   }
 
  a {
-	   color: rgb(216, 211, 211) !important;
+	   color: rgb(0, 0, 0) !important;
    }
 
    /* The side navigation menu */

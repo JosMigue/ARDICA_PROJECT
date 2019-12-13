@@ -1,8 +1,8 @@
 
 $("#destroySession").click(function(){
         Swal.fire({
-            title: 'Estás seguro que quieres cerrar sesión?',
-            text: "Se procesderá a cerrar la sesión!",
+            title: '¿Estás seguro que quieres cerrar sesión?',
+            text: "¡Se procederá a cerrar la sesión!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -65,13 +65,3 @@ $("#destroySession").click(function(){
             }
           })
     });
-
-    /* Set the width of the side navigation to 250px */
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}

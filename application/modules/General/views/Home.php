@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Menú principal</title>
     <link rel="stylesheet" href="assets/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bulma-0.7.5/css/bulma.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="assets/material-design/icon.css" rel="stylesheet">
     <link rel="stylesheet" href="css/General/menuStyle.css?<?php echo $cacheSaver->getTimestamp()?>">
 
 </head>
@@ -95,8 +95,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script type="text/javascript" src="assets/jQuery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="assets/Bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/Bootstrap/js/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="assets/sweetalert/sweetalert2@8.js"></script> 
+    <script type="text/javascript" src="assets/jQuery-confirm/jquery-confirm.min.js"></script>
     <script type="text/javascript" src="js/General/home.js?<?php echo $cacheSaver->getTimestamp()?>"></script>
     <!--===========Javascript block end===========-->
 </body>

@@ -1007,12 +1007,6 @@ $table = '<div class="col-lg-12 table-responsive ancho_alto_table"><table class=
 	/*================DELETE CATALOGE END=============================*/
 
 	/*======================REPORTS======================*/
-	public function generateReport(){
-		$mpdf = new \Mpdf\Mpdf();
-		$html = $this->load->view('PettyCash/pdf',[],true);
-		$mpdf->WriteHTML($html);
-		$mpdf->Output();
-	}
 
 	public function generateReportePettyCash(){
 		if($this->session->userdata('userType') == 5 || $this->session->userdata('userType') == 1){

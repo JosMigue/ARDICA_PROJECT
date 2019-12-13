@@ -196,7 +196,7 @@ th, td { white-space: nowrap; }
       color: rgb(255, 255, 255);
   }
   a {
-    color: rgb(255, 255, 255) !important;
+    color: rgb(0, 0, 0) !important;
   }
   .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
     color: white;
